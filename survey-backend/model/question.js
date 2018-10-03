@@ -13,6 +13,12 @@ const questionSchema = mongoose.Schema({
         require:[true,'Mandatory is required'],
         default : false
     },
+    questionStatus: {
+        type: "string",
+        enum:status,
+        require:[true,'Status is required'],
+        default:"A"
+    },
     /* questionCodeNo: {
         type: "number",
         require:[true,'question code number is required'],

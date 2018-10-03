@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 //var status = 'A;I'.split(';')
 var status = ['A','I'];
 const surveySchema = mongoose.Schema({
@@ -17,7 +18,8 @@ const surveySchema = mongoose.Schema({
     surveyStatus: {
         type: "string",
         enum:status,
-        require:[true,'Status is required']
+        require:[true,'Status is required'],
+        default:"A"
     },
     startDate: {
         type: "string",
@@ -28,6 +30,7 @@ const surveySchema = mongoose.Schema({
         require:[true,'Expiry Date is required']
     },
     createdBy: {
+        //type: Schema.Types.ObjectId,
         type: "number",
         require:[true,'Created By is required']
     },

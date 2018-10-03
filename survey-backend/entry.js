@@ -9,6 +9,7 @@ var app = express();
 const route_person=require("./route/person");
 const route_survey=require("./route/survey");
 const route_question=require("./route/question");
+const route_result=require("./route/result");
 //connectto mongo db
 var connection = mongoose.connect("mongodb://localhost:27017/survey");
 
@@ -30,6 +31,7 @@ app.use(bodyparser.json()); //helps to parse json data in the request body
 app.use("/person",route_person);
 app.use("/survey",route_survey);
 app.use("/question",route_question);
+app.use("/result",route_result);
 
 app.get("/", (req, res) => {
     res.send("Node Server has been started from the port - " + PORT);

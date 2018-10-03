@@ -78,6 +78,19 @@ router.get("/survey", (req, res, next) => {
             res.json(surveys);
         }
     });
+
+});
+
+router.get("/active_only", (req, res, next) => {
+    Survey.find({ surveyStatus: "A"}, function (err, query_data) {
+        if (err) {
+            res.send(err.message);
+        }
+        else {
+            res.send(query_data);
+        }
+    });
+
 });
 
 module.exports = router;

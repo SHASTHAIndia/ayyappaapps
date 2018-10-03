@@ -13,6 +13,7 @@ router.post("/question", (req, res, next) => {
         //questionCodeNo: req.body.questionCodeNo,
         questionType: req.body.questionType,
         usedStatus: false,
+        questionStatus: "A",
         answerOptions: req.body.answerOptions
        
     });
@@ -33,6 +34,7 @@ router.put("/question/:id", (req, res, next) => {
             question: req.body.question,
             //questionCodeNo: req.body.questionCodeNo,
             questionType: req.body.questionType,
+            questionStatus: req.body.questionStatus,
             questionMandatory: req.body.questionMandatory,
             usedStatus: req.body.usedStatus,
             answerOptions: req.body.answerOptions
@@ -74,15 +76,29 @@ router.get("/question", (req, res, next) => {
 });
 
 router.get("/get_one/:id", (req, res, next) => {
-    var query = { _id: req.params.id };
-    Question.find(query).toArray(function (err, query_data) {
+
+    Question.findOne({ _id: req.params.id }, function (err, query_data) {
         if (err) {
-            res.send(err);
+            res.send(err.message);
+        }
+        else {
+            res.send(query_data);
+        } 
+    });
+   
+});
+
+
+router.get("/active_only", (req, res, next) => {
+    Question.find({ questionStatus: "A"}, function (err, query_data) {
+        if (err) {
+            res.send(err.message);
         }
         else {
             res.send(query_data);
         }
     });
+
 });
 
 module.exports = router;
