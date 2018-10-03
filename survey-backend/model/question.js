@@ -8,10 +8,16 @@ const questionSchema = mongoose.Schema({
         type: "string",
         require:[true,'question is required']
     },
-    questionCodeNo: {
-        type: "number",
-        require:[true,'question code number is required']
+    questionMandatory: {
+        type: "boolean",
+        require:[true,'Mandatory is required'],
+        default : false
     },
+    /* questionCodeNo: {
+        type: "number",
+        require:[true,'question code number is required'],
+        unique: true
+    }, */
     questionType: {
         type: "string",
         require:[true,'question type is required'],

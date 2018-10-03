@@ -10,7 +10,7 @@ router.get("/test_route", (req, res) => {
 router.post("/question", (req, res, next) => {
     let newEntry = new Question({
         question: req.body.question,
-        questionCodeNo: req.body.questionCodeNo,
+        //questionCodeNo: req.body.questionCodeNo,
         questionType: req.body.questionType,
         usedStatus: false,
         answerOptions: req.body.answerOptions
@@ -31,8 +31,9 @@ router.put("/question/:id", (req, res, next) => {
     Question.findOneAndUpdate({ _id: req.params.id }, {
         $set: {
             question: req.body.question,
-            questionCodeNo: req.body.questionCodeNo,
+            //questionCodeNo: req.body.questionCodeNo,
             questionType: req.body.questionType,
+            questionMandatory: req.body.questionMandatory,
             usedStatus: req.body.usedStatus,
             answerOptions: req.body.answerOptions
         }

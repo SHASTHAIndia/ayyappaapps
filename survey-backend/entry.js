@@ -10,7 +10,7 @@ const route_person=require("./route/person");
 const route_survey=require("./route/survey");
 const route_question=require("./route/question");
 //connectto mongo db
-mongoose.connect("mongodb://localhost:27017/survey");
+var connection = mongoose.connect("mongodb://localhost:27017/survey");
 
 mongoose.connection.on("connected", () => {
     console.log("Mongoose connected at port 27017");

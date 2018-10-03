@@ -9,6 +9,7 @@
   "author": "Sreerag",
   "license": "ISC",
   "dependencies": {
+    "@types/mongoose-auto-increment": "^5.0.30",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
