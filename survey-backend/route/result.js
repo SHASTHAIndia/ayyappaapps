@@ -71,15 +71,30 @@ router.get("/result", (req, res, next) => {
 });
 
 router.get("/get_one/:id", (req, res, next) => {
-    var query = { _id: req.params.id };
-    Result.find(query).toArray(function (err, query_data) {
+    Result.find({ _id: req.params.id}, function (err, query_data) {
         if (err) {
-            res.send(err);
+            res.send(err.message);
         }
         else {
             res.send(query_data);
         }
     });
+    
+});
+
+//get result of a pirticular survey of a pirticular person
+router.get("/get_survey/:personId/:serveyId", (req, res, next) => {
+    
+    Result.find({ personId: req.params.personId,surveyId:req.params.serveyId}, function (err, query_data) {
+        if (err) {
+            res.send(err.message);
+        }
+        else {
+            res.send(query_data);
+        }
+    });
+
+   
 });
 
 module.exports = router;
