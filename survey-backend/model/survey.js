@@ -30,18 +30,23 @@ const surveySchema = mongoose.Schema({
         require:[true,'Expiry Date is required']
     },
     createdBy: {
-        //type: Schema.Types.ObjectId,
-        type: "number",
+        type: Schema.Types.ObjectId,
+        ref: 'Person',
+        //type: "number",
         require:[true,'Created By is required']
     },
     createdOn: {
         type: "string",
         require:[true,'CreatedOn is required']
     },
-    questions: {
+    /* questions: {
         type: "array",
         
-    },
+    }, */
+
+    questions: [
+        {type: Schema.Types.ObjectId, ref: 'Question'}
+    ]
 
 
 });

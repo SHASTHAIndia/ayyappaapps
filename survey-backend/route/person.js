@@ -75,4 +75,17 @@ router.get("/user", (req, res, next) => {
     });
 });
 
+//Used to verify whether the user is already registered and also check if the user is already attended the survey(If that user exists)
+router.get("/user_verify/:user_id/:survey_id", (req, res, next) => {
+    var result={
+        "status":true,
+        "msg":"",
+        "exists":false,
+        "user_details":[]
+    };
+    res.send(result);
+    
+});
+
+
 module.exports = router;

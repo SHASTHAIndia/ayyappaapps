@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const Survey = require("../model/Survey");
+const Question = require("../model/Question");
 
 router.get("/test_survey", (req, res) => {
     res.send("router tested.");
@@ -82,7 +83,7 @@ router.get("/survey", (req, res, next) => {
 });
 
 router.get("/active_only", (req, res, next) => {
-    Survey.find({ surveyStatus: "A"}, function (err, query_data) {
+    Survey.find({ surveyStatus: "A" }, function (err, query_data) {
         if (err) {
             res.send(err.message);
         }
@@ -90,6 +91,37 @@ router.get("/active_only", (req, res, next) => {
             res.send(query_data);
         }
     });
+
+});
+
+// Get survey details along with the question list
+// id => Survey ID
+router.get("/get_one/:id", (req, res, next) => {
+
+    Survey.
+        findOne({ "_id": req.params.id }).
+        populate('Question').
+        exec(function (err, question) {
+            if (err) return handleError(err);
+            res.send(question);
+            //console.log( question);
+            // prints "The author is Ian Fleming"
+        });
+
+   /*  var matches = Survey.find({ "_id": req.params.id }, { "questions.questionId": 1 }, function (err, query_data) {
+        res.send(matches);
+    }); */
+    // console.log(matches);
+    // res.send(matches);
+    /* Survey.find().forEeach(
+        function(newSurvey)
+        {
+            newSurvey.question = Questions.find({"_id":{$in:newSurvey.questions.questionId}}).toArray();
+            
+        }
+    ); */
+
+
 
 });
 
