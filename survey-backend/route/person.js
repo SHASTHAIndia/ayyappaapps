@@ -76,14 +76,42 @@ router.get("/user", (req, res, next) => {
 });
 
 //Used to verify whether the user is already registered and also check if the user is already attended the survey(If that user exists)
-router.get("/user_verify/:user_id/:survey_id", (req, res, next) => {
+router.get("/user_verify/:email/:survey_id", (req, res, next) => {
     var result={
         "status":true,
         "msg":"",
         "exists":false,
         "user_details":[]
     };
-    res.send(result);
+    var user_exists =false;
+    //check email is exists
+    Person.findOne({ userEmail : req.params.email }, function (err, user) {
+        if(err)
+        {
+            result={
+                "status":false,
+                "msg":err,
+                "exists":false,
+                "user_details":[]
+            };
+            res.send(result); 
+        }
+        //res.send(user);
+        if(user)
+        {
+            user_exists = true;
+        }
+
+        result={
+            "status":true,
+            "msg":"Success",
+            "exists":user_exists,
+            "user_details":[]
+        };
+        res.send(result);
+    });
+
+    //res.send(result);
     
 });
 

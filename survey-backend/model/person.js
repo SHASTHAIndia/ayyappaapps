@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+var uniqueValidator = require('mongoose-unique-validator');
 // Defining ENUMs for the gender field which will use for validation.
 var genders = 'MALE FEMALE'.split(' ')
 const personSchema = mongoose.Schema({
@@ -8,8 +9,10 @@ const personSchema = mongoose.Schema({
     },
     userEmail: {
         type: "string",
+        unique:true,
         require:true,
         match: /\S+@\S+\.\S+/
+
     },
     userAddress: {
         type: "string",
@@ -34,5 +37,5 @@ const personSchema = mongoose.Schema({
     },
 
 });
-
+personSchema.plugin(uniqueValidator);
 module.exports = mongoose.model("Person",personSchema);
