@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Survey = require("../model/Survey");
 const Question = require("../model/Question");
+const Result = require("../model/Result");
 
 router.get("/test_survey", (req, res) => {
     res.send("router tested.");
@@ -99,8 +100,25 @@ router.get("/active_only", (req, res, next) => {
 router.get("/get_one/:id", (req, res, next) => {
 
     Survey.
-        findOne({ "_id": req.params.id }).
-        populate('Question').
+        findOne({ "_id": req.params.id })
+        .populate('questions')  //questions -> field name
+        .populate('createdBy','userName') // createdBy -> Filed name in parent table; userName -> Fileds wants to be listed in the population
+        .exec(function (err, question) {
+            if (err) return handleError(err);
+            res.send(question);
+            //console.log( question);
+            // prints "The author is Ian Fleming"
+        });
+
+  
+});
+
+//for getting responses on a pirticular survey
+// For admin panel
+router.get("/responses/:survey_id", (req, res, next) => {
+
+    Result.findOne({ "surveyId": req.params.survey_id }).
+        populate('Survey').
         exec(function (err, question) {
             if (err) return handleError(err);
             res.send(question);
@@ -108,21 +126,7 @@ router.get("/get_one/:id", (req, res, next) => {
             // prints "The author is Ian Fleming"
         });
 
-   /*  var matches = Survey.find({ "_id": req.params.id }, { "questions.questionId": 1 }, function (err, query_data) {
-        res.send(matches);
-    }); */
-    // console.log(matches);
-    // res.send(matches);
-    /* Survey.find().forEeach(
-        function(newSurvey)
-        {
-            newSurvey.question = Questions.find({"_id":{$in:newSurvey.questions.questionId}}).toArray();
-            
-        }
-    ); */
-
-
-
+   
 });
 
 module.exports = router;

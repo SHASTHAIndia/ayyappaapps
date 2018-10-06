@@ -31,9 +31,9 @@ const surveySchema = mongoose.Schema({
     },
     createdBy: {
         type: Schema.Types.ObjectId,
-        ref: 'Person',
+        ref: 'Admin',
         //type: "number",
-        require:[true,'Created By is required']
+        require:false
     },
     createdOn: {
         type: "string",
