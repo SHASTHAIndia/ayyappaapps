@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 //var status = 'A;I'.split(';')
 var status = ['A','I'];
-const surveySchema = mongoose.Schema({
+const surveySchema = new Schema({
     surveyName: {
         type: "string",
         require:[true,'Survay Name is required']

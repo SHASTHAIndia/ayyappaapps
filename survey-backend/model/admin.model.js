@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-const adminSchema = mongoose.Schema({
+const adminSchema = new Schema({
     userName: {
         type: "string",
         require:[true,'User Name is required']

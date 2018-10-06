@@ -1,8 +1,8 @@
 var express = require("express");
 var router = express.Router();
-const Survey = require("../model/Survey");
-const Question = require("../model/Question");
-const Result = require("../model/Result");
+const Survey = require("../model/survey");
+const Question = require("../model/question");
+const Result = require("../model/result");
 
 router.get("/test_survey", (req, res) => {
     res.send("router tested.");

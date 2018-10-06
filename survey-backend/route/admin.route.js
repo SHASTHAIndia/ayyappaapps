@@ -56,4 +56,43 @@ router.get("/admin", (req, res, next) => {
     });
 });
 
+//for listing all countries
+router.get("/countries", (req, res, next) => {
+    Question.find({ }, function (err, query_data) {
+        if (err) {
+            res.send(err.message);
+        }
+        else {
+            res.send(query_data);
+        }
+    });
+
+});
+// for listing all states under a country
+router.get("/get_states", (req, res, next) => {
+    Question.find({ countryId: req.body.country_id}, function (err, query_data) {
+        if (err) {
+            res.send(err.message);
+        }
+        else {
+            res.send(query_data);
+        }
+    });
+
+});
+
+// for listing all cities under a state
+router.get("/get_cities", (req, res, next) => {
+    Question.find({ stateId: req.body.state_id}, function (err, query_data) {
+        if (err) {
+            res.send(err.message);
+        }
+        else {
+            res.send(query_data);
+        }
+    });
+
+});
+
+
 module.exports = router;

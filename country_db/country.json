@@ -1,0 +1,1231 @@
+{
+	"countryId": "1",
+	"sortname": "AF",
+	"name": "Afghanistan",
+	"phonecode": "93"
+} {
+	"countryId": "2",
+	"sortname": "AL",
+	"name": "Albania",
+	"phonecode": "355"
+} {
+	"countryId": "3",
+	"sortname": "DZ",
+	"name": "Algeria",
+	"phonecode": "213"
+} {
+	"countryId": "4",
+	"sortname": "AS",
+	"name": "American Samoa",
+	"phonecode": "1684"
+} {
+	"countryId": "5",
+	"sortname": "AD",
+	"name": "Andorra",
+	"phonecode": "376"
+} {
+	"countryId": "6",
+	"sortname": "AO",
+	"name": "Angola",
+	"phonecode": "244"
+} {
+	"countryId": "7",
+	"sortname": "AI",
+	"name": "Anguilla",
+	"phonecode": "1264"
+} {
+	"countryId": "8",
+	"sortname": "AQ",
+	"name": "Antarctica",
+	"phonecode": "0"
+} {
+	"countryId": "9",
+	"sortname": "AG",
+	"name": "Antigua And Barbuda",
+	"phonecode": "1268"
+} {
+	"countryId": "10",
+	"sortname": "AR",
+	"name": "Argentina",
+	"phonecode": "54"
+} {
+	"countryId": "11",
+	"sortname": "AM",
+	"name": "Armenia",
+	"phonecode": "374"
+} {
+	"countryId": "12",
+	"sortname": "AW",
+	"name": "Aruba",
+	"phonecode": "297"
+} {
+	"countryId": "13",
+	"sortname": "AU",
+	"name": "Australia",
+	"phonecode": "61"
+} {
+	"countryId": "14",
+	"sortname": "AT",
+	"name": "Austria",
+	"phonecode": "43"
+} {
+	"countryId": "15",
+	"sortname": "AZ",
+	"name": "Azerbaijan",
+	"phonecode": "994"
+} {
+	"countryId": "16",
+	"sortname": "BS",
+	"name": "Bahamas The",
+	"phonecode": "1242"
+} {
+	"countryId": "17",
+	"sortname": "BH",
+	"name": "Bahrain",
+	"phonecode": "973"
+} {
+	"countryId": "18",
+	"sortname": "BD",
+	"name": "Bangladesh",
+	"phonecode": "880"
+} {
+	"countryId": "19",
+	"sortname": "BB",
+	"name": "Barbados",
+	"phonecode": "1246"
+} {
+	"countryId": "20",
+	"sortname": "BY",
+	"name": "Belarus",
+	"phonecode": "375"
+} {
+	"countryId": "21",
+	"sortname": "BE",
+	"name": "Belgium",
+	"phonecode": "32"
+} {
+	"countryId": "22",
+	"sortname": "BZ",
+	"name": "Belize",
+	"phonecode": "501"
+} {
+	"countryId": "23",
+	"sortname": "BJ",
+	"name": "Benin",
+	"phonecode": "229"
+} {
+	"countryId": "24",
+	"sortname": "BM",
+	"name": "Bermuda",
+	"phonecode": "1441"
+} {
+	"countryId": "25",
+	"sortname": "BT",
+	"name": "Bhutan",
+	"phonecode": "975"
+} {
+	"countryId": "26",
+	"sortname": "BO",
+	"name": "Bolivia",
+	"phonecode": "591"
+} {
+	"countryId": "27",
+	"sortname": "BA",
+	"name": "Bosnia and Herzegovina",
+	"phonecode": "387"
+} {
+	"countryId": "28",
+	"sortname": "BW",
+	"name": "Botswana",
+	"phonecode": "267"
+} {
+	"countryId": "29",
+	"sortname": "BV",
+	"name": "Bouvet Island",
+	"phonecode": "0"
+} {
+	"countryId": "30",
+	"sortname": "BR",
+	"name": "Brazil",
+	"phonecode": "55"
+} {
+	"countryId": "31",
+	"sortname": "IO",
+	"name": "British Indian Ocean Territory",
+	"phonecode": "246"
+} {
+	"countryId": "32",
+	"sortname": "BN",
+	"name": "Brunei",
+	"phonecode": "673"
+} {
+	"countryId": "33",
+	"sortname": "BG",
+	"name": "Bulgaria",
+	"phonecode": "359"
+} {
+	"countryId": "34",
+	"sortname": "BF",
+	"name": "Burkina Faso",
+	"phonecode": "226"
+} {
+	"countryId": "35",
+	"sortname": "BI",
+	"name": "Burundi",
+	"phonecode": "257"
+} {
+	"countryId": "36",
+	"sortname": "KH",
+	"name": "Cambodia",
+	"phonecode": "855"
+} {
+	"countryId": "37",
+	"sortname": "CM",
+	"name": "Cameroon",
+	"phonecode": "237"
+} {
+	"countryId": "38",
+	"sortname": "CA",
+	"name": "Canada",
+	"phonecode": "1"
+} {
+	"countryId": "39",
+	"sortname": "CV",
+	"name": "Cape Verde",
+	"phonecode": "238"
+} {
+	"countryId": "40",
+	"sortname": "KY",
+	"name": "Cayman Islands",
+	"phonecode": "1345"
+} {
+	"countryId": "41",
+	"sortname": "CF",
+	"name": "Central African Republic",
+	"phonecode": "236"
+} {
+	"countryId": "42",
+	"sortname": "TD",
+	"name": "Chad",
+	"phonecode": "235"
+} {
+	"countryId": "43",
+	"sortname": "CL",
+	"name": "Chile",
+	"phonecode": "56"
+} {
+	"countryId": "44",
+	"sortname": "CN",
+	"name": "China",
+	"phonecode": "86"
+} {
+	"countryId": "45",
+	"sortname": "CX",
+	"name": "Christmas Island",
+	"phonecode": "61"
+} {
+	"countryId": "46",
+	"sortname": "CC",
+	"name": "Cocos (Keeling) Islands",
+	"phonecode": "672"
+} {
+	"countryId": "47",
+	"sortname": "CO",
+	"name": "Colombia",
+	"phonecode": "57"
+} {
+	"countryId": "48",
+	"sortname": "KM",
+	"name": "Comoros",
+	"phonecode": "269"
+} {
+	"countryId": "49",
+	"sortname": "CG",
+	"name": "Congo",
+	"phonecode": "242"
+} {
+	"countryId": "50",
+	"sortname": "CD",
+	"name": "Congo The Democratic Republic Of The",
+	"phonecode": "242"
+} {
+	"countryId": "51",
+	"sortname": "CK",
+	"name": "Cook Islands",
+	"phonecode": "682"
+} {
+	"countryId": "52",
+	"sortname": "CR",
+	"name": "Costa Rica",
+	"phonecode": "506"
+} {
+	"countryId": "53",
+	"sortname": "CI",
+	"name": "Cote D''Ivoire (Ivory Coast)",
+	"phonecode": "225"
+} {
+	"countryId": "54",
+	"sortname": "HR",
+	"name": "Croatia (Hrvatska)",
+	"phonecode": "385"
+} {
+	"countryId": "55",
+	"sortname": "CU",
+	"name": "Cuba",
+	"phonecode": "53"
+} {
+	"countryId": "56",
+	"sortname": "CY",
+	"name": "Cyprus",
+	"phonecode": "357"
+} {
+	"countryId": "57",
+	"sortname": "CZ",
+	"name": "Czech Republic",
+	"phonecode": "420"
+} {
+	"countryId": "58",
+	"sortname": "DK",
+	"name": "Denmark",
+	"phonecode": "45"
+} {
+	"countryId": "59",
+	"sortname": "DJ",
+	"name": "Djibouti",
+	"phonecode": "253"
+} {
+	"countryId": "60",
+	"sortname": "DM",
+	"name": "Dominica",
+	"phonecode": "1767"
+} {
+	"countryId": "61",
+	"sortname": "DO",
+	"name": "Dominican Republic",
+	"phonecode": "1809"
+} {
+	"countryId": "62",
+	"sortname": "TP",
+	"name": "East Timor",
+	"phonecode": "670"
+} {
+	"countryId": "63",
+	"sortname": "EC",
+	"name": "Ecuador",
+	"phonecode": "593"
+} {
+	"countryId": "64",
+	"sortname": "EG",
+	"name": "Egypt",
+	"phonecode": "20"
+} {
+	"countryId": "65",
+	"sortname": "SV",
+	"name": "El Salvador",
+	"phonecode": "503"
+} {
+	"countryId": "66",
+	"sortname": "GQ",
+	"name": "Equatorial Guinea",
+	"phonecode": "240"
+} {
+	"countryId": "67",
+	"sortname": "ER",
+	"name": "Eritrea",
+	"phonecode": "291"
+} {
+	"countryId": "68",
+	"sortname": "EE",
+	"name": "Estonia",
+	"phonecode": "372"
+} {
+	"countryId": "69",
+	"sortname": "ET",
+	"name": "Ethiopia",
+	"phonecode": "251"
+} {
+	"countryId": "70",
+	"sortname": "XA",
+	"name": "External Territories of Australia",
+	"phonecode": "61"
+} {
+	"countryId": "71",
+	"sortname": "FK",
+	"name": "Falkland Islands",
+	"phonecode": "500"
+} {
+	"countryId": "72",
+	"sortname": "FO",
+	"name": "Faroe Islands",
+	"phonecode": "298"
+} {
+	"countryId": "73",
+	"sortname": "FJ",
+	"name": "Fiji Islands",
+	"phonecode": "679"
+} {
+	"countryId": "74",
+	"sortname": "FI",
+	"name": "Finland",
+	"phonecode": "358"
+} {
+	"countryId": "75",
+	"sortname": "FR",
+	"name": "France",
+	"phonecode": "33"
+} {
+	"countryId": "76",
+	"sortname": "GF",
+	"name": "French Guiana",
+	"phonecode": "594"
+} {
+	"countryId": "77",
+	"sortname": "PF",
+	"name": "French Polynesia",
+	"phonecode": "689"
+} {
+	"countryId": "78",
+	"sortname": "TF",
+	"name": "French Southern Territories",
+	"phonecode": "0"
+} {
+	"countryId": "79",
+	"sortname": "GA",
+	"name": "Gabon",
+	"phonecode": "241"
+} {
+	"countryId": "80",
+	"sortname": "GM",
+	"name": "Gambia The",
+	"phonecode": "220"
+} {
+	"countryId": "81",
+	"sortname": "GE",
+	"name": "Georgia",
+	"phonecode": "995"
+} {
+	"countryId": "82",
+	"sortname": "DE",
+	"name": "Germany",
+	"phonecode": "49"
+} {
+	"countryId": "83",
+	"sortname": "GH",
+	"name": "Ghana",
+	"phonecode": "233"
+} {
+	"countryId": "84",
+	"sortname": "GI",
+	"name": "Gibraltar",
+	"phonecode": "350"
+} {
+	"countryId": "85",
+	"sortname": "GR",
+	"name": "Greece",
+	"phonecode": "30"
+} {
+	"countryId": "86",
+	"sortname": "GL",
+	"name": "Greenland",
+	"phonecode": "299"
+} {
+	"countryId": "87",
+	"sortname": "GD",
+	"name": "Grenada",
+	"phonecode": "1473"
+} {
+	"countryId": "88",
+	"sortname": "GP",
+	"name": "Guadeloupe",
+	"phonecode": "590"
+} {
+	"countryId": "89",
+	"sortname": "GU",
+	"name": "Guam",
+	"phonecode": "1671"
+} {
+	"countryId": "90",
+	"sortname": "GT",
+	"name": "Guatemala",
+	"phonecode": "502"
+} {
+	"countryId": "91",
+	"sortname": "XU",
+	"name": "Guernsey and Alderney",
+	"phonecode": "44"
+} {
+	"countryId": "92",
+	"sortname": "GN",
+	"name": "Guinea",
+	"phonecode": "224"
+} {
+	"countryId": "93",
+	"sortname": "GW",
+	"name": "Guinea-Bissau",
+	"phonecode": "245"
+} {
+	"countryId": "94",
+	"sortname": "GY",
+	"name": "Guyana",
+	"phonecode": "592"
+} {
+	"countryId": "95",
+	"sortname": "HT",
+	"name": "Haiti",
+	"phonecode": "509"
+} {
+	"countryId": "96",
+	"sortname": "HM",
+	"name": "Heard and McDonald Islands",
+	"phonecode": "0"
+} {
+	"countryId": "97",
+	"sortname": "HN",
+	"name": "Honduras",
+	"phonecode": "504"
+} {
+	"countryId": "98",
+	"sortname": "HK",
+	"name": "Hong Kong S.A.R.",
+	"phonecode": "852"
+} {
+	"countryId": "99",
+	"sortname": "HU",
+	"name": "Hungary",
+	"phonecode": "36"
+} {
+	"countryId": "100",
+	"sortname": "IS",
+	"name": "Iceland",
+	"phonecode": "354"
+} {
+	"countryId": "101",
+	"sortname": "IN",
+	"name": "India",
+	"phonecode": "91"
+} {
+	"countryId": "102",
+	"sortname": "ID",
+	"name": "Indonesia",
+	"phonecode": "62"
+} {
+	"countryId": "103",
+	"sortname": "IR",
+	"name": "Iran",
+	"phonecode": "98"
+} {
+	"countryId": "104",
+	"sortname": "IQ",
+	"name": "Iraq",
+	"phonecode": "964"
+} {
+	"countryId": "105",
+	"sortname": "IE",
+	"name": "Ireland",
+	"phonecode": "353"
+} {
+	"countryId": "106",
+	"sortname": "IL",
+	"name": "Israel",
+	"phonecode": "972"
+} {
+	"countryId": "107",
+	"sortname": "IT",
+	"name": "Italy",
+	"phonecode": "39"
+} {
+	"countryId": "108",
+	"sortname": "JM",
+	"name": "Jamaica",
+	"phonecode": "1876"
+} {
+	"countryId": "109",
+	"sortname": "JP",
+	"name": "Japan",
+	"phonecode": "81"
+} {
+	"countryId": "110",
+	"sortname": "XJ",
+	"name": "Jersey",
+	"phonecode": "44"
+} {
+	"countryId": "111",
+	"sortname": "JO",
+	"name": "Jordan",
+	"phonecode": "962"
+} {
+	"countryId": "112",
+	"sortname": "KZ",
+	"name": "Kazakhstan",
+	"phonecode": "7"
+} {
+	"countryId": "113",
+	"sortname": "KE",
+	"name": "Kenya",
+	"phonecode": "254"
+} {
+	"countryId": "114",
+	"sortname": "KI",
+	"name": "Kiribati",
+	"phonecode": "686"
+} {
+	"countryId": "115",
+	"sortname": "KP",
+	"name": "Korea North",
+	"phonecode": "850"
+} {
+	"countryId": "116",
+	"sortname": "KR",
+	"name": "Korea South",
+	"phonecode": "82"
+} {
+	"countryId": "117",
+	"sortname": "KW",
+	"name": "Kuwait",
+	"phonecode": "965"
+} {
+	"countryId": "118",
+	"sortname": "KG",
+	"name": "Kyrgyzstan",
+	"phonecode": "996"
+} {
+	"countryId": "119",
+	"sortname": "LA",
+	"name": "Laos",
+	"phonecode": "856"
+} {
+	"countryId": "120",
+	"sortname": "LV",
+	"name": "Latvia",
+	"phonecode": "371"
+} {
+	"countryId": "121",
+	"sortname": "LB",
+	"name": "Lebanon",
+	"phonecode": "961"
+} {
+	"countryId": "122",
+	"sortname": "LS",
+	"name": "Lesotho",
+	"phonecode": "266"
+} {
+	"countryId": "123",
+	"sortname": "LR",
+	"name": "Liberia",
+	"phonecode": "231"
+} {
+	"countryId": "124",
+	"sortname": "LY",
+	"name": "Libya",
+	"phonecode": "218"
+} {
+	"countryId": "125",
+	"sortname": "LI",
+	"name": "Liechtenstein",
+	"phonecode": "423"
+} {
+	"countryId": "126",
+	"sortname": "LT",
+	"name": "Lithuania",
+	"phonecode": "370"
+} {
+	"countryId": "127",
+	"sortname": "LU",
+	"name": "Luxembourg",
+	"phonecode": "352"
+} {
+	"countryId": "128",
+	"sortname": "MO",
+	"name": "Macau S.A.R.",
+	"phonecode": "853"
+} {
+	"countryId": "129",
+	"sortname": "MK",
+	"name": "Macedonia",
+	"phonecode": "389"
+} {
+	"countryId": "130",
+	"sortname": "MG",
+	"name": "Madagascar",
+	"phonecode": "261"
+} {
+	"countryId": "131",
+	"sortname": "MW",
+	"name": "Malawi",
+	"phonecode": "265"
+} {
+	"countryId": "132",
+	"sortname": "MY",
+	"name": "Malaysia",
+	"phonecode": "60"
+} {
+	"countryId": "133",
+	"sortname": "MV",
+	"name": "Maldives",
+	"phonecode": "960"
+} {
+	"countryId": "134",
+	"sortname": "ML",
+	"name": "Mali",
+	"phonecode": "223"
+} {
+	"countryId": "135",
+	"sortname": "MT",
+	"name": "Malta",
+	"phonecode": "356"
+} {
+	"countryId": "136",
+	"sortname": "XM",
+	"name": "Man (Isle of)",
+	"phonecode": "44"
+} {
+	"countryId": "137",
+	"sortname": "MH",
+	"name": "Marshall Islands",
+	"phonecode": "692"
+} {
+	"countryId": "138",
+	"sortname": "MQ",
+	"name": "Martinique",
+	"phonecode": "596"
+} {
+	"countryId": "139",
+	"sortname": "MR",
+	"name": "Mauritania",
+	"phonecode": "222"
+} {
+	"countryId": "140",
+	"sortname": "MU",
+	"name": "Mauritius",
+	"phonecode": "230"
+} {
+	"countryId": "141",
+	"sortname": "YT",
+	"name": "Mayotte",
+	"phonecode": "269"
+} {
+	"countryId": "142",
+	"sortname": "MX",
+	"name": "Mexico",
+	"phonecode": "52"
+} {
+	"countryId": "143",
+	"sortname": "FM",
+	"name": "Micronesia",
+	"phonecode": "691"
+} {
+	"countryId": "144",
+	"sortname": "MD",
+	"name": "Moldova",
+	"phonecode": "373"
+} {
+	"countryId": "145",
+	"sortname": "MC",
+	"name": "Monaco",
+	"phonecode": "377"
+} {
+	"countryId": "146",
+	"sortname": "MN",
+	"name": "Mongolia",
+	"phonecode": "976"
+} {
+	"countryId": "147",
+	"sortname": "MS",
+	"name": "Montserrat",
+	"phonecode": "1664"
+} {
+	"countryId": "148",
+	"sortname": "MA",
+	"name": "Morocco",
+	"phonecode": "212"
+} {
+	"countryId": "149",
+	"sortname": "MZ",
+	"name": "Mozambique",
+	"phonecode": "258"
+} {
+	"countryId": "150",
+	"sortname": "MM",
+	"name": "Myanmar",
+	"phonecode": "95"
+} {
+	"countryId": "151",
+	"sortname": "NA",
+	"name": "Namibia",
+	"phonecode": "264"
+} {
+	"countryId": "152",
+	"sortname": "NR",
+	"name": "Nauru",
+	"phonecode": "674"
+} {
+	"countryId": "153",
+	"sortname": "NP",
+	"name": "Nepal",
+	"phonecode": "977"
+} {
+	"countryId": "154",
+	"sortname": "AN",
+	"name": "Netherlands Antilles",
+	"phonecode": "599"
+} {
+	"countryId": "155",
+	"sortname": "NL",
+	"name": "Netherlands The",
+	"phonecode": "31"
+} {
+	"countryId": "156",
+	"sortname": "NC",
+	"name": "New Caledonia",
+	"phonecode": "687"
+} {
+	"countryId": "157",
+	"sortname": "NZ",
+	"name": "New Zealand",
+	"phonecode": "64"
+} {
+	"countryId": "158",
+	"sortname": "NI",
+	"name": "Nicaragua",
+	"phonecode": "505"
+} {
+	"countryId": "159",
+	"sortname": "NE",
+	"name": "Niger",
+	"phonecode": "227"
+} {
+	"countryId": "160",
+	"sortname": "NG",
+	"name": "Nigeria",
+	"phonecode": "234"
+} {
+	"countryId": "161",
+	"sortname": "NU",
+	"name": "Niue",
+	"phonecode": "683"
+} {
+	"countryId": "162",
+	"sortname": "NF",
+	"name": "Norfolk Island",
+	"phonecode": "672"
+} {
+	"countryId": "163",
+	"sortname": "MP",
+	"name": "Northern Mariana Islands",
+	"phonecode": "1670"
+} {
+	"countryId": "164",
+	"sortname": "NO",
+	"name": "Norway",
+	"phonecode": "47"
+} {
+	"countryId": "165",
+	"sortname": "OM",
+	"name": "Oman",
+	"phonecode": "968"
+} {
+	"countryId": "166",
+	"sortname": "PK",
+	"name": "Pakistan",
+	"phonecode": "92"
+} {
+	"countryId": "167",
+	"sortname": "PW",
+	"name": "Palau",
+	"phonecode": "680"
+} {
+	"countryId": "168",
+	"sortname": "PS",
+	"name": "Palestinian Territory Occupied",
+	"phonecode": "970"
+} {
+	"countryId": "169",
+	"sortname": "PA",
+	"name": "Panama",
+	"phonecode": "507"
+} {
+	"countryId": "170",
+	"sortname": "PG",
+	"name": "Papua new Guinea",
+	"phonecode": "675"
+} {
+	"countryId": "171",
+	"sortname": "PY",
+	"name": "Paraguay",
+	"phonecode": "595"
+} {
+	"countryId": "172",
+	"sortname": "PE",
+	"name": "Peru",
+	"phonecode": "51"
+} {
+	"countryId": "173",
+	"sortname": "PH",
+	"name": "Philippines",
+	"phonecode": "63"
+} {
+	"countryId": "174",
+	"sortname": "PN",
+	"name": "Pitcairn Island",
+	"phonecode": "0"
+} {
+	"countryId": "175",
+	"sortname": "PL",
+	"name": "Poland",
+	"phonecode": "48"
+} {
+	"countryId": "176",
+	"sortname": "PT",
+	"name": "Portugal",
+	"phonecode": "351"
+} {
+	"countryId": "177",
+	"sortname": "PR",
+	"name": "Puerto Rico",
+	"phonecode": "1787"
+} {
+	"countryId": "178",
+	"sortname": "QA",
+	"name": "Qatar",
+	"phonecode": "974"
+} {
+	"countryId": "179",
+	"sortname": "RE",
+	"name": "Reunion",
+	"phonecode": "262"
+} {
+	"countryId": "180",
+	"sortname": "RO",
+	"name": "Romania",
+	"phonecode": "40"
+} {
+	"countryId": "181",
+	"sortname": "RU",
+	"name": "Russia",
+	"phonecode": "70"
+} {
+	"countryId": "182",
+	"sortname": "RW",
+	"name": "Rwanda",
+	"phonecode": "250"
+} {
+	"countryId": "183",
+	"sortname": "SH",
+	"name": "Saint Helena",
+	"phonecode": "290"
+} {
+	"countryId": "184",
+	"sortname": "KN",
+	"name": "Saint Kitts And Nevis",
+	"phonecode": "1869"
+} {
+	"countryId": "185",
+	"sortname": "LC",
+	"name": "Saint Lucia",
+	"phonecode": "1758"
+} {
+	"countryId": "186",
+	"sortname": "PM",
+	"name": "Saint Pierre and Miquelon",
+	"phonecode": "508"
+} {
+	"countryId": "187",
+	"sortname": "VC",
+	"name": "Saint Vincent And The Grenadines",
+	"phonecode": "1784"
+} {
+	"countryId": "188",
+	"sortname": "WS",
+	"name": "Samoa",
+	"phonecode": "684"
+} {
+	"countryId": "189",
+	"sortname": "SM",
+	"name": "San Marino",
+	"phonecode": "378"
+} {
+	"countryId": "190",
+	"sortname": "ST",
+	"name": "Sao Tome and Principe",
+	"phonecode": "239"
+} {
+	"countryId": "191",
+	"sortname": "SA",
+	"name": "Saudi Arabia",
+	"phonecode": "966"
+} {
+	"countryId": "192",
+	"sortname": "SN",
+	"name": "Senegal",
+	"phonecode": "221"
+} {
+	"countryId": "193",
+	"sortname": "RS",
+	"name": "Serbia",
+	"phonecode": "381"
+} {
+	"countryId": "194",
+	"sortname": "SC",
+	"name": "Seychelles",
+	"phonecode": "248"
+} {
+	"countryId": "195",
+	"sortname": "SL",
+	"name": "Sierra Leone",
+	"phonecode": "232"
+} {
+	"countryId": "196",
+	"sortname": "SG",
+	"name": "Singapore",
+	"phonecode": "65"
+} {
+	"countryId": "197",
+	"sortname": "SK",
+	"name": "Slovakia",
+	"phonecode": "421"
+} {
+	"countryId": "198",
+	"sortname": "SI",
+	"name": "Slovenia",
+	"phonecode": "386"
+} {
+	"countryId": "199",
+	"sortname": "XG",
+	"name": "Smaller Territories of the UK",
+	"phonecode": "44"
+} {
+	"countryId": "200",
+	"sortname": "SB",
+	"name": "Solomon Islands",
+	"phonecode": "677"
+} {
+	"countryId": "201",
+	"sortname": "SO",
+	"name": "Somalia",
+	"phonecode": "252"
+} {
+	"countryId": "202",
+	"sortname": "ZA",
+	"name": "South Africa",
+	"phonecode": "27"
+} {
+	"countryId": "203",
+	"sortname": "GS",
+	"name": "South Georgia",
+	"phonecode": "0"
+} {
+	"countryId": "204",
+	"sortname": "SS",
+	"name": "South Sudan",
+	"phonecode": "211"
+} {
+	"countryId": "205",
+	"sortname": "ES",
+	"name": "Spain",
+	"phonecode": "34"
+} {
+	"countryId": "206",
+	"sortname": "LK",
+	"name": "Sri Lanka",
+	"phonecode": "94"
+} {
+	"countryId": "207",
+	"sortname": "SD",
+	"name": "Sudan",
+	"phonecode": "249"
+} {
+	"countryId": "208",
+	"sortname": "SR",
+	"name": "Suriname",
+	"phonecode": "597"
+} {
+	"countryId": "209",
+	"sortname": "SJ",
+	"name": "Svalbard And Jan Mayen Islands",
+	"phonecode": "47"
+} {
+	"countryId": "210",
+	"sortname": "SZ",
+	"name": "Swaziland",
+	"phonecode": "268"
+} {
+	"countryId": "211",
+	"sortname": "SE",
+	"name": "Sweden",
+	"phonecode": "46"
+} {
+	"countryId": "212",
+	"sortname": "CH",
+	"name": "Switzerland",
+	"phonecode": "41"
+} {
+	"countryId": "213",
+	"sortname": "SY",
+	"name": "Syria",
+	"phonecode": "963"
+} {
+	"countryId": "214",
+	"sortname": "TW",
+	"name": "Taiwan",
+	"phonecode": "886"
+} {
+	"countryId": "215",
+	"sortname": "TJ",
+	"name": "Tajikistan",
+	"phonecode": "992"
+} {
+	"countryId": "216",
+	"sortname": "TZ",
+	"name": "Tanzania",
+	"phonecode": "255"
+} {
+	"countryId": "217",
+	"sortname": "TH",
+	"name": "Thailand",
+	"phonecode": "66"
+} {
+	"countryId": "218",
+	"sortname": "TG",
+	"name": "Togo",
+	"phonecode": "228"
+} {
+	"countryId": "219",
+	"sortname": "TK",
+	"name": "Tokelau",
+	"phonecode": "690"
+} {
+	"countryId": "220",
+	"sortname": "TO",
+	"name": "Tonga",
+	"phonecode": "676"
+} {
+	"countryId": "221",
+	"sortname": "TT",
+	"name": "Trinidad And Tobago",
+	"phonecode": "1868"
+} {
+	"countryId": "222",
+	"sortname": "TN",
+	"name": "Tunisia",
+	"phonecode": "216"
+} {
+	"countryId": "223",
+	"sortname": "TR",
+	"name": "Turkey",
+	"phonecode": "90"
+} {
+	"countryId": "224",
+	"sortname": "TM",
+	"name": "Turkmenistan",
+	"phonecode": "7370"
+} {
+	"countryId": "225",
+	"sortname": "TC",
+	"name": "Turks And Caicos Islands",
+	"phonecode": "1649"
+} {
+	"countryId": "226",
+	"sortname": "TV",
+	"name": "Tuvalu",
+	"phonecode": "688"
+} {
+	"countryId": "227",
+	"sortname": "UG",
+	"name": "Uganda",
+	"phonecode": "256"
+} {
+	"countryId": "228",
+	"sortname": "UA",
+	"name": "Ukraine",
+	"phonecode": "380"
+} {
+	"countryId": "229",
+	"sortname": "AE",
+	"name": "United Arab Emirates",
+	"phonecode": "971"
+} {
+	"countryId": "230",
+	"sortname": "GB",
+	"name": "United Kingdom",
+	"phonecode": "44"
+} {
+	"countryId": "231",
+	"sortname": "US",
+	"name": "United States",
+	"phonecode": "1"
+} {
+	"countryId": "232",
+	"sortname": "UM",
+	"name": "United States Minor Outlying Islands",
+	"phonecode": "1"
+} {
+	"countryId": "233",
+	"sortname": "UY",
+	"name": "Uruguay",
+	"phonecode": "598"
+} {
+	"countryId": "234",
+	"sortname": "UZ",
+	"name": "Uzbekistan",
+	"phonecode": "998"
+} {
+	"countryId": "235",
+	"sortname": "VU",
+	"name": "Vanuatu",
+	"phonecode": "678"
+} {
+	"countryId": "236",
+	"sortname": "VA",
+	"name": "Vatican City State (Holy See)",
+	"phonecode": "39"
+} {
+	"countryId": "237",
+	"sortname": "VE",
+	"name": "Venezuela",
+	"phonecode": "58"
+} {
+	"countryId": "238",
+	"sortname": "VN",
+	"name": "Vietnam",
+	"phonecode": "84"
+} {
+	"countryId": "239",
+	"sortname": "VG",
+	"name": "Virgin Islands (British)",
+	"phonecode": "1284"
+} {
+	"countryId": "240",
+	"sortname": "VI",
+	"name": "Virgin Islands (US)",
+	"phonecode": "1340"
+} {
+	"countryId": "241",
+	"sortname": "WF",
+	"name": "Wallis And Futuna Islands",
+	"phonecode": "681"
+} {
+	"countryId": "242",
+	"sortname": "EH",
+	"name": "Western Sahara",
+	"phonecode": "212"
+} {
+	"countryId": "243",
+	"sortname": "YE",
+	"name": "Yemen",
+	"phonecode": "967"
+} {
+	"countryId": "244",
+	"sortname": "YU",
+	"name": "Yugoslavia",
+	"phonecode": "38"
+} {
+	"countryId": "245",
+	"sortname": "ZM",
+	"name": "Zambia",
+	"phonecode": "260"
+} {
+	"countryId": "246",
+	"sortname": "ZW",
+	"name": "Zimbabwe",
+	"phonecode": "263"
+}
