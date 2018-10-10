@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {NewquestionService} from '../newquestion.service';
 
 @Component({
   selector: 'app-newquestion',
   templateUrl: './newquestion.component.html',
-  styleUrls: ['./newquestion.component.css']
+  styleUrls: ['./newquestion.component.css'],
+  providers:[NewquestionService]
 })
 export class NewquestionComponent implements OnInit {
 
@@ -47,7 +49,7 @@ chooses: [{
 
 }];
 
-  constructor() { }
+  constructor(private _questionService : NewquestionService) { }
   // addoptions(){
   //   console.log()
   //  this.opt.push(this.customer);
@@ -143,10 +145,14 @@ removeChoices=function(form,index)
     //console.log(form.value.question_type)
     var questions=
     {
-      "question_type":form.value.question_type,
+      "questionType":form.value.questionType,
       "question":form.value.question,
+      "questionMandatory":form.value.questionMandatory,
+      "questionStatus":form.value.questionStatus,
+      "answerOptions":form.value.answerOptions
       
     }
+    console.log(questions);
     this._questionService.addQuestion( questions ).subscribe(
       response => {
         alert( 'added.' )

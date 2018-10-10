@@ -15,7 +15,7 @@ router.post("/question", (req, res, next) => {
         //questionCodeNo: req.body.questionCodeNo,
         questionType: req.body.questionType,
         usedStatus: false,
-        questionStatus: "A",
+        questionStatus: req.body.questionStatus,
         answerOptions: req.body.answerOptions
        
     });

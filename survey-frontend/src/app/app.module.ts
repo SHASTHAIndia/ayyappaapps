@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 import { SurveyComponent } from './survey/survey.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpModule
   ],
   providers: [SurveyService, QuestionService],
   bootstrap: [AppComponent],
