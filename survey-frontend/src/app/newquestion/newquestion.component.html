@@ -1,0 +1,206 @@
+<!-- <div class="container">
+<div class="form-group">
+    <label for="question">Question:</label>
+    <textarea class="form-control" rows="5" id="question" required placeholder="Please enter your question"></textarea><br>
+  </div>
+  <div class="form-group">
+    <label for="question-type">Question Type:</label><br>
+    <select [(ngModel)]="selectedvalue">
+        <option value="text">Text</option>
+        <option value="textarea">Textarea</option>
+        <option value="multiplechoice">Multiple Choice</option>
+        <option value="checkbox">Checkbox</option>
+      </select>
+      </div>
+      <div *ngIf="selectedvalue==='multiplechoice'">
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" (click)='addoptions()'>Add Choice</button>
+        </div>
+    
+    <div *ngFor='let choice of choices'>
+      <div class="form-group">
+        <input type="text" [(ngModel)]="choice.name" name="" placeholder="Enter your choice" value="">
+      </div>
+    </div>
+    </div>
+    <div *ngIf="selectedvalue==='checkbox'">
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" (click)='addoptionforcheck()'>Add Choice</button>
+      </div>
+      <div *ngFor='let option of options'>
+        <div class="form-group">
+          <input type="text" [(ngModel)]="options.name" name="" placeholder="Enter Option" value="">
+        </div>
+      </div>
+  </div>
+    
+
+</div>-->
+
+
+
+
+
+<!-- <div class="container contact-form">
+              
+                <form method="post">
+                    <h3>Add your question</h3>
+                  <div class="row">
+                        <div class="col-md-6">
+                            <label style="padding: 10px">Enter Your Question</label>
+                            <div class="form-group">
+                                
+                                <input type="text" name="txtName" class="form-control" placeholder="Enter Your Question *" value="" />
+                            </div>
+                            <label style="padding: 10px">Manadatory</label>
+                            <div class="form-group">
+                            
+                                <input type="radio" value="yes"  name="require" [(ngModel)]="question.required"> Yes
+                                <input type="radio" value="no" name="require" [(ngModel)]="question.required"> No
+                            </div>
+                            <label style="padding: 10px">Status</label>
+                            <div class="form-group">
+                                
+                              
+                                    <input type="radio" value="true"  name="required" [(ngModel)]="question.status"> Active
+                                    <input type="radio" value="false" name="required" [(ngModel)]="question.status"> Inactive
+                                
+                                  
+                              </div>
+                        </div>
+                    </div>
+                </form>
+          </div> -->
+<div class="container">
+  <div class="jumbotron">
+    <div class="row" style="padding:24px">
+      <div class="col-md-12">
+      <form name="OptionForm" class="form-horizontal" #OptionForm="ngForm" (ngSubmit)="submitForm(OptionForm)" novalidate="" style="margin-top:35px">
+        <div class="options-form" *ngFor="let Form of FormSet let i = index ">
+          <div class="form-group row">
+            <div class="col-md-12">
+              <div class="col-md-6">
+                <label>Your question in Text</label>
+                <input class="form-control" type="text" name="Question" [(ngModel)]="Form.Question" placeholder="Enter your question" required="">
+
+              </div>
+              <div class="col-md-6">
+               
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-12">
+              <div class="col-md-4">
+                <label>Your question in Text</label>
+                <input class="form-control" type="text" name="Question" [(ngModel)]="Form.Question" placeholder="Enter your question" required="">
+              </div>
+              <div class="col-md-4">
+
+                <label class="control">Is it mandatory to answer this?</label>
+                <div class="radio">
+                  <label class="mr12">
+                    <input icheck="" type="radio" name="require" value="yes" [(ngModel)]="Form.isMandatory"> YES
+                  </label>
+                  <label style="margin-left:10px">
+                    <input icheck="" type="radio" name="require" value="no" [(ngModel)]="Form.isMandatory"> NO
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label>Status</label>
+                <div class="radio">
+                  <label class="mr12">
+                    <input icheck="" type="radio" name="status" value="true" [(ngModel)]="Form.active"> Active
+                  </label>
+                  <label style="margin-left:10px">
+                    <input icheck="" type="radio" name="status" value="false" [(ngModel)]="Form.active"> Inactive
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label>Questipon Type</label>
+              <select name="question_type" class="form-control" [(ngModel)]="Form.type">
+                <option *ngFor="let type of questions_type" [ngValue]="type">
+                  {{type}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row" *ngIf="Form.type ==='Select'">
+            <div class="col-sm-3 form-block" *ngFor="let option of Form.options;let i = index">
+              <div class="input-group">
+                <input class="form-control" type="text" [(ngModel)]="option.name" name="select{{i}}" placeholder="Enter Options" required="">
+                <span class="input-group-btn">
+                  <button class="btn-md btn btn-danger" type="submit" (click)="removeOption(Form,i)"><i>-</i></button>
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-3 form-block">
+              <button class="btn-success btn btn-md" (click)="addNewOption(Form)"><i>+</i></button>
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="Form.type ==='Radio'">
+            <div class="col-sm-3 form-block" *ngFor="let choose of Form.chooses; let i = index">
+              <div class="input-group">
+                <input class="form-control" type="text" [(ngModel)]="choose.name" name=radio{{i}} placeholder="Enter Options" required>
+                <span class="input-group-btn">
+                  <button class="btn-md btn btn-danger" type="submit" (click)="removeChoose(Form, i)"><i>-</i></button>
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-3 form-block">
+              <button class="btn-success btn btn-md" (click)="addNewOption2(Form,choose)"><i>+</i></button>
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="Form.type ==='checkbox'">
+            <div class="col-sm-3 form-block" *ngFor="let choice of Form.choices;let i = index">
+              <div class="input-group">
+                <input class="form-control" type="text" [(ngModel)]="choice.name" name="check{{i}}" placeholder="Enter Options" required="">
+                <span class="input-group-btn">
+                  <button class="btn-md btn btn-danger" type="submit" (click)="removeChoices(Form, i)"><i>-</i></button>
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-3 form-block">
+              <button class="btn-success btn btn-md" (click)="addNewOption1(Form,choice)"><i>+</i></button>
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="Form.type ==='Boolean'">
+            <input icheck="" type="radio" name="status1" value="true" [(ngModel)]="Form.true">True
+            <input icheck="" type="radio" name="status2" value="false" [(ngModel)]="Form.false">False
+          </div>
+
+          <button type="button" class="btn-danger btn btn-md" (click)="removeForm($index)">
+            <i>-</i> Remove Form
+          </button>
+
+        </div>
+        <div style="margin-top:10px;margin-right:600px">
+          <button type="button" class="btn-success btn btn-md" (click)="addForm()">
+            <i>+</i> Add Form
+          </button><br>
+        </div>
+        <br> <div>
+          <input type="submit" value="Submit" class="btn btn-primary">
+        </div>
+      </form>
+
+      <!-- <div class="form-group row text-right" style="margin: 0;">
+                      <div class="col-sm-12 add-form">
+                          <p (click)='addForm()'><i>+</i> Add More</p>
+                      </div>
+                  </div> -->
+
+    </div>
+
+    </div>
+  </div>
+</div>

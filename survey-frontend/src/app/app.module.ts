@@ -8,16 +8,20 @@ import { SurveyComponent } from './survey/survey.component';
 import {SurveyService} from './survey/survey.service';
 import { QuestionComponent } from './question/question.component';
 import { QuestionService } from './question/question.service';
+import { NewquestionComponent } from './newquestion/newquestion.component';
+
 const routes: Routes = [
   {path: 'survey', component: SurveyComponent},
-  {path: 'question', component: QuestionComponent}
+  {path: 'question', component: QuestionComponent},
+  {path:'newquestion', component:NewquestionComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     SurveyComponent,
-    QuestionComponent
+    QuestionComponent,
+    NewquestionComponent
   ],
   imports: [
     BrowserModule,
