@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import { AppComponent } from './app.component';
-import {HttpModule} from '@angular/http';
-import {HttpClientModule, HttpClient } from '@angular/common/http';
+import {HttpModule, Http, Response} from '@angular/http';
+import {HttpClientModule } from '@angular/common/http';
 import { SurveyComponent } from './survey/survey.component';
 import {SurveyService} from './survey/survey.service';
 import { QuestionComponent } from './question/question.component';
@@ -29,8 +29,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     HttpModule,
-    HttpClientModule,
-    HttpClient
+    HttpClientModule
   ],
   providers: [SurveyService, QuestionService],
   bootstrap: [AppComponent],
