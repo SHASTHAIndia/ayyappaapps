@@ -7,7 +7,7 @@ import { QuestionService } from './question.service';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-  srname: String;
+  srname: String = '';
   survName: String;
   qslist: Question[];
   constructor(private quesser: QuestionService) { }
