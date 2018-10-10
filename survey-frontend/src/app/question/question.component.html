@@ -1,0 +1,38 @@
+<div>{{srname}}<button type="button" class="btn btn-primary" style="float:right">+Add Question</button><br></div>
+<div class="container">
+  <form>
+  <div class="table-responsive">
+      <br><table class="table">
+        <thead>
+          <tr>
+              <th>Questions</th>
+              <th>Assign</th>
+          </tr>
+        </thead>
+
+        <tbody>
+           <!-- <div *ngFor="let survey of surveys">-->
+            <tr *ngFor="let qs of qslist">
+
+              <td>{{qs.question}}?<br><div *ngIf='qs.questionType=="CHK"'>
+                <div *ngFor='let opy of qs.answerOptions'>
+                   <input type="checkbox"> {{opy}}
+                </div>
+                </div>
+                <div *ngIf='qs.questionType=="OPT"'>
+                  <div *ngFor='let opy of qs.answerOptions'>
+                     <input type="radio"> {{opy}}
+                  </div>
+                  </div></td>
+              <td><input type="checkbox" value="true"></td>
+            </tr><br>
+          <!--</div>-->
+
+        </tbody>
+
+      </table>
+    </div>
+      <button class="btn btn-success" type="submit">Assign</button>
+
+  </form>
+  </div>
