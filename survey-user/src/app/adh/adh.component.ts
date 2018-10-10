@@ -13,12 +13,9 @@ export class AdhComponent implements OnInit {
 
   ngOnInit() {
   }
-  OnSubmit(name:string,adhar:number){
-    this.surveyService.insertParticipant(name,adhar).subscribe(
-      (data : any) =>{
-    this.route.navigate(['/question']);
-      }
-    );
+  OnSubmit(frm){
+    alert('thankyu');
+   console.log(frm.value);
   }
 
 }

@@ -4,7 +4,7 @@
 
   
 
-<form #frm="ngForm" (ngSubmit)="OnSubmit(Name.value,Adhar.value)">
+<form #frm="ngForm" (ngSubmit)="OnSubmit(frm)">
          <div class="form-group">
          
               <input type="text" 
@@ -53,8 +53,8 @@
 
 
 <div class="next">
-<a routerLink="/question" ><button type="submit" name="button" class="btn btn-primary" [disabled]="frm.invalid">Go
-</button></a>
+<button type="submit" name="button" class="btn btn-primary" [disabled]="frm.invalid">Go
+</button>
 </div>
 </form>
        
