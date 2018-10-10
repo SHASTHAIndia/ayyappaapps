@@ -85,14 +85,19 @@ router.get("/get_one/:id", (req, res, next) => {
 //get result of a pirticular survey of a pirticular person
 router.get("/get_survey/:personId/:serveyId", (req, res, next) => {
     
-    Result.find({ personId: req.params.personId,surveyId:req.params.serveyId}, function (err, query_data) {
-        if (err) {
-            res.send(err.message);
-        }
-        else {
-            res.send(query_data);
-        }
-    });
+   
+    Result.findOne({ "personId": req.params.personId,"surveyId":req.params.serveyId })
+        .populate('personId')  //personId -> field name
+        .populate('surveyId') 
+        .exec(function (err, question) {
+            if (err){
+                res.send(err.message);
+            }
+            res.send(question);
+            //console.log( question);
+            // prints "The author is Ian Fleming"
+        });
+
 
    
 });
