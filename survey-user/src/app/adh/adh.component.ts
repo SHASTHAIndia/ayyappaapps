@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../survey.service';
+
+import { User } from '../user';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,11 +13,17 @@ export class AdhComponent implements OnInit {
 
   constructor(private surveyService : SurveyService, private route : Router) { }
 
-  ngOnInit() {
+  userList:User[]=[];
+  addUser(frm){
+    var user: User;
+    user=frm.value;
+    console.log(frm.value);
+    this.userList.push(user);
   }
-  OnSubmit(frm){
-    alert('thankyu');
-   console.log(frm.value);
+
+  
+
+  ngOnInit() {
   }
 
 }
