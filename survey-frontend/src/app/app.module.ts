@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
-
+import {HttpModule,Http} from '@angular/http';
+import {HttpClientModule } from '@angular/common/http';
 import { SurveyComponent } from './survey/survey.component';
 import {SurveyService} from './survey/survey.service';
 import { QuestionComponent } from './question/question.component';
@@ -14,7 +14,7 @@ import { NewquestionComponent } from './newquestion/newquestion.component';
 const routes: Routes = [
   {path: 'survey', component: SurveyComponent},
   {path: 'question', component: QuestionComponent},
-  {path:'newquestion', component:NewquestionComponent}
+  {path: 'newquestion', component: NewquestionComponent}
 ];
 
 @NgModule({
@@ -32,6 +32,6 @@ const routes: Routes = [
   ],
   providers: [SurveyService, QuestionService],
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: []
 })
 export class AppModule { }

@@ -7,17 +7,21 @@
                   <div class="form-group row">
                       <div class="col-sm-4">
                           <label>Your question in Text</label>
-                          <input class="form-control" type="text" name="question" [(ngModel)]="Form.Question" placeholder="Enter your question" required="">
+                          <input class="form-control" type="text" name="question" [(ngModel)]="Form.Question"  #ques="ngModel" placeholder="Enter your question" >
+                      <div *ngIf="ques.touched"
+                            class="alert alert-danger">
+                            Please enter the Question!
+                      </div>
                       </div>
                       <div class="col-md-12">
                           
-                          <label class="control" >Is it mandatory to answer this?</label>
-                          <div class="radio">
+                          <label class="control" required>Is it mandatory to answer this?</label>
+                          <div class="radio" >
                               <label class="mr12">
-                                  <input icheck="" type="radio" name="usedStatus" value="yes" [(ngModel)]="Form.isMandatory"> YES
+                                  <input icheck="" type="radio" name="questionMandatory" value="yes" [(ngModel)]="Form.isMandatory" required #mandatory="ngModel"> YES
                               </label>
                               <label style="margin-left:10px">
-                                  <input icheck="" type="radio" name="usedStatus" value="no" [(ngModel)]="Form.isMandatory"> NO
+                                  <input icheck="" type="radio" name="questionMandatory" value="no" [(ngModel)]="Form.isMandatory"> NO
                               </label>
                           </div>
                       </div>
@@ -44,10 +48,10 @@
                      </div>
                   </div>
                   
-                  <div class="form-group row" *ngIf="Form.type ==='Select'">
+                  <div class="form-group row" *ngIf="Form.type ==='SLT'"> 
                       <div class="col-sm-3 form-block" *ngFor="let option of Form.options;let i = index">
                           <div class="input-group">
-                              <input class="form-control" type="text" [(ngModel)]="option.name" name="select{{i}}" placeholder="Enter Options" required="">
+                              <input class="form-control" type="text" [(ngModel)]="option.name" name="answerOptions[{{i}}]" placeholder="Enter Options" >
                              <span class="input-group-btn">
                             <button class="btn-md btn btn-danger" type="submit" (click)="removeOption(Form,i)"><i>-</i></button>
                               </span>
@@ -57,10 +61,10 @@
                           <button class="btn-success btn btn-md" (click)="addNewOption(Form)"><i>+</i></button>
                       </div>
                   </div>
-                  <div class="form-group row" *ngIf="Form.type ==='Radio'">
+                  <div class="form-group row" *ngIf="Form.type ==='OPT'">
                       <div class="col-sm-3 form-block" *ngFor="let choose of Form.chooses; let i = index">
                           <div class="input-group">
-                              <input class="form-control" type="text" [(ngModel)]="choose.name"  name="answerOptions{{i}}" placeholder="Enter Options" required>
+                              <input class="form-control" type="text" [(ngModel)]="choose.name"  name="answerOptions{{i}}" placeholder="Enter Options" >
                               <span class="input-group-btn">
                              <button class="btn-md btn btn-danger" type="submit" (click)="removeChoose(Form, i)"><i>-</i></button>
                              </span>
@@ -70,10 +74,10 @@
                           <button class="btn-success btn btn-md" (click)="addNewOption2(Form,choose)"><i>+</i></button>
                       </div>
                   </div>
-                  <div class="form-group row" *ngIf="Form.type ==='checkbox'">
+                  <div class="form-group row" *ngIf="Form.type ==='CHK'">
                       <div class="col-sm-3 form-block" *ngFor="let choice of Form.choices;let i = index">
                           <div class="input-group">
-                              <input class="form-control" type="text" [(ngModel)]="choice.name" name="answerOptions{{i}}" placeholder="Enter Options" required>
+                              <input class="form-control" type="text" [(ngModel)]="choice.name" name="answerOptions{{i}}" placeholder="Enter Options" >
                               <span class="input-group-btn">
                              <button class="btn-md btn btn-danger" type="submit" (click)="removeChoices(Form, i)"><i>-</i></button>
                              </span>
@@ -83,14 +87,14 @@
                           <button class="btn-success btn btn-md" (click)="addNewOption1(Form,choice)"><i>+</i></button>
                       </div>
                   </div>
-                 <div class="form-group row" *ngIf="Form.type ==='Boolean'">
+                 <!-- <div class="form-group row" *ngIf="Form.type ==='Boolean'">
                       <input icheck="" type="radio" name="status1" value="true" [(ngModel)]="Form.true">True
                       <input icheck="" type="radio" name="status2" value="false" [(ngModel)]="Form.false">False
                   </div>
   
                   <button type="button" class="btn-danger btn btn-md" (click)="removeForm($index)">
                       <i>-</i> Remove Form
-                  </button>
+                  </button> -->
                   
               </div>
               <div style="margin-top:10px;margin-right:600px">

@@ -1,0 +1,183 @@
+
+
+
+    <div class="container">
+      <div class="col-md-6">
+  <div class="jumbotron">
+
+      
+    
+    <form #frm="ngForm" (ngSubmit)="addUser(frm)">
+      
+      
+      <div class="form-group">
+           <label for="contact">
+          contact:
+        </label>
+        <input type="text"
+         name="contact" 
+         class="form-control" 
+         ngModel 
+         required 
+         pattern="[0-9]*" 
+         maxlength="10" 
+         minlength="10"
+         #contactUser="ngModel" placeholder="Enter your contact number">
+      </div>
+        <div *ngIf="contactUser.touched">
+       
+        <div *ngIf="contactUser.errors?.pattern || contactUser.errors?.minlength"  class="alert alert-danger">
+          Contact is invalid!
+        </div>
+      </div>
+      
+
+      <div class="form-group">   
+        <label for="email">
+       E-mail:
+       </label>
+       <input type="text" 
+       name="email"
+       class="form-control" 
+       ngModel 
+       required 
+       pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" 
+       #emailUser="ngModel"
+       placeholder="Enter your E-mail">
+       </div>
+       <div *ngIf="emailUser.touched" >
+        
+       <div *ngIf="emailUser.errors?.pattern" class="alert alert-danger">
+       E-mail is invalid!
+       </div>
+       </div>
+
+
+
+      
+              
+               <label>Address:</label>
+
+      <div class="form-group">
+         
+              <label for="house">
+                  House number:
+              </label><br>
+              <input type="text" 
+              name="house" 
+              class="form-control" 
+              ngModel 
+              #house="ngModel" 
+              required 
+              placeholder="Enter your House number">
+              </div>
+              <div *ngIf="house.touched">    
+                <div *ngIf="nameUser.errors?.required" class="alert alert-danger">
+                House number is required!
+                </div>
+               
+                </div>
+                
+                <div class="form-group">
+                    <label for="street">
+                          Street:
+                      </label><br>
+                      <input type="text" 
+                      name="street" 
+                      class="form-control" 
+                      ngModel 
+                      #street="ngModel" 
+                      required 
+                      placeholder="Enter your Street name"
+                      >
+                      </div>
+                      <div *ngIf="street.touched">    
+                        <div *ngIf="street.errors?.required" class="alert alert-danger">
+                      street name is required!
+                        </div>
+                       
+                        </div>
+                        
+                      
+                        <div class="form-group">
+                              <label for="city">
+                                    City:
+                                </label><br>
+                                <input type="text" 
+                                name="city" 
+                                class="form-control" 
+                                ngModel 
+                                #city="ngModel" 
+                                required 
+                                placeholder="Enter your City"
+                                >
+                                </div>
+                                <div *ngIf="city.touched">    
+                                  <div *ngIf="city.errors?.required" class="alert alert-danger">
+                                City name is required!
+                                  </div>
+                                 
+                                  </div>
+                                  
+                                
+                                  <div class="form-group">
+                                          <label for="state">
+                                                State:
+                                            </label><br>
+                                            <input type="text" 
+                                            name="state" 
+                                            class="form-control" 
+                                            ngModel 
+                                            #state="ngModel" 
+                                            required 
+                                            placeholder="Enter your State  name"
+                                            >
+                                            </div>
+                                            <div *ngIf="state.touched">    
+                                              <div *ngIf="state.errors?.required" class="alert alert-danger">
+                                            State name is required!
+                                              </div>
+                                             
+                                              </div>
+                                 
+                                              <div class="form-group">
+                                                      <label for="zip">
+                                                        Zip:
+                                                      </label>
+                                                      <input type="text"
+                                                       name="zip" 
+                                                       class="form-control" 
+                                                       ngModel 
+                                                       required 
+                                                       pattern="[0-9]*" 
+                                                       maxlength="6" 
+                                                       minlength="6"
+                                                       #Zip="ngModel"
+                                                       placeholder="Enter your Zip code">
+                                                    </div>
+                                                      <div *ngIf="Zip.touched">
+                                                          <div *ngIf="Zip.errors?.required"  class="alert alert-danger">
+                                                        Zip code is required!
+                                                      </div>
+                                                      <div *ngIf="Zip.errors?.pattern || Zip.errors?.minlength"  class="alert alert-danger">
+                                                        Zip is invalid!
+                                                      </div>
+                                                    </div>
+                                                   
+  
+  
+  
+                
+              
+ 
+
+
+
+<a routerLink="/#" ><button type="submit" name="button" class="btn btn-success">SUBMIT</button></a>
+        
+     
+    </form>
+   
+  </div>
+</div>
+</div>

@@ -2,13 +2,15 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {Survey} from '../models/survey.model';
 import {SurveyService} from './survey.service';
 import {Router} from '@angular/router';
-
+import { HttpModule,Http } from '@angular/http';
+import { HttpClientModule} from '@angular/common/http';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css']
 })
 export class SurveyComponent implements OnInit {
+readonly readUrl = 'http://localhost:3000';
 srname: String;
 @Output() messageEvent = new EventEmitter();
 /*surveyName: String = 'hello';
@@ -71,9 +73,11 @@ createdOn: this.createdOn,*/
   sts: String = '';
   qs: String[] ;*/
   constructor(private _surveyser: SurveyService,
-              private _router: Router) { }
+              private _router: Router,
+              private http: Http) { }
 
   ngOnInit() {
+    // this.surveys = this.http.get(this.url + '/survey/survey');
     this.surveys = this._surveyser.getSurveys();
   }
   addsurvey(frm) {
@@ -86,14 +90,25 @@ createdOn: this.createdOn,*/
  'expiryDate': frm.expiryDate.value,
  'questions': []
     });
-    this._router.navigateByUrl('/survey');
-    console.log(JSON.stringify(this.surveys));
+    return this.http.post(this.readUrl + '/survey/survey', this.surveys);
+    // this._router.navigateByUrl('/survey');
+
+    console.log(frm);
   }
   sendMessage(Name: String) {
     this.messageEvent.emit(Name);
   }
-  /*addSurvey() {
-    this._surveyser.save(this.survey);
+  /*addSurvey(frm) {
+    this.surveys = {
+      'surveyName': frm.surveyName.value,
+      'surveyMessage': frm.surveyMessage.value,
+      'surveyDeclaration': frm.surveyDeclaration.value,
+      'surveyStatus': frm.surveyStatus.value,
+      'startDate': frm.startDate.value,
+      'expiryDate': frm.expiryDate.value,
+      'questions': []
+         };
+    return this._surveyser.save(this.surveys);
   }*/
 
 }

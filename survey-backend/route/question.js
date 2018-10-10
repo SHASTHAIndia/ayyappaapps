@@ -16,7 +16,8 @@ router.post("/question", (req, res, next) => {
         questionType: req.body.questionType,
         usedStatus: false,
         questionStatus: req.body.questionStatus,
-        answerOptions: req.body.answerOptions
+        answerOptions: req.body.answerOptions,
+        questionMandatory: req.body.questionMandatory
        
     });
     newEntry.save((err, user) => {

@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Survey} from '../models/survey.model';
+//import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class SurveyService {
-surveylist: Survey [] = [
+readonly readUrl = 'http://localhost:3000';
+surveylist: Survey []; /* = [
   {surveyName: 'Test Survey 2',
 surveyMessage: 'Welcome Msg',
 surveyDeclaration: 'Decl',
@@ -36,5 +38,14 @@ getSurveys(): Survey[] {
 }
 save(survey: Survey) {
   this.surveylist.push(survey);
+}*/
+constructor() {}
+getSurveys(): Survey[] {
+  return this.surveylist;
+}
+save(survey: Survey) {
+ // this.surveylist.push(survey);
+ //return this.http.post(this.readUrl + '/survey/survey', survey);
 }
 }
+
