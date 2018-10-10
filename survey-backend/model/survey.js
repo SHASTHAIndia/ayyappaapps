@@ -29,7 +29,7 @@ const surveySchema = new Schema({
         type: "string",
         require:[true,'Expiry Date is required']
     },
-   /*  createdBy: {
+    /* createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'Admin',
         //type: "number",

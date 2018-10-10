@@ -11,13 +11,13 @@ const personSchema = new Schema({
     userEmail: {
         type: "string",
         unique:true,
-        require:true,
+        require:false,
         match: /\S+@\S+\.\S+/
 
     },
     userAddress: {
         type: "string",
-        require:true
+        require:false
     },
     country: {
         type: "Number",
@@ -41,7 +41,7 @@ const personSchema = new Schema({
     },
     userPhone: {
         type: "string",
-        require:true
+        require:false
     },
     userDob: {
         type: "string",

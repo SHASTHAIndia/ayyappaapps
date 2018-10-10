@@ -2,8 +2,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {Survey} from '../models/survey.model';
 import {SurveyService} from './survey.service';
 import {Router} from '@angular/router';
-import { HttpModule,Http } from '@angular/http';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpModule, Http, Response } from '@angular/http';
+import {  HttpClientModule } from '@angular/common/http';
+import { Observable, observable } from '../../../node_modules/rxjs';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
@@ -37,7 +38,9 @@ createdOn: this.createdOn,*/
 
 /*questions: this.questions
 };*/
-  surveys: Survey[]; /*= [{'surveyName': 'Test Survey 2',
+  testsur: object;
+  surv: Survey;
+  surveys: Survey[]; /* = [{'surveyName': 'Test Survey 2',
   'surveyMessage': 'Welcome Msg',
   'surveyDeclaration': 'Decl',
   'surveyStatus': 'A',
@@ -80,8 +83,8 @@ createdOn: this.createdOn,*/
     // this.surveys = this.http.get(this.url + '/survey/survey');
     this.surveys = this._surveyser.getSurveys();
   }
-  addsurvey(frm) {
-    this.surveys.push({
+  addsurvey(frm): Observable<Response> {
+    /*this.surveys.push({
  'surveyName': frm.surveyName.value,
  'surveyMessage': frm.surveyMessage.value,
  'surveyDeclaration': frm.surveyDeclaration.value,
@@ -89,8 +92,18 @@ createdOn: this.createdOn,*/
  'startDate': frm.startDate.value,
  'expiryDate': frm.expiryDate.value,
  'questions': []
-    });
-    return this.http.post(this.readUrl + '/survey/survey', this.surveys);
+    });*/
+    this.surv = {
+  'surveyName': frm.surveyName.value,
+ 'surveyMessage': frm.surveyMessage.value,
+ 'surveyDeclaration': frm.surveyDeclaration.value,
+ 'surveyStatus': frm.surveyStatus.value,
+ 'startDate': frm.startDate.value,
+ 'expiryDate': frm.expiryDate.value,
+ 'questions': []
+  };
+  return this.http.post(this.readUrl + '/survey/survey', this.surv);
+    console.log(this.testsur);
     // this._router.navigateByUrl('/survey');
 
     console.log(frm);
