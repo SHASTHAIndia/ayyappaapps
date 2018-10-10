@@ -8,6 +8,8 @@ router.get("/test_route", (req, res) => {
 
 //method for creating new entry
 router.post("/question", (req, res, next) => {
+   // res.json(req.body);
+   // console.log();
     let newEntry = new Question({
         question: req.body.question,
         //questionCodeNo: req.body.questionCodeNo,
@@ -22,7 +24,7 @@ router.post("/question", (req, res, next) => {
             res.json(err);
         }
         else {
-            res.json({ msg: "User saved success fullly!!" });
+            res.json({ msg: "Question saved success fullly!!" });
         }
     })
 });
