@@ -1,0 +1,27 @@
+<div class="row" *ngIf="surveyService.qns">
+<div class="header">
+  <h1>Question</h1>
+  </div>
+  <div class="container">
+      <div class="col-md-9">
+      <div class="jumbotron">
+        <form class="form-horizontal" >     
+            <div class="form-group">
+                <label>{{surveyService.qns.qn}}</label><br>
+                <ul class="collection answer">
+                    <ng-container *ngFor="let option of surveyService.qns.options;let i=index"></ng-container>
+                    <li></li>
+                </ul>
+                </div>
+                <div class="next">
+                <button class="btn btn-info btn-lg" (click)="onClick()">Next
+                      <span class="glyphicon glyphicon-chevron-right"></span> 
+  
+                    </button>
+                  </div>
+                        
+          </form>
+      </div>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.next{
+    text-align: center;
+}
+label span,.required{
+    color:red;
+    font-weight: bold;
+}
