@@ -16,7 +16,7 @@
         <div class="form-group">
           <button type="submit" class="btn btn-success" (click)='addoptions()'>Add Choice</button>
         </div>
-    
+
     <div *ngFor='let choice of choices'>
       <div class="form-group">
         <input type="text" [(ngModel)]="choice.name" name="" placeholder="Enter your choice" value="">
@@ -33,7 +33,7 @@
         </div>
       </div>
   </div>
-    
+
 
 </div>-->
 
@@ -42,30 +42,30 @@
 
 
 <!-- <div class="container contact-form">
-              
+
                 <form method="post">
                     <h3>Add your question</h3>
                   <div class="row">
                         <div class="col-md-6">
                             <label style="padding: 10px">Enter Your Question</label>
                             <div class="form-group">
-                                
+
                                 <input type="text" name="txtName" class="form-control" placeholder="Enter Your Question *" value="" />
                             </div>
                             <label style="padding: 10px">Manadatory</label>
                             <div class="form-group">
-                            
+
                                 <input type="radio" value="yes"  name="require" [(ngModel)]="question.required"> Yes
                                 <input type="radio" value="no" name="require" [(ngModel)]="question.required"> No
                             </div>
                             <label style="padding: 10px">Status</label>
                             <div class="form-group">
-                                
-                              
+
+
                                     <input type="radio" value="true"  name="required" [(ngModel)]="question.status"> Active
                                     <input type="radio" value="false" name="required" [(ngModel)]="question.status"> Inactive
-                                
-                                  
+
+
                               </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
 
               </div>
               <div class="col-md-6">
-               
+
               </div>
 
             </div>
@@ -178,7 +178,7 @@
             <input icheck="" type="radio" name="status2" value="false" [(ngModel)]="Form.false">False
           </div>
 
-          <button type="button" class="btn-danger btn btn-md" (click)="removeForm($index)">
+          <button type="button" class="btn-danger btn btn-md" (click)="removeForm(index)">
             <i>-</i> Remove Form
           </button>
 
