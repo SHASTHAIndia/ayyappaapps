@@ -99,7 +99,7 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
                 "exists": false,
                 "user_details": []
             };
-            res.send(result);
+            res.json(result);
         }
         //res.send(user);
         if (user) {
@@ -112,7 +112,7 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
             "exists": user_exists,
             "user_details": []
         };
-        res.send(result);
+        res.json(result);
     });
 
     //res.send(result);

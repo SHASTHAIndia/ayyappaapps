@@ -15,8 +15,9 @@ router.post("/question", (req, res, next) => {
         //questionCodeNo: req.body.questionCodeNo,
         questionType: req.body.questionType,
         usedStatus: false,
-        questionStatus: "A",
-        answerOptions: req.body.answerOptions
+        questionStatus: req.body.questionStatus,
+        answerOptions: req.body.answerOptions,
+        questionMandatory: req.body.questionMandatory
        
     });
     newEntry.save((err, user) => {
@@ -81,10 +82,10 @@ router.get("/get_one/:id", (req, res, next) => {
 
     Question.findOne({ _id: req.params.id }, function (err, query_data) {
         if (err) {
-            res.send(err.message);
+            res.json(err.message);
         }
         else {
-            res.send(query_data);
+            res.json(query_data);
         } 
     });
    
@@ -94,10 +95,10 @@ router.get("/get_one/:id", (req, res, next) => {
 router.get("/active_only", (req, res, next) => {
     Question.find({ questionStatus: "A"}, function (err, query_data) {
         if (err) {
-            res.send(err.message);
+            res.json(err.message);
         }
         else {
-            res.send(query_data);
+            res.json(query_data);
         }
     });
 

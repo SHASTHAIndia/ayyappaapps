@@ -72,24 +72,33 @@ router.delete("/survey/:id", (req, res, next) => {
 
 //method for reading entry
 router.get("/survey", (req, res, next) => {
-    Survey.find(function (err, surveys) {
+
+    Survey.
+    find({})
+    .populate('questions')  //questions -> field name
+    //.populate('createdBy','userName') // createdBy -> Filed name in parent table; userName -> Fileds wants to be listed in the population
+    .exec(function (err, question) {
         if (err) {
             res.json(err);
         }
         else {
-            res.json(surveys);
+            res.json(question);
         }
+        //console.log( question);
+        // prints "The author is Ian Fleming"
     });
+
+
 
 });
 
 router.get("/active_only", (req, res, next) => {
     Survey.find({ surveyStatus: "A" }, function (err, query_data) {
         if (err) {
-            res.send(err.message);
+            res.json(err.message);
         }
         else {
-            res.send(query_data);
+            res.json(query_data);
         }
     });
 
@@ -102,10 +111,14 @@ router.get("/get_one/:id", (req, res, next) => {
     Survey.
         findOne({ "_id": req.params.id })
         .populate('questions')  //questions -> field name
-        .populate('createdBy','userName') // createdBy -> Filed name in parent table; userName -> Fileds wants to be listed in the population
+        //.populate('createdBy','userName') // createdBy -> Filed name in parent table; userName -> Fileds wants to be listed in the population
         .exec(function (err, question) {
-            if (err) return handleError(err);
-            res.send(question);
+            if (err) {
+                res.json(err);
+            }
+            else {
+                res.json(question);
+            }
             //console.log( question);
             // prints "The author is Ian Fleming"
         });
@@ -120,8 +133,12 @@ router.get("/responses/:survey_id", (req, res, next) => {
     Result.findOne({ "surveyId": req.params.survey_id }).
         populate('Survey').
         exec(function (err, question) {
-            if (err) return handleError(err);
-            res.send(question);
+            if (err) {
+                res.json(err);
+            }
+            else {
+                res.json(question);
+            }
             //console.log( question);
             // prints "The author is Ian Fleming"
         });

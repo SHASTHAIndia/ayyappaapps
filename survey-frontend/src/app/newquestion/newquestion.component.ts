@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {NewquestionService} from '../newquestion.service';
 
 @Component({
   selector: 'app-newquestion',
   templateUrl: './newquestion.component.html',
-  styleUrls: ['./newquestion.component.css']
+  styleUrls: ['./newquestion.component.css'],
+  providers:[NewquestionService]
 })
 export class NewquestionComponent implements OnInit {
 
   selectedvalue: any = 'text';
 question: any = {};
-questions_type: any = ['Text', 'Textarea', 'Radio', 'Select', 'checkbox', 'Boolean', 'new'];
+questions_type: any = ['TXT', 'TXTA', 'OPT', 'SLT', 'CHK'];
 opt: any[] = [];
 optforcheck: any[] = [];
 i = 1;
@@ -46,7 +48,7 @@ chooses: [{
 
 }];
 
-  constructor() { }
+  constructor(private _questionService : NewquestionService) { }
   // addoptions(){
   //   console.log()
   //  this.opt.push(this.customer);
@@ -123,12 +125,19 @@ removeChoices = function(form, index) {
       form.options.splice(index, 1);
 
   };
-  submitForm = function(form) {
-    // console.log(form.value.question_type)
-    const questions = {
-      'question_type': form.value.question_type,
-      'question': form.value.question,
-      };
+  submitForm=function(form)
+  {
+    //console.log(form.value.question_type)
+    var questions=
+    {
+      "questionType":form.value.questionType,
+      "question":form.value.question,
+      "questionMandatory":form.value.questionMandatory,
+      "questionStatus":form.value.questionStatus,
+      "answerOptions":form.value.answerOptions
+      
+    }
+    console.log(questions);
     this._questionService.addQuestion( questions ).subscribe(
       response => {
         alert( 'added.' );

@@ -1,6 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Survey} from '../models/survey.model';
+<<<<<<< HEAD
 // import {HttpClient} from '@angular/common/http';
+=======
+//import {HttpClient} from '@angular/common/http';
+>>>>>>> 7f0b537ee4c7979182fb7bf121bf50054c5cab19
 @Injectable()
 export class SurveyService {
 readonly readUrl = 'http://localhost:3000';
@@ -39,13 +43,22 @@ getSurveys(): Survey[] {
 save(survey: Survey) {
   this.surveylist.push(survey);
 }*/
+<<<<<<< HEAD
 constructor(/*private http: Http*/) {}
+=======
+constructor() {}
+//constructor(private http: HttpClient) {}
+>>>>>>> 7f0b537ee4c7979182fb7bf121bf50054c5cab19
 getSurveys(): Survey[] {
   return this.surveylist;
 }
 save(survey: Survey) {
  // this.surveylist.push(survey);
+<<<<<<< HEAD
 // return this.http.post(this.readUrl + '/survey/survey', survey);
+=======
+ //return this.http.post(this.readUrl + '/survey/survey', survey);
+>>>>>>> 7f0b537ee4c7979182fb7bf121bf50054c5cab19
 }
 }
 
