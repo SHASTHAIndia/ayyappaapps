@@ -1,3 +1,37 @@
-<p>
-  user-list works!
-</p>
+<div class="content">
+  <div class="container">
+
+    <div class="page-header">
+      <h3>User List</h3>
+    </div>
+
+
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Adhaar Number</th>
+              <th>Gender</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <!-- <div *ngFor="let survey of surveys">-->
+            <tr *ngFor="let user of users">
+
+              <td #surName>{{user.userName}}</td>
+              <td>{{user.userAdhaar}}</td>
+              <td>{{user.userGender}}</td>
+              
+            </tr><br>
+            <!--</div>-->
+
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

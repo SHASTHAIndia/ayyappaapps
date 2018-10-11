@@ -146,4 +146,46 @@ router.get("/responses/:survey_id", (req, res, next) => {
    
 });
 
+
+//Used to verify whether the user is already registered and if yes, returns the user data)
+router.get("/survey_attended/:personId/:surveyId", (req, res, next) => {
+    var result = {
+        "status": true,
+        "msg": "",
+        "survey_attended": false
+       
+    };
+        var survey_attended = false;
+    var userData = [];
+    //check email is exists
+    Result.findOne({ personId: req.params.personId,surveyId: req.params.surveyId}, function (err, user) {
+        if (err) {
+            result = {
+                "status": false,
+                "msg": err,
+                "survey_attended": false
+               
+            };
+            res.json(result);
+        }
+        if(user)
+        {
+            survey_attended = true;
+            result = {
+                "status": true,
+                "msg": "Success",
+                "survey_attended": survey_attended
+                
+            };
+            res.json(result);
+        }
+        
+
+       
+    });
+
+    //res.send(result);
+
+});
+
 module.exports = router;
