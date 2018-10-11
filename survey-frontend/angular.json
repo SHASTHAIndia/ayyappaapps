@@ -50,7 +50,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "admprof:build"
+            "browserTarget": "admprof:build",
+            "port": 4201
           },
           "configurations": {
             "production": {
