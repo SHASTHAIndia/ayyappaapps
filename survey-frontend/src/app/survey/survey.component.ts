@@ -89,9 +89,10 @@ result: any;
    // this.sur = JSON.stringify(this.http.get(this.readUrl + '/survey/survey'));
     // console.log(this.sur);
     // this.surveys.push(this.sur);
-    this.http.get(this.readUrl + '/survey/survey').subscribe(data => {this.surveys.push(data['_body']);
+    this.http.get(this.readUrl + '/survey/survey').subscribe(data => { this.result = (data['_body'] | JSON);
+       // this.surveys.push(data['_body']|JSON);
   console.log(data);
-  console.log(data['_body']);
+  // console.log(data['_body']);
   });
   }
   addsurvey(frm): Observable<Response> {
