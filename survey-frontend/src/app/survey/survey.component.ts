@@ -1,10 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {Survey} from '../models/survey.model';
 import {SurveyService} from './survey.service';
+import {FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 import { HttpModule, Http, Response } from '@angular/http';
 import {  HttpClientModule } from '@angular/common/http';
-import { Observable, observable } from '../../../node_modules/rxjs';
+import { Observable } from '../../../node_modules/rxjs';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
@@ -38,9 +39,12 @@ createdOn: this.createdOn,*/
 
 /*questions: this.questions
 };*/
+result: any;
   testsur: object;
   surv: Survey;
-  surveys: Survey[]; /* = [{'surveyName': 'Test Survey 2',
+  sur: any = {};
+  surveys: Survey[] = [];
+  /*surveys: Survey[];*/ /* = [{'surveyName': 'Test Survey 2',
   'surveyMessage': 'Welcome Msg',
   'surveyDeclaration': 'Decl',
   'surveyStatus': 'A',
@@ -81,7 +85,14 @@ createdOn: this.createdOn,*/
 
   ngOnInit() {
     // this.surveys = this.http.get(this.url + '/survey/survey');
-    this.surveys = this._surveyser.getSurveys();
+   // console.log(this.http.get(this.readUrl + '/survey/survey'));
+   // this.sur = JSON.stringify(this.http.get(this.readUrl + '/survey/survey'));
+    // console.log(this.sur);
+    // this.surveys.push(this.sur);
+    this.http.get(this.readUrl + '/survey/survey').subscribe(data => {this.surveys.push(data['_body']);
+  console.log(data);
+  console.log(data['_body']);
+  });
   }
   addsurvey(frm): Observable<Response> {
     /*this.surveys.push({
@@ -94,7 +105,7 @@ createdOn: this.createdOn,*/
  'questions': []
     });*/
     this.surv = {
-  'surveyName': frm.surveyName.value,
+ 'surveyName': frm.surveyName.value,
  'surveyMessage': frm.surveyMessage.value,
  'surveyDeclaration': frm.surveyDeclaration.value,
  'surveyStatus': frm.surveyStatus.value,
@@ -102,11 +113,14 @@ createdOn: this.createdOn,*/
  'expiryDate': frm.expiryDate.value,
  'questions': []
   };
-  return this.http.post(this.readUrl + '/survey/survey', this.surv);
-    console.log(this.testsur);
+ console.log(this.surv);
+   this.http.post(this.readUrl + '/survey/survey', this.surv);
+  console.log(Response);
+  return ;
+   // console.log(this.testsur);
     // this._router.navigateByUrl('/survey');
 
-    console.log(frm);
+    // console.log(frm);
   }
   sendMessage(Name: String) {
     this.messageEvent.emit(Name);

@@ -25,7 +25,7 @@
            <!-- <div *ngFor="let survey of surveys">-->
             <tr *ngFor="let survey of surveys">
 
-              <td #surName>{{survey.surveyName}}</td>
+              <td #surName>{{survey}}|JSON</td>
               <td>{{survey.surveyMessage}}</td>
               <td>{{survey.expiryDate}}</td>
               <td>{{survey.surveyStatus}}</td>
@@ -52,19 +52,19 @@
       </div>
       <div class="modal-body">
         <form class="form-group" #frm (ngSubmit)="addsurvey(frm)">
-            <label for="surveyName"><strong> Title:</strong></label><br>
-            <input type="text"  class="form-control" name="surveyName"><br>
-            <!--<div *ngIf="title.touched">
-              <div  class="alert alert-danger">
+            <label for="surveyName" #surveyName><strong> Title:</strong></label><br>
+            <input type="text"  class="form-control" name="surveyName" id="surveyName" required #surveyName><br>
+            <div *ngIf="surveyName.touched">
+              <div  *ngIf="surveyName.errors?.required" class="alert alert-danger">
                   Survey title is required
               </div>
-            </div>-->
+            </div>
             <label for="surveyMessage"><strong>Survey Message</strong></label><br>
             <textarea type="text" name="surveyMessage" id="surveyMessage"  class="form-control"></textarea><br>
             <strong>Duration: <br></strong><label for="startDate" class="lightweight"> From:</label><input type="date"  name="startDate" id="startDate" class="form-control">
             <label for="expiryDate" class="lightweight"> To:</label> <input type="date"  name="expiryDate" id="expiryDate" class="form-control"><br>
             <label for="surveyStatus"><strong>Status:  </strong></label>
-            <input type="radio" id="surveyStatus" name="surveyStatus" value="A"  class="forstatus" selected>Active
+            <input type="radio" id="surveyStatus" name="surveyStatus" value="A"  class="forstatus" checked>Active
             <input type="radio" id="surveyStatus" name="surveyStatus" value="I" class="forstatus">Inactive<br>
 
             <label for="surveyDeclaration"><strong>Declaration:</strong></label><br>
