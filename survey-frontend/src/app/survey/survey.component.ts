@@ -114,8 +114,9 @@ result: any;
  'questions': []
   };
  console.log(this.surv);
-   this.http.post(this.readUrl + '/survey/survey', this.surv);
-  console.log(Response);
+ this.http.post(this.readUrl + '/survey/survey', this.surv).subscribe(res => {this.result = res;
+console.log(res); } );
+  console.log(this.result);
   return ;
    // console.log(this.testsur);
     // this._router.navigateByUrl('/survey');
