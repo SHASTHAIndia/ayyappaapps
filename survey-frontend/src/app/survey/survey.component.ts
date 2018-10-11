@@ -1,10 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Survey } from '../models/survey.model';
 import { SurveyService } from './survey.service';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpModule, Http, Response } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { Observable, observable } from '../../../node_modules/rxjs';
+import { Observable } from '../../../node_modules/rxjs';
+import { ApiService } from '../api.service';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
@@ -38,9 +40,12 @@ export class SurveyComponent implements OnInit {
 
   /*questions: this.questions
   };*/
+  result: any;
   testsur: object;
   surv: Survey;
-  surveys: Survey[]; /* = [{'surveyName': 'Test Survey 2',
+  sur: any = {};
+  //surveys: Survey[] = [];
+  /*surveys: Survey[];*/ /* = [{'surveyName': 'Test Survey 2',
   'surveyMessage': 'Welcome Msg',
   'surveyDeclaration': 'Decl',
   'surveyStatus': 'A',
@@ -75,13 +80,32 @@ export class SurveyComponent implements OnInit {
   decl: String = '';
   sts: String = '';
   qs: String[] ;*/
-  constructor(private _surveyser: SurveyService,
+
+  private surveys: Array<object> = [];
+
+  constructor(private apiService: ApiService,
     private _router: Router,
     private http: Http) { }
 
   ngOnInit() {
+    this.getSurveys();
     // this.surveys = this.http.get(this.url + '/survey/survey');
-    this.surveys = this._surveyser.getSurveys();
+    // console.log(this.http.get(this.readUrl + '/survey/survey'));
+    // this.sur = JSON.stringify(this.http.get(this.readUrl + '/survey/survey'));
+    // console.log(this.sur);
+    // this.surveys.push(this.sur);
+   /*  this.http.get(this.readUrl + '/survey/survey').subscribe(data => {
+      this.surveys.push(data['_body']);
+      //console.log(data);
+      console.log(data['_body']);
+    }); */
+  }
+
+  public getSurveys() {
+    this.apiService.getSurveys().subscribe((data: Array<object>) => {
+      this.surveys = data;
+      //console.log(data);
+    });
   }
   addsurvey(frm): Observable<Response> {
     /*this.surveys.push({
@@ -102,11 +126,17 @@ export class SurveyComponent implements OnInit {
       'expiryDate': frm.expiryDate.value,
       'questions': []
     };
-    return this.http.post(this.readUrl + '/survey/survey', this.surv);
-    console.log(this.testsur);
+    console.log(this.surv);
+    this.http.post(this.readUrl + '/survey/survey', this.surv).subscribe(res => {
+    this.result = res;
+      console.log(res);
+    });
+    console.log(this.result);
+    return;
+    // console.log(this.testsur);
     // this._router.navigateByUrl('/survey');
 
-    console.log(frm);
+    // console.log(frm);
   }
   sendMessage(Name: String) {
     this.messageEvent.emit(Name);

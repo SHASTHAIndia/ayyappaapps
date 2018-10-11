@@ -32,7 +32,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     HttpModule,
-   // HttpClientModule,
+    HttpClientModule,
     // HttpClient
   ],
   providers: [SurveyService, QuestionService],
