@@ -94,7 +94,7 @@ createdOn: this.createdOn,*/
  'questions': []
     });*/
     this.surv = {
-  'surveyName': frm.surveyName.value,
+ 'surveyName': frm.surveyName.value,
  'surveyMessage': frm.surveyMessage.value,
  'surveyDeclaration': frm.surveyDeclaration.value,
  'surveyStatus': frm.surveyStatus.value,
