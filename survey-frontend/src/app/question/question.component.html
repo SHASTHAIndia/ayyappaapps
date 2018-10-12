@@ -1,31 +1,31 @@
 <div class="jumbotron"><h2><i>{{srv.surveyName}}</i><a routerLink="/newquestion"><button type="button" class="btn btn-primary" style="float:right">+Add Question</button></a><br></h2></div>
 <div class="container">
-  <form>
+  <form  #frm (ngSubmit)='assignquestions(frm)'>
   <div class="table-responsive" style="width:50%;float:right;">
       <br><table class="table">
         <thead>
           <tr>
               <th>Available Questions</th>
-              <th>Assign</th>;
+              <th></th>
           </tr>
         </thead>
 
         <tbody>
            <!-- <div *ngFor="let survey of surveys">-->
 
-            <tr *ngFor="let qs of activequestions">
-
+            <tr *ngFor="let qs of activequestions;let i=index">
               <td>{{qs['question']}}</td>
-              <td><input type="checkbox" value="{{qs['_id']}}"></td>
+              <td><input type="checkbox" name="qs{{i}}" value="{{qs['_id']}}" (click)="addquestion(qs['_id'])"></td>
             </tr>
+
+
           <!--</div>-->
 
         </tbody>
 
       </table>
-      <button class="btn btn-success" type="submit" style='float:right;'>Assign</button>
+      <button class="btn btn-success" type="submit" style='float:right;padding:5px;margin-right:50px '>Assign</button>
 
     </div>
-
-  </form>
+   </form>
   </div>

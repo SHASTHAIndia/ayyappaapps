@@ -7,15 +7,15 @@
                   <div class="form-group row">
                       <div class="col-sm-4">
                            <span class="require">*</span>
-                          <label>Your question in Text</label>                        
+                          <label>Your question in Text</label>
                           <input class="form-control" type="text" name="question" [(ngModel)]="Form.Question" #ques=ngModel placeholder="Enter your question" required>
-                          <div *ngIf="ques.touched">  
-                          <div *ngIf="ques.errors?.required" class="alert alert-danger">                        
-                            Enter the Question!                     
+                          <div *ngIf="ques.touched">
+                          <div *ngIf="ques.errors?.required" class="alert alert-danger">
+                            Enter the Question!
                     </div>
                 </div>
                         </div>
-                        
+
                       <div class="col-md-12">
                             <span class="require">*</span>
                           <label class="control" for="mandatory">Is it mandatory to answer this?</label>
@@ -52,7 +52,7 @@
                             </select>
                      </div>
                   </div>
-                  
+
                   <div class="form-group row" *ngIf="Form.type ==='SLT'" for="select">
                       <div class="col-sm-3 form-block" *ngFor="let option of Form.options;let i = index">
                           <div class="input-group">
@@ -100,8 +100,8 @@
                   <!-- <button type="button" class="btn-danger btn btn-md" (click)="removeForm($index)">
                       <i>-</i> Remove Form
                   </button>
-                  
-              
+
+
               <div style="margin-top:10px;margin-right:600px">
                 <button type="button" class="btn-success btn btn-md" (click)="addForm()">
                     <i>+</i> Add Form
@@ -111,16 +111,15 @@
                 <input type="submit" value="Submit" class="btn btn-primary" (click)="submitForm(OptionForm)" [disabled]="OptionForm.invalid">
             </div>
           </form>
-          
+
     <!-- <div class="form-group row text-right" style="margin: 0;">
               <div class="col-sm-12 add-form">
                   <p (click)='addForm()'><i>+</i> Add More</p>
               </div>
           </div> -->
-          
+
         </div>
 
   </div>
   </div>
   </div>
- 
