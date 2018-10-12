@@ -14,6 +14,7 @@ import { variable } from '../../../node_modules/@angular/compiler/src/output/out
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
+  assignquestionrequestobject = {};
   questionarray: String[] = [];
   message: string;
   srv: Survey;
@@ -40,8 +41,10 @@ export class QuestionComponent implements OnInit {
      });
    }
    assignquestions(frm): Observable<Response> {
+     this.assignquestionrequestobject = {'questions': this.questionarray};
+     console.log(this.assignquestionrequestobject);
     const id = this.srv['_id'];
-    this.http.put(this.readUrl + '/question_map/' + id, this.questionarray).subscribe(res => {
+    this.http.put(this.readUrl + '/survey/question_map/' + id, this.assignquestionrequestobject).subscribe(res => {
 
         console.log(res);
       });
