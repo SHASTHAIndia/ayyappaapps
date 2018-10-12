@@ -73,10 +73,10 @@ router.get("/result", (req, res, next) => {
 router.get("/get_one/:id", (req, res, next) => {
     Result.find({ _id: req.params.id}, function (err, query_data) {
         if (err) {
-            res.send(err.message);
+            res.json(err.message);
         }
         else {
-            res.send(query_data);
+            res.json(query_data);
         }
     });
     
@@ -91,9 +91,9 @@ router.get("/get_survey/:personId/:serveyId", (req, res, next) => {
         .populate('surveyId') 
         .exec(function (err, question) {
             if (err){
-                res.send(err.message);
+                res.json(err.message);
             }
-            res.send(question);
+            res.json(question);
             //console.log( question);
             // prints "The author is Ian Fleming"
         });

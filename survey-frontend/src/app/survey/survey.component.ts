@@ -1,46 +1,51 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {Survey} from '../models/survey.model';
-import {SurveyService} from './survey.service';
-import {Router} from '@angular/router';
+import { Survey } from '../models/survey.model';
+import { SurveyService } from './survey.service';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HttpModule, Http, Response } from '@angular/http';
-import {  HttpClientModule } from '@angular/common/http';
-import { Observable, observable } from '../../../node_modules/rxjs';
+import { HttpClientModule } from '@angular/common/http';
+import { Observable } from '../../../node_modules/rxjs';
+import { ApiService } from '../api.service';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css']
 })
 export class SurveyComponent implements OnInit {
-readonly readUrl = 'http://localhost:3000';
-srname: String;
-@Output() messageEvent = new EventEmitter();
-/*surveyName: String = 'hello';
-surveyMessage: String = null;
-surveyDeclaration: string = null;
-surveyStatus: string = null;
-startDate: string = null;
-expiryDate: string = null;
-createdBy: string = null;
-createdOn: string = null;
-questions: string[] = null;
-survey: Survey = {
-surveyName: this.surveyName,
-surveyMessage: this.surveyMessage,
-surveyDeclaration: this.surveyDeclaration,
-surveyStatus: this.surveyStatus,
-startDate: this.startDate,
-expiryDate: this.expiryDate,
-createdBy: this.createdBy,
-createdOn: this.createdOn,*/
-/* questions: {
-    type: "array",
-    }, */
+  readonly readUrl = 'http://localhost:3000';
+  srname: String;
+  @Output() messageEvent = new EventEmitter();
+  /*surveyName: String = 'hello';
+  surveyMessage: String = null;
+  surveyDeclaration: string = null;
+  surveyStatus: string = null;
+  startDate: string = null;
+  expiryDate: string = null;
+  createdBy: string = null;
+  createdOn: string = null;
+  questions: string[] = null;
+  survey: Survey = {
+  surveyName: this.surveyName,
+  surveyMessage: this.surveyMessage,
+  surveyDeclaration: this.surveyDeclaration,
+  surveyStatus: this.surveyStatus,
+  startDate: this.startDate,
+  expiryDate: this.expiryDate,
+  createdBy: this.createdBy,
+  createdOn: this.createdOn,*/
+  /* questions: {
+      type: "array",
+      }, */
 
-/*questions: this.questions
-};*/
+  /*questions: this.questions
+  };*/
+  result: any;
   testsur: object;
   surv: Survey;
-  surveys: Survey[]; /* = [{'surveyName': 'Test Survey 2',
+  sur: any = {};
+  //surveys: Survey[] = [];
+  /*surveys: Survey[];*/ /* = [{'surveyName': 'Test Survey 2',
   'surveyMessage': 'Welcome Msg',
   'surveyDeclaration': 'Decl',
   'surveyStatus': 'A',
@@ -75,13 +80,32 @@ createdOn: this.createdOn,*/
   decl: String = '';
   sts: String = '';
   qs: String[] ;*/
-  constructor(private _surveyser: SurveyService,
-              private _router: Router,
-              private http: Http) { }
+
+  private surveys: Array<object> = [];
+
+  constructor(private apiService: ApiService,
+    private _router: Router,
+    private http: Http) { }
 
   ngOnInit() {
+    this.getSurveys();
     // this.surveys = this.http.get(this.url + '/survey/survey');
-    this.surveys = this._surveyser.getSurveys();
+    // console.log(this.http.get(this.readUrl + '/survey/survey'));
+    // this.sur = JSON.stringify(this.http.get(this.readUrl + '/survey/survey'));
+    // console.log(this.sur);
+    // this.surveys.push(this.sur);
+   /*  this.http.get(this.readUrl + '/survey/survey').subscribe(data => {
+      this.surveys.push(data['_body']);
+      //console.log(data);
+      console.log(data['_body']);
+    }); */
+  }
+
+  public getSurveys() {
+    this.apiService.getSurveys().subscribe((data: Array<object>) => {
+      this.surveys = data;
+      //console.log(data);
+    });
   }
   addsurvey(frm): Observable<Response> {
     /*this.surveys.push({
@@ -94,19 +118,25 @@ createdOn: this.createdOn,*/
  'questions': []
     });*/
     this.surv = {
-  'surveyName': frm.surveyName.value,
- 'surveyMessage': frm.surveyMessage.value,
- 'surveyDeclaration': frm.surveyDeclaration.value,
- 'surveyStatus': frm.surveyStatus.value,
- 'startDate': frm.startDate.value,
- 'expiryDate': frm.expiryDate.value,
- 'questions': []
-  };
-  return this.http.post(this.readUrl + '/survey/survey', this.surv);
-    console.log(this.testsur);
+      'surveyName': frm.surveyName.value,
+      'surveyMessage': frm.surveyMessage.value,
+      'surveyDeclaration': frm.surveyDeclaration.value,
+      'surveyStatus': frm.surveyStatus.value,
+      'startDate': frm.startDate.value,
+      'expiryDate': frm.expiryDate.value,
+      'questions': []
+    };
+    console.log(this.surv);
+    this.http.post(this.readUrl + '/survey/survey', this.surv).subscribe(res => {
+    this.result = res;
+      console.log(res);
+    });
+    console.log(this.result);
+    return;
+    // console.log(this.testsur);
     // this._router.navigateByUrl('/survey');
 
-    console.log(frm);
+    // console.log(frm);
   }
   sendMessage(Name: String) {
     this.messageEvent.emit(Name);
