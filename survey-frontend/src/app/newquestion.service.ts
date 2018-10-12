@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class NewquestionService {
 
-  private _addQuestionUrl = 'http://localhost:3000/question/question';
+  private _addQuestionUrl = 'http://localhost:3000';
   private _http: Http;
 
   constructor( http: Http ) {
@@ -15,7 +15,7 @@ export class NewquestionService {
   }
 
   addQuestion(questions ): Observable<Response> {
-    return this._http.post( this._addQuestionUrl, questions );
+    return this._http.post( this._addQuestionUrl+'/question/question', questions );
   }
 
 }

@@ -19,14 +19,16 @@ i = 1;
 j = 1;
 choices: any = [{}];
 options: any = [{}];
-choose: any = [{}];
+chooses: any = [{}];
+answerOptions: any= [{}];
+
 
 
 
 form: any = [{}];
 
 FormSet: any = [{
- label: '',
+  Question: '',
 
   isMandatory: '',
 
@@ -72,7 +74,7 @@ chooses: [{
   addForm = function() {
     this.FormSet.push({
 
-          label: '',
+      Question: '',
 
           isMandatory: '',
 
@@ -99,10 +101,12 @@ chooses: [{
 };
 /*to add new form Options*/
 
-  addNewOption = function(item) {
-    item.options.push({});
-      console.log(this.form);
+addNewOption = function(item,option) {
+  item.options.push({option});
+    console.log(this.form)
+    
 };
+
 addNewOption1 = function(item, choice) {
     item.choices.push({choice});
       console.log(this.form);
@@ -127,14 +131,19 @@ removeChoices = function(form, index) {
   };
   submitForm=function(form)
   {
-    //console.log(form.value.question_type)
+    var arr=[];
+    var optionLength=document.getElementsByClassName('option').length;
+    for(var i=0;i<optionLength;i++)
+    arr.push((document.getElementsByClassName('option')[i] as HTMLInputElement).value);
+    console.log(arr);
+    console.log(form.value.question_type)
     var questions=
     {
       "questionType":form.value.questionType,
       "question":form.value.question,
       "questionMandatory":form.value.questionMandatory,
       "questionStatus":form.value.questionStatus,
-      "answerOptions":form.value.answerOptions
+      "answerOptions":arr
       
     }
     console.log(questions);
@@ -144,6 +153,6 @@ removeChoices = function(form, index) {
       },
       err => console.log( err )
     );
-
+  
   };
 }
