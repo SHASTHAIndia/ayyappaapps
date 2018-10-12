@@ -40,3 +40,6 @@ textarea{
     float: none;
   }
 }
+button.mystyle {
+  width:94px;
+}
