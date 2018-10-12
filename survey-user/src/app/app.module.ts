@@ -12,6 +12,7 @@ import { QuestionComponent } from './question/question.component';
 import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule} from './app-routing.module';
 import { ViewComponent } from './view/view.component';
+import { SurveyService } from './survey.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { ViewComponent } from './view/view.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [SurveyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

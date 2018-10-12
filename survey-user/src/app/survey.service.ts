@@ -11,12 +11,12 @@ export class SurveyService {
 
 
   constructor(private http : HttpClient) { }
- insertParticipant(name: string,adhar:number){ 
+ insertParticipant( name: string,adhar:string){ 
    var body = {
      Name:name,
      Adhar:adhar
    }
-   return this.http.post(this.rootUrl +'/api/insertParticipant',body);
+   return this.http.post(this.rootUrl +'/person/',body);
  }
  getQuestions(){
    return this.http.get(this.rootUrl +'/question/question');
