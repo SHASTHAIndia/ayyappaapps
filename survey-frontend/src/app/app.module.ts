@@ -11,6 +11,7 @@ import { QuestionComponent } from './question/question.component';
 import { QuestionService } from './question/question.service';
 import { NewquestionComponent } from './newquestion/newquestion.component';
 import { UserListComponent } from './user-list/user-list.component';
+import {DataService} from './data.service';
 
 const routes: Routes = [
   {path: 'survey', component: SurveyComponent},
@@ -31,11 +32,11 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    HttpModule
-   // HttpClientModule,
+    HttpModule,
+    HttpClientModule,
     // HttpClient
   ],
-  providers: [SurveyService, QuestionService],
+  providers: [SurveyService, QuestionService, DataService],
   bootstrap: [AppComponent],
   schemas: []
 })

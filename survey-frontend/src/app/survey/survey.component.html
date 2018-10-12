@@ -25,11 +25,11 @@
            <!-- <div *ngFor="let survey of surveys">-->
             <tr *ngFor="let survey of surveys">
 
-              <td #surName>{{survey.surveyName}}</td>
+              <td #surName name="surveynm">{{survey.surveyName}}</td>
               <td>{{survey.surveyMessage}}</td>
               <td>{{survey.expiryDate}}</td>
               <td>{{survey.surveyStatus}}</td>
-              <td><button class="btn btn-success btn-sm survey-edit">Edit </button><button class="btn btn-danger btn-sm survey-edit">Delete </button> <a routerLink='/question'><button class="btn btn-primary btn-sm survey-edit" (click)="sendMessage(surName)"> MapQuestions</button></a></td>
+              <td><button class="btn btn-success btn-sm survey-edit">Edit </button><button class="btn btn-danger btn-sm survey-edit">Delete </button><a routerLink='/question'><button class="btn btn-primary btn-sm survey-edit" (click)="sendMessage(survey)"> MapQuestions</button></a></td>
             </tr><br>
           <!--</div>-->
 
