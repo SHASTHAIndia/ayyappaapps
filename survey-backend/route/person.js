@@ -87,7 +87,7 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
     var result = {
         "status": true,
         "msg": "",
-        "exists": false,
+        "user_exists": false,
         "survey_attended": false,
         "user_details": []
     };
@@ -98,7 +98,7 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
             result = {
                 "status": false,
                 "msg": err.message,
-                "exists": false,
+                "user_exists": false,
                 "survey_attended": false,
                 "user_details": []
             };
@@ -111,11 +111,11 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
             Result.find({ personId: user._id,surveyId: req.params.survey_id }, function (err, query_data) {
                 if (err) {
                     result = {
-                        "status": false,
+                        "status": true,
                         "msg": err.message,
-                        "exists": false,
+                        "user_exists": true,
                         "survey_attended": false,
-                        "user_details": []
+                        "user_details": user
                     };
                     res.json(result);
                    
@@ -126,7 +126,7 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
                         result = {
                             "status": true,
                             "msg": "Success",
-                            "exists": true,
+                            "user_exists": true,
                             "survey_attended": true,
                             "user_details": user
                         }; 
@@ -137,7 +137,7 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
                         result = {
                             "status": true,
                             "msg": "Success",
-                            "exists": true,
+                            "user_exists": true,
                             "survey_attended": false,
                             "user_details": user
                         }; 
@@ -151,7 +151,7 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
             result = {
                 "status": true,
                 "msg": "Success",
-                "exists": false,
+                "user_exists": false,
                 "survey_attended": false,
                 "user_details": []
             };
