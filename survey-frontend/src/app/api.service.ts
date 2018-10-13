@@ -17,9 +17,14 @@ export class ApiService {
   getQuestions(){
     return this.httpClient.get(`${this.API_URL}/question/question`);
   }
-
   getUsers() {
     return this.httpClient.get(`${this.API_URL}/person/user`);
+  }
+  deleteQuestion(_id){
+    return this.httpClient.delete(`${this.API_URL}/question/question/`+_id);
+  }
+  editQuestion(_id){
+    return this.httpClient.get(`${this.API_URL}/question/get_one/`+_id);
   }
 }
 

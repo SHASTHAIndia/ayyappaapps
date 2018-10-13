@@ -19,25 +19,33 @@ export class QuestionlistComponent implements OnInit {
   constructor(private apiService: ApiService,
     private _router: Router,
     private http: Http) { }
-    id: number;
-    private headers=new Headers({'Content-Type': 'application/json'});
+    id:number
     ngOnInit() {
-      this.getQuestions();
-      
+      this.getQuestions();      
     }
     public getQuestions() {
        this.apiService.getQuestions().subscribe((option: Array<object>) => {
         this.questions = option;
-        console.log(this.questions[0]);
+        //console.log(this.questions);
         
       });
     }
-    // public deleteQuestion(id){
-    //   if(confirm( "Are you sure?")){
-    //     this.apiService.deleteQuestion(id).subscribe((option: Array<object>)=>{
-    //       this.questions=option;
-    //     })
-    //   }
-    // }
-
+    refresh(): void {
+      window.location.reload();
+  }
+    public deleteQues(_id){
+       alert('are you sure?')
+        this.apiService.deleteQuestion(_id).subscribe((option: Array<object>)=>{
+          this.questions=option;
+          this.getQuestions();
+          
+    });
+  }
+  public editQues(_id){
+      this.apiService.editQuestion(_id).subscribe((option: Array<object>)=>{
+      this.questions=option;
+      console.log(this.questions);
+      this.getQuestions();
+  });
+}
 }

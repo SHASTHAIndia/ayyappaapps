@@ -2,7 +2,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <div>
- <a routerLink='/newquestion'><button class="btn btn-info">+New Question</button></a> 
+<a routerLink='/newquestion'><button class="btn btn-info">+New Question</button></a> 
 </div><br>
     <table class="table table-hover table-responsive">
       <thead class="table-success">
@@ -23,14 +23,16 @@
     <td> {{ques.questionMandatory}}</td>
     <td> {{ques.questionStatus}}</td>
     <td> {{ques.answerOptions}}</td>
-    <td><button class="btn btn-info btn-sm">Edit </button>
-      <button class="btn btn-danger btn-sm question-edit" (click)="deleteQuestion(id)">Delete</button>
+    <td><a [routerLink]="['/questionpopup',ques._id]"><button class="btn btn-info btn-sm" >Edit </button></a>
+    <button class="btn btn-danger btn-sm question-edit" (click)="deleteQues(ques['_id'])">Delete</button>
     </td>
   </tr>
     
  
 </tbody>
 </table>
+
+
 
 
 

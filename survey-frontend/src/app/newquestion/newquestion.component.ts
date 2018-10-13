@@ -9,7 +9,7 @@ import {NewquestionService} from '../newquestion.service';
   providers:[NewquestionService]
 })
 export class NewquestionComponent implements OnInit {
-
+  editQuestion:boolean=false;
   selectedvalue: any = 'text';
 question: any = {};
 questions_type: any = ['TXT', 'TXTA', 'OPT', 'SLT', 'CHK'];
@@ -51,23 +51,6 @@ chooses: [{
 }];
 
   constructor(private _questionService : NewquestionService) { }
-  // addoptions(){
-  //   console.log()
-  //  this.opt.push(this.customer);
-  //  this.i++;
-  //  console.log(this.opt)
-  // }
-
-
-  // addoptions = function() {
-
-  //   this.choices.push({});
-  //   console.log(this.choices)
-  // };
-  // addoptionforcheck(){
-  //   this.options.push({});
-  //   console.log(this.options)
-  // }
   ngOnInit() {
   }
 
