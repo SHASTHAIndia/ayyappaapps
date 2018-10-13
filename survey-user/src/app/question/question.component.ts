@@ -14,11 +14,12 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.surveyService.getQuestions().subscribe(
+ /*   this.surveyService.getQuestions().subscribe(
       (data:any) =>{
         this.surveyService.qns = data;
       }
     );
-  }
-
+  }*/
 }
+}
+
