@@ -11,6 +11,16 @@ export class ApiService {
   getSurveys() {
     return this.httpClient.get(`${this.API_URL}/survey/survey`);
   }
+  getQuestions() {
+    return this.httpClient.get(`${this.API_URL}/question/question`);
+  }
+  // editQuestion(id){
+  //   return this.httpClient.put(`${this.API_URL}/question/question/:id`);
+  // }
+  deleteQuestion(id){
+    return this.httpClient.delete(`${this.API_URL}/question/question/:id`);
+  
+  }
 }
 
 

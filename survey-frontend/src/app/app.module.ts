@@ -11,12 +11,14 @@ import { QuestionComponent } from './question/question.component';
 import { QuestionService } from './question/question.service';
 import { NewquestionComponent } from './newquestion/newquestion.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { QuestionlistComponent } from './questionlist/questionlist.component';
 
 const routes: Routes = [
   {path: 'survey', component: SurveyComponent},
   {path: 'question', component: QuestionComponent},
   {path: 'newquestion', component: NewquestionComponent},
-  {path: 'userlist', component: UserListComponent}
+  {path: 'userlist', component: UserListComponent},
+  {path: 'questionlist', component: QuestionlistComponent }
 ];
 
 @NgModule({
@@ -25,7 +27,8 @@ const routes: Routes = [
     SurveyComponent,
     QuestionComponent,
     NewquestionComponent,
-    UserListComponent
+    UserListComponent,
+    QuestionlistComponent
   ],
   imports: [
     BrowserModule,
