@@ -14,6 +14,9 @@ export class ApiService {
   getActiveQuestions() {
     return this.httpClient.get(`${this.API_URL}/question/active_only`);
   }
+  getQuestions(){
+    return this.httpClient.get(`${this.API_URL}/question/question`);
+  }
 
   //SREERAG
   getUsers() {
