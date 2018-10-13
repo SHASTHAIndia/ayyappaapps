@@ -10,9 +10,30 @@ import { Router } from '@angular/router';
 export class AppComponent{
   constructor(private surveyService : SurveyService, private route : Router) { }
 
+  private qns: Array<object> = [];
+
 
   
- private _prevSelected: any;
+   
+  ngOnInit() {
+    this.getQuestions();
+   
+  }
+  
+
+ public getQuestions() {
+    this.surveyService.getQuestions().subscribe((data: Array<object>) => {
+      this.qns = data['questions'];
+      var i;
+     for(i=0;i<=this.qns.length;i++)
+      console.log(this.qns[i]['question']);
+    });
+  }
+
+
+
+  
+ private_prevSelected: any;
 
     handleChange(evt) {
       var target = evt.target;
@@ -24,17 +45,7 @@ export class AppComponent{
 
   
   title = 'sur';
-  addUser(name:string,adhar:string){
-    alert("thankyu");
-    
 
-  this.surveyService.insertParticipant(name,adhar).subscribe(
-   (data : any) =>{
-     this.route.navigate(['/']);
-   }
-    );
-    }
-  
     
   }
 

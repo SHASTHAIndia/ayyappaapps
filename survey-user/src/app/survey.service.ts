@@ -1,30 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+ 
 @Injectable({
   providedIn: 'root'
 })
 export class SurveyService {
+  API_URL = 'http://localhost:3000';
 
-  readonly rootUrl ='http://localhost:3000';
-  qns:any=[];
+  constructor(private httpClient: HttpClient) { }
+  getQuestions() {
+    var sid="5bbdda0d0648272d5c03a82c";
+    return this.httpClient.get(`${this.API_URL}/survey/get_one/`+sid);
+  }
 
-
-  constructor(private http : HttpClient) { }
- insertParticipant( name: string,adhar:string){ 
-   var body = {
-     Name:name,
-     Adhar:adhar
-   }
-   return this.http.post(this.rootUrl +'/person/',body);
- }
- getQuestions(){
-   return this.http.get(this.rootUrl +'/question/question');
- }
-getAnswers(){
-
-  var body = this.qns.map(x=> x.QnID);
-  return this.http.post(this.rootUrl + '/api/Answers',body);
+  getUsers() {
+    return this.httpClient.get(`${this.API_URL}/person/user`);
+  }
 }
-}
-  
