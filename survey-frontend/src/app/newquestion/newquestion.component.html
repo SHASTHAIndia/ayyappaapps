@@ -73,6 +73,31 @@
                           <button class="btn-md btn btn-danger" type="submit" (click)="removeChoose(Form, i)"><i>-</i></button>
                           </span>
                         </div>
+
+                      <div class="col-md-12">
+                            <span class="require">*</span>
+                          <label class="control" for="mandatory">Is it mandatory to answer this?</label>
+                          <div class="radio">
+                              <label class="mr12">
+                                  <input icheck="" type="radio" name="questionMandatory" value="yes" [(ngModel)]="Form.isMandatory" id="mandatory" required> YES
+                              </label>
+                              <label style="margin-left:10px">
+                                  <input icheck="" type="radio" name="questionMandatory" value="no" [(ngModel)]="Form.isMandatory" id="mandatory" required> NO
+                              </label>
+                          </div>
+                      </div>
+                      <div class="col-sm-12">
+                            <span class="require">*</span>
+                          <label>Status</label>
+                          <div class="radio" for="qesStatus">
+                              <label class="mr12" >
+                                  <input type="radio" checked name="questionStatus" value="A" [(ngModel)]="Form.active" id="qesStatus" required> Active
+                              </label>
+                              <label style="margin-left:10px">
+                                  <input type="radio" name="questionStatus" value="I" [(ngModel)]="Form.active" id="qesStatus" required> Inactive
+                              </label>
+                          </div>
+                      </div>
                     </div>
                     <div class="col-sm-3 form-block">
                      <button class="btn-success btn btn-md" (click)="addNewOption2(Form,choose)"><i>+</i></button>
@@ -98,8 +123,9 @@
                 </div>
                  <!-- <button type="button" class="btn-danger btn btn-md" (click)="removeForm($index)">
                       <i>-</i> Remove Form
-                  </button>                  
-              
+                  </button>
+
+
               <div style="margin-top:10px;margin-right:600px">
                 <button type="button" class="btn-success btn btn-md" (click)="addForm()">
                     <i>+</i> Add Form
@@ -109,16 +135,15 @@
          <input type="submit" value="Submit" class="btn btn-primary" (click)="submitForm(OptionForm)" [disabled]="OptionForm.invalid">
         </div>
         </form>
-          
+
     <!-- <div class="form-group row text-right" style="margin: 0;">
               <div class="col-sm-12 add-form">
                   <p (click)='addForm()'><i>+</i> Add More</p>
               </div>
           </div> -->
-          
+
         </div>
 
   </div>
   </div>
   </div>
- 

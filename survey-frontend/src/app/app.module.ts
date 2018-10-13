@@ -38,7 +38,7 @@ const routes: Routes = [
     HttpClientModule,
     // HttpClient
   ],
-  providers: [SurveyService, QuestionService],
+  providers: [SurveyService, QuestionService, DataService],
   bootstrap: [AppComponent],
   schemas: []
 })

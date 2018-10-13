@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const Person = require("../model/person");
+const Result = require("../model/result");
 
 router.get("/test_route", (req, res) => {
     res.send("router tested.");
@@ -90,6 +91,8 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
         "user_details": []
     };
     var user_exists = false;
+    var survey_attended = false;
+    var userData = [];
     //check email is exists
     Person.findOne({ userAdhaar: req.params.adhaar }, function (err, user) {
         if (err) {
@@ -101,23 +104,91 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
             };
             res.json(result);
         }
-        //res.send(user);
+        //res.send(user._id);
         if (user) {
+            var user_id = user._id;
+
             user_exists = true;
+            userData = user;
         }
 
         result = {
             "status": true,
             "msg": "Success",
             "exists": user_exists,
-            "user_details": []
+            "user_details": userData
         };
         res.json(result);
+    });
+
+    if(user_exists) // Check survey attended or not by this user
+    {
+        Result.find({ personId: user_id,surveyId: req.params.survey_id }, function (err, query_data) {
+            if (err) {
+                res.json(err.message);
+            }
+            else {
+                if(query_data)
+                {
+                    survey_attended = true;  
+                }
+                result = {
+                    "status": true,
+                    "msg": "Success",
+                    "exists": user_exists,
+                    "survey_attended": survey_attended,
+                    "user_details": userData
+                };
+                res.json(query_data);
+            }
+        });
+    
+    }
+
+    //res.send(result);
+
+});
+
+//Used to verify whether the user is already registered and if yes, returns the user data)
+router.get("/user_exists/:adhaar", (req, res, next) => {
+    var result = {
+        "status": true,
+        "msg": "",
+        "exists": false,
+        "user_details": []
+    };
+    var user_exists = false;
+    
+    //check email is exists
+    Person.findOne({ userAdhaar: req.params.adhaar }, function (err, user) {
+        if (err) {
+            result = {
+                "status": false,
+                "msg": err,
+                "exists": false,
+                "user_details": []
+            };
+            res.json(result);
+        }
+        //res.send(user._id);
+        if (user) {
+             user_exists = true;
+            result = {
+                "status": true,
+                "msg": "Success",
+                "exists": user_exists,
+                "user_details": user
+            };
+            res.json(result);
+        }
+
+        
     });
 
     //res.send(result);
 
 });
+
 
 
 module.exports = router;
