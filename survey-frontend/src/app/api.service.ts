@@ -14,6 +14,10 @@ export class ApiService {
   getActiveQuestions() {
     return this.httpClient.get(`${this.API_URL}/question/active_only`);
   }
+
+  getUsers() {
+    return this.httpClient.get(`${this.API_URL}/person/user`);
+  }
 }
 
 
