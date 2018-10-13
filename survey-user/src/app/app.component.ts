@@ -12,6 +12,8 @@ export class AppComponent{
 
   private qns: Array<object> = [];
   private adhr: Array<object> = [];
+  question:Array<object>=[];
+  Option:Array<object>=[];
 
 
   
@@ -21,25 +23,26 @@ export class AppComponent{
    
   }
   
-
  public getQuestions() {
     this.surveyService.getQuestions().subscribe((data: Array<object>) => {
+      console.log(data)
       this.qns = data['questions'];
-    /*  var i;
-     for(i=0;i<=this.qns.length;i++)
-    console.log(this.qns[i]['question']);*/
+    
+      for(var key in this.qns){
+        this.question.push(this.qns[key]);
+        }
+      console.log(this.question)
+    
     });
   }
  
- public focusOutFunction(adhar:any){
-   
-     var body = adhar;
-     console.log(adhar);
-   
+ public focusOutFunction(){
+ 
 
   this.surveyService.focusOutFunction().subscribe((data:Array<object>)=>
   {
     this.adhr = data;
+    console.log(data)
   
   }
   );

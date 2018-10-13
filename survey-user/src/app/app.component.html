@@ -73,7 +73,7 @@
                                    
                                     <span class="required">*</span> <label for="Gender"> Gender: </label> <br><input type="radio" name="gender" value="male"  (change)="handleChange($event)" ngModel> Male  <input type="radio" name="gender" value="female"  (change)="handleChange($event)" ngModel> Female
                                         
-                                          <input type="radio" name="gender" value="other" (change)="handleChange($event)"  ngModel> Other
+                                          <input type="radio" name="gender" value="other" (change)="handleChange($event);"  ngModel> Other
                                           </div>
                                     
                           
@@ -108,10 +108,15 @@
                             <div class="container">
                                     <div class="col-md-9">
                                         <div class="jumbotron">
-                                                <div *ngFor="let survey of surveys">
+                                                <div *ngFor="let survey of question">
                                         
-                                        <p></p>
+                                        <p>{{survey.question}}</p>
+                                    
                                                 </div>
+                                               
+                                                            
+
+                                               
                         <div class="next">
                             <button class="btn btn-info btn-lg" (click)="onClick()">Next
                                   <span class="glyphicon glyphicon-chevron-right"></span> 

@@ -21,6 +21,6 @@ export class SurveyService {
    
   focusOutFunction(){
 
-     return this.httpClient.get(`${this.API_URL}/person/user_verify/<adhaarNo>/<survey_id>`);
+     return this.httpClient.get(`${this.API_URL}/person/user_verify/45678923456/5bc1c31d0c973907fce57bf9`);
   }
 }
