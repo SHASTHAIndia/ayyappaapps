@@ -88,62 +88,80 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
         "status": true,
         "msg": "",
         "exists": false,
+        "survey_attended": false,
         "user_details": []
     };
-    var user_exists = false;
-    var survey_attended = false;
-    var userData = [];
-    //check email is exists
+    
+    //check adhaar(User) is exists
     Person.findOne({ userAdhaar: req.params.adhaar }, function (err, user) {
         if (err) {
             result = {
                 "status": false,
-                "msg": err,
+                "msg": err.message,
                 "exists": false,
+                "survey_attended": false,
                 "user_details": []
             };
             res.json(result);
         }
         //res.send(user._id);
-        if (user) {
-            var user_id = user._id;
-
-            user_exists = true;
-            userData = user;
+        if (user) { // user exists
+           
+            //checkin result table for finding, whether the user attended the surveyor not
+            Result.find({ personId: user._id,surveyId: req.params.survey_id }, function (err, query_data) {
+                if (err) {
+                    result = {
+                        "status": false,
+                        "msg": err.message,
+                        "exists": false,
+                        "survey_attended": false,
+                        "user_details": []
+                    };
+                    res.json(result);
+                   
+                }
+                else {
+                    if(query_data)
+                    {
+                        result = {
+                            "status": true,
+                            "msg": "Success",
+                            "exists": true,
+                            "survey_attended": true,
+                            "user_details": user
+                        }; 
+                        res.json(result);
+                    }
+                    else 
+                    {
+                        result = {
+                            "status": true,
+                            "msg": "Success",
+                            "exists": true,
+                            "survey_attended": false,
+                            "user_details": user
+                        }; 
+                        res.json(result);
+                    }
+                    
+                }
+            });
+        }
+        else{ //user not exists
+            result = {
+                "status": true,
+                "msg": "Success",
+                "exists": false,
+                "survey_attended": false,
+                "user_details": []
+            };
+            res.json(result);
         }
 
-        result = {
-            "status": true,
-            "msg": "Success",
-            "exists": user_exists,
-            "user_details": userData
-        };
-        res.json(result);
+       
     });
 
-    if(user_exists) // Check survey attended or not by this user
-    {
-        Result.find({ personId: user_id,surveyId: req.params.survey_id }, function (err, query_data) {
-            if (err) {
-                res.json(err.message);
-            }
-            else {
-                if(query_data)
-                {
-                    survey_attended = true;  
-                }
-                result = {
-                    "status": true,
-                    "msg": "Success",
-                    "exists": user_exists,
-                    "survey_attended": survey_attended,
-                    "user_details": userData
-                };
-                res.json(query_data);
-            }
-        });
     
-    }
 
     //res.send(result);
 
