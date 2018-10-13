@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var uniqueValidator = require('mongoose-unique-validator');
 // Defining ENUMs for the gender field which will use for validation.
-var genders = 'MALE FEMALE'.split(' ')
+var genders = 'MALE FEMALE OTHER'.split(' ')
 const personSchema = new Schema({
     userName: {
         type: "string",
