@@ -14,6 +14,11 @@ import { variable } from '../../../node_modules/@angular/compiler/src/output/out
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
+  selected: Boolean = false;
+  assqs: Array<object>;
+  availablequestions: Array<object>;
+  assignedquestions: Array<object> = [];
+  assignedquestionsName = [];
   assignquestionrequestobject = {};
   questionarray: String[] = [];
   message: string;
@@ -22,7 +27,7 @@ export class QuestionComponent implements OnInit {
   survName: String;
   testing = '';
   qslist: Question[];
-  activequestions: Array<object>;
+  activequestions: Array<object> = [];
   readonly readUrl = 'http://localhost:3000';
   constructor(private quesser: QuestionService,
   private dataservice: DataService,
@@ -32,37 +37,66 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.dataservice.currentMessage.subscribe(message => this.srv = message);
     this.srname = this.message;
-    this.getActiveQuestions();
+    // this.getActiveQuestions();
+    // this.getAssignedQuestions();
+   //  console.log(this.assignedquestions);
+   //  console.log(this.activequestions);
+    this.getAvailableQuestions();
+
   }
    // console.log(this.srv['_id']);
   public getActiveQuestions() {
      this.apiService.getActiveQuestions().subscribe((data: Array<object>) => {
        this.activequestions = data;
      });
+     return this.activequestions;
+   }
+   public getAssignedQuestions() {
+    const id = this.srv['_id'];
+     this.apiService.getAssignedQuestions(id).subscribe((data: Array<object>) => {
+       this.assignedquestions = data['questions'];
+      // console.log(this.assignedquestions);
+      /* for (let i = 0; i < this.assignedquestions.length; i++) {
+         this.assignedquestionsName.push(this.assignedquestions[i]['question']);
+       } */
+      // console.log(this.assignedquestionsName);
+     });
+
    }
    assignquestions(frm): Observable<Response> {
+     console.log(frm);
+     console.log(this.assignedquestions);
+     console.log(this.activequestions);
      this.assignquestionrequestobject = {'questions': this.questionarray};
+     this.questionarray = [];
      console.log(this.assignquestionrequestobject);
-    const id = this.srv['_id'];
-    this.http.put(this.readUrl + '/survey/question_map/' + id, this.assignquestionrequestobject).subscribe(res => {
+     const id = this.srv['_id'];
+     this.http.put(this.readUrl + '/survey/question_map/' + id, this.assignquestionrequestobject).subscribe(res => {
 
         console.log(res);
-      });
+       });
+      // this.questionarray = [];
+      // console.log(this.questionarray);
+       this.getAvailableQuestions();
       return;
    }
    addquestion(value) {
     // console.log(value);
     // console.log(this.questionarray);
     for (let i = 0 ; i < this.questionarray.length; i++) {
-      if (this.questionarray[i] === value) {
-        this.questionarray.splice(i, 1);
+       if (this.questionarray[i] === value) {
+         this.questionarray.splice(i, 1);
         console.log(this.questionarray);
-        return;
+         return;
       }
-// this.questionarray.push(value);
+ // this.questionarray.push(value);
    }
-   this.questionarray.push(value);
-   console.log(this.questionarray);
+
+// console.log(this.selected);
+// if (this.selected === true) {
+    this.questionarray.push(value);
+    console.log(this.questionarray);
+//   }
    /* removefromlist(value) {
     this.questionarray.splice(value, 1);
    } */
@@ -72,4 +106,53 @@ export class QuestionComponent implements OnInit {
     console.log('hey');
   }*/
 }
+getAvailableQuestions() {
+ // this.availablequestions = this.getActiveQuestions();
+ //  this.getAssignedQuestions().subscribe( (data: Array <object>) =>{})
+ // console.log(this.availablequestions);
+ // const id = this.srv['_id'];
+/* this.apiService.getAssignedQuestions(id).subscribe((data: Array<object>) => {
+   for (let i = 0; i < data['questions'].length; i++) {
+    this.assignedquestions.push(data['questions'][i]);
+   }
+  // console.log(this.assignedquestions);
+});*/
+  this.apiService.getActiveQuestions().subscribe((data: Array<object>) => {
+    this.activequestions = data;
+    const id = this.srv['_id'];
+    this.apiService.getAssignedQuestions(id).subscribe((acqs: Array<object>) => {
+      for (let i = 0; i < acqs['questions'].length; i++) {
+       this.assignedquestions.push(acqs['questions'][i]);
+      }
+      for ( let i = 0; i < this.activequestions.length; i++) {
+        for (let j = 0; j < this.assignedquestions.length; j++) {
+          if (this.activequestions[i]['_id'] === this.assignedquestions[j]['_id'] ) {
+            this.activequestions.splice(i, 1);
+          }
+        }
+      }
+      console.log(this.assignedquestions);
+      console.log(this.activequestions);
+   });
+   // console.log(this.activequestions);
+  });
+  // console.log(this.activequestions);
+  console.log(this.assignedquestions);
+ /* for ( let i = 0; i < this.activequestions.length; i++) {
+    for (let j = 0; j < this.assignedquestions.length; j++) {
+      if (this.activequestions[i]['_id'] === this.assignedquestions[j]['_id'] ) {
+        this.activequestions.splice(i, 1);
+      }
+    }
+  } */
+ // console.log(this.assignedquestions);
+ // console.log(this.activequestions);
+}
+// togglevisibility(e, value) {
+//   this.selected =  e.target.checked;
+//   if (this.selected === true) {
+//     this.questionarray.push(value);
+//     console.log(this.questionarray);
+// }
+// }
 }

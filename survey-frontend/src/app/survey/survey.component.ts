@@ -143,6 +143,10 @@ export class SurveyComponent implements OnInit {
     this.http.post(this.readUrl + '/survey/survey', this.surv).subscribe(res => {
     this.result = res;
       console.log(res);
+      this.apiService.getSurveys().subscribe((data: Array<object>) => {
+        this.surveys = data;
+        // console.log(data);
+      });
     });
     console.log(this.result);
     return;
