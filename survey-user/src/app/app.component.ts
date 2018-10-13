@@ -11,6 +11,7 @@ export class AppComponent{
   constructor(private surveyService : SurveyService, private route : Router) { }
 
   private qns: Array<object> = [];
+  private adhr: Array<object> = [];
 
 
   
@@ -24,12 +25,26 @@ export class AppComponent{
  public getQuestions() {
     this.surveyService.getQuestions().subscribe((data: Array<object>) => {
       this.qns = data['questions'];
-      var i;
+    /*  var i;
      for(i=0;i<=this.qns.length;i++)
-      console.log(this.qns[i]['question']);
+    console.log(this.qns[i]['question']);*/
     });
   }
+ 
+ public focusOutFunction(adhar:any){
+   
+     var body = adhar;
+     console.log(adhar);
+   
 
+  this.surveyService.focusOutFunction().subscribe((data:Array<object>)=>
+  {
+    this.adhr = data;
+  
+  }
+  );
+
+  }
 
 
   

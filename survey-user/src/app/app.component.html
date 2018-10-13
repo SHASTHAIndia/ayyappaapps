@@ -31,7 +31,7 @@
                                      pattern="[0-9]*" 
                                      maxlength="12" 
                                      minlength="12"
-                                     
+                                     (focusout)="focusOutFunction(frm.Adhar)"
                                      #adharUser="ngModel" placeholder="Enter your 12-digit Adharnumber">
                                   </div>
                                     <div *ngIf="adharUser.touched">
