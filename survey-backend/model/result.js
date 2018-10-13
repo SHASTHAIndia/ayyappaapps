@@ -7,6 +7,14 @@ const resultSchema = new Schema({
         //type: "number",
         require: [true, 'Person is required']
     },
+    userName: {
+        type: "string",
+        require: [true, 'Name is required']
+    },
+    userAdhaar: {
+        type: "number",
+        require: [true, 'Name is required']
+    },
     surveyId: {
         type: Schema.Types.ObjectId,
         ref: 'Survey',

@@ -10,6 +10,8 @@ router.get("/test_route", (req, res) => {
 router.post("/result", (req, res, next) => {
     let newEntry = new Result({
         personId: req.body.personId,
+        userName: req.body.userName,
+        userAdhaar: req.body.userAdhaar,
         surveyId: req.body.surveyId,
         surveyCompletedTS: Date.now,
         resultSet: req.body.resultSet
@@ -30,6 +32,8 @@ router.put("/result/:id", (req, res, next) => {
     Result.findOneAndUpdate({ _id: req.params.id }, {
         $set: {
             personId: req.body.personId,
+            userName: req.body.userName,
+            userAdhaar: req.body.userAdhaar,
             surveyId: req.body.surveyId,
             surveyCompletedTS: Date.now,
             resultSet: req.body.resultSet
@@ -71,7 +75,7 @@ router.get("/result", (req, res, next) => {
 });
 
 router.get("/get_one/:id", (req, res, next) => {
-    Result.find({ _id: req.params.id}, function (err, query_data) {
+    Result.find({ _id: req.params.id }, function (err, query_data) {
         if (err) {
             res.json(err.message);
         }
@@ -79,18 +83,18 @@ router.get("/get_one/:id", (req, res, next) => {
             res.json(query_data);
         }
     });
-    
+
 });
 
 //get result of a pirticular survey of a pirticular person
 router.get("/get_survey/:personId/:serveyId", (req, res, next) => {
-    
-   
-    Result.findOne({ "personId": req.params.personId,"surveyId":req.params.serveyId })
+
+
+    Result.findOne({ "personId": req.params.personId, "surveyId": req.params.serveyId })
         .populate('personId')  //personId -> field name
-        .populate('surveyId') 
+        .populate('surveyId')
         .exec(function (err, question) {
-            if (err){
+            if (err) {
                 res.json(err.message);
             }
             res.json(question);
@@ -99,7 +103,27 @@ router.get("/get_survey/:personId/:serveyId", (req, res, next) => {
         });
 
 
-   
+
+});
+
+//get result of a pirticular survey of a pirticular person by adhaar number
+router.get("/get_survey_result_by_adhaar/:adhaarNo/:serveyId", (req, res, next) => {
+
+
+    Result.findOne({ "userAdhaar": req.params.adhaarNo, "surveyId": req.params.serveyId })
+        .populate('personId')  //personId -> field name
+        .populate('surveyId')
+        .exec(function (err, question) {
+            if (err) {
+                res.json(err.message);
+            }
+            res.json(question);
+            //console.log( question);
+            // prints "The author is Ian Fleming"
+        });
+
+
+
 });
 
 module.exports = router;

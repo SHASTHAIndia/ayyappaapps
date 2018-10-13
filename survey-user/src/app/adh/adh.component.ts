@@ -12,24 +12,15 @@ import { Router } from '@angular/router';
 export class AdhComponent implements OnInit {
 
   constructor(private surveyService : SurveyService, private route : Router) { }
-  userList:User[]=[];
-  focusOutFunction(frm){
-    alert("thankyu");
+ 
+  /*userList:User[]=[];
+  addUser(frm){
     var user: User;
     user=frm.value;
     console.log(frm.value);
-    this.userList.push(user);
-    
-    
+    this.surveyService;
   }
-
-  
-  /*addUser(frm){
-    var user: User;
-    user=frm.value;
-    console.log(frm.value);
-    this.userList.push(user);
-  }*/
+  */
 
   
 

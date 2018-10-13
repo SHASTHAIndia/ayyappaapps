@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-//import { HttpModule, Http, Response } from '@angular/http';
-//import { HttpClientModule } from '@angular/common/http';
-//import { Observable } from '../../../node_modules/rxjs';
+// import { HttpModule, Http, Response } from '@angular/http';
+// import { HttpClientModule } from '@angular/common/http';
+// import { Observable } from '../../../node_modules/rxjs';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class UserListComponent implements OnInit {
   public getUsers() {
     this.apiService.getUsers().subscribe((data: Array<object>) => {
       this.users = data;
-      //console.log(data);
+      // console.log(data);
     });
   }
 
