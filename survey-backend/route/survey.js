@@ -10,6 +10,10 @@ router.get("/test_survey", (req, res) => {
 
 //method for creating new entry
 router.post("/survey", (req, res, next) => {
+    var rsltarr = {
+        "status": false,
+        "msg": ""
+    };
     let newSurvey = new Survey({
         surveyName: req.body.surveyName,
         surveyMessage: req.body.surveyMessage,
@@ -24,10 +28,19 @@ router.post("/survey", (req, res, next) => {
     });
     newSurvey.save((err, user) => {
         if (err) {
-            res.json(err);
+            rsltarr = {
+                "status": false,
+                "msg":err.message
+            };
+            res.json(rsltarr);
         }
         else {
-            res.json({ msg: "Survey saved success fullly!!" });
+            rsltarr = {
+                "status": true,
+                "msg":"Survey saved success fullly!!"
+            };
+            res.json(rsltarr);
+           
         }
     })
 });
@@ -74,19 +87,19 @@ router.delete("/survey/:id", (req, res, next) => {
 router.get("/survey", (req, res, next) => {
 
     Survey.
-    find({})
-    .populate('questions')  //questions -> field name
-    //.populate('createdBy','userName') // createdBy -> Filed name in parent table; userName -> Fileds wants to be listed in the population
-    .exec(function (err, question) {
-        if (err) {
-            res.json(err);
-        }
-        else {
-            res.json(question);
-        }
-        //console.log( question);
-        // prints "The author is Ian Fleming"
-    });
+        find({})
+        .populate('questions')  //questions -> field name
+        //.populate('createdBy','userName') // createdBy -> Filed name in parent table; userName -> Fileds wants to be listed in the population
+        .exec(function (err, question) {
+            if (err) {
+                res.json(err);
+            }
+            else {
+                res.json(question);
+            }
+            //console.log( question);
+            // prints "The author is Ian Fleming"
+        });
 
 
 
@@ -123,7 +136,7 @@ router.get("/get_one/:id", (req, res, next) => {
             // prints "The author is Ian Fleming"
         });
 
-  
+
 });
 
 //for getting responses on a pirticular survey
@@ -143,7 +156,7 @@ router.get("/responses/:survey_id", (req, res, next) => {
             // prints "The author is Ian Fleming"
         });
 
-   
+
 });
 
 
@@ -153,39 +166,70 @@ router.get("/survey_attended/:personId/:surveyId", (req, res, next) => {
         "status": true,
         "msg": "",
         "survey_attended": false
-       
+
     };
-        var survey_attended = false;
+    var survey_attended = false;
     var userData = [];
     //check email is exists
-    Result.findOne({ personId: req.params.personId,surveyId: req.params.surveyId}, function (err, user) {
+    Result.findOne({ personId: req.params.personId, surveyId: req.params.surveyId }, function (err, user) {
         if (err) {
             result = {
                 "status": false,
                 "msg": err,
                 "survey_attended": false
-               
+
             };
             res.json(result);
         }
-        if(user)
-        {
+        if (user) {
             survey_attended = true;
             result = {
                 "status": true,
                 "msg": "Success",
                 "survey_attended": survey_attended
-                
+
             };
             res.json(result);
         }
-        
 
-       
+
+
     });
 
     //res.send(result);
 
+});
+
+
+//method for updating question list
+router.put("/question_map/:survey_id", (req, res, next) => {
+
+    var rsltarr = {
+        "status": false,
+        "msg": ""
+    };
+    Survey.findOneAndUpdate({ _id: req.params.survey_id }, {
+        $set: {
+            questions: req.body.questions
+        }
+    },
+        function (err, result) {
+            if (err) {
+                rsltarr = {
+                    "status": false,
+                    "msg": err.message
+                };
+                res.json(rsltarr);
+            }
+            else {
+                rsltarr = {
+                    "status": true,
+                    "msg": "Success fully mapped"
+                };
+                res.json(rsltarr);
+            }
+        }
+    );
 });
 
 module.exports = router;

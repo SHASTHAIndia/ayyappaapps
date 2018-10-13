@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import {DataService} from './data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  message: any;
   survName: String;
   title = 'admprof';
-  surveys: any[] = [{'surveyName': 'Test Survey 2',
+  /*surveys: any[] = [{'surveyName': 'Test Survey 2',
   'surveyMessage': 'Welcome Msg',
   'surveyDeclaration': 'Decl',
   'surveyStatus': 'A',
@@ -52,7 +53,10 @@ export class AppComponent {
  'expiryDate': this.esdate,
     });
     console.log(JSON.stringify(this.surveys));
-  }
+  }*/
+  constructor(private dataservice: DataService) {}
+ngOnInit() {
+  this.dataservice.currentMessage.subscribe(message => this.message = message); }
   receiveMessage($event) {
     this.survName = $event;
   }

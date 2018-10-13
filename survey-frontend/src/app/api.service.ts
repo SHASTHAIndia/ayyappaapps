@@ -11,6 +11,12 @@ export class ApiService {
   getSurveys() {
     return this.httpClient.get(`${this.API_URL}/survey/survey`);
   }
+  getActiveQuestions() {
+    return this.httpClient.get(`${this.API_URL}/question/active_only`);
+  }
+  getQuestions(){
+    return this.httpClient.get(`${this.API_URL}/question/question`);
+  }
 
   getUsers() {
     return this.httpClient.get(`${this.API_URL}/person/user`);
