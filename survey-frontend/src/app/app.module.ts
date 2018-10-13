@@ -13,6 +13,7 @@ import { NewquestionComponent } from './newquestion/newquestion.component';
 import { UserListComponent } from './user-list/user-list.component';
 import {DataService} from './data.service';
 
+
 const routes: Routes = [
   {path: 'survey', component: SurveyComponent},
   {path: 'question', component: QuestionComponent},
