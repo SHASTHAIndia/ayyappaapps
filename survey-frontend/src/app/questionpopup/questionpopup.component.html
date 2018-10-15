@@ -103,4 +103,10 @@
 	  </div>
 	</div>
   </div> 
-  
+  <div *ngFor="let ques of questions">
+     {{ques.question}}
+     {{ques.questionType}}
+     {{ques.questionMandatory}}
+     {{ques.questionStatus}}
+     {{ques.answerOptions}}
+  </div>
