@@ -202,34 +202,80 @@ router.get("/survey_attended/:personId/:surveyId", (req, res, next) => {
 
 
 //method for updating question list
+//will update question list with adding new questions to the existsing ones in the DB. If the parameters have duplicate question IDs, the API will skip them
 router.put("/question_map/:survey_id", (req, res, next) => {
 
     var rsltarr = {
         "status": false,
         "msg": ""
     };
-    Survey.findOneAndUpdate({ _id: req.params.survey_id }, {
-        $set: {
-            questions: req.body.questions
+
+    var questionsArra =[];
+
+    Survey.find({ _id: req.params.survey_id }, function (err, query_data) {
+        if (err) {
+            rsltarr = {
+                "status": false,
+                "msg": err.message
+            };
+            res.json(rsltarr);
         }
-    },
-        function (err, result) {
-            if (err) {
+        else {
+            if(query_data)
+            {
+                
+                if(query_data[0])
+                {
+                    query_data[0].questions.forEach(function(item_exists) {
+                        questionsArra.push(item_exists);
+                    });
+                    req.body.questions.forEach(function(item) {
+                       
+                        questionsArra.push(item);
+                        
+                    });
+                    
+                   // For avoiding duplicate values in your questions, use the $addToSet operator.
+                    Survey.update({ _id: req.params.survey_id }, {
+                        $addToSet: {
+                            questions: questionsArra
+                        }
+                    },
+                        function (err, result) {
+                            if (err) {
+                                rsltarr = {
+                                    "status": false,
+                                    "msg": err.message
+                                };
+                                res.json(rsltarr);
+                            }
+                            else {
+                                rsltarr = {
+                                    "status": true,
+                                    "msg": "Success fully mapped"
+                                };
+                                res.json(rsltarr);
+                            }
+                        }
+                    );
+                    
+                   
+                }
+               
+            }
+            else 
+            {
                 rsltarr = {
                     "status": false,
-                    "msg": err.message
+                    "msg": "Invalid survey ID. No survey exist with the provided ID"
                 };
-                res.json(rsltarr);
+                res.json(rsltarr); 
             }
-            else {
-                rsltarr = {
-                    "status": true,
-                    "msg": "Success fully mapped"
-                };
-                res.json(rsltarr);
-            }
+
         }
-    );
+    });
+
+    
 });
 
 module.exports = router;
