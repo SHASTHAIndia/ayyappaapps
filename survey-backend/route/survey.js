@@ -207,7 +207,6 @@ router.get("/survey_attended/:personId/:surveyId", (req, res, next) => {
 //will update question list with adding new questions to the existsing ones in the DB. If the parameters have duplicate question IDs, the API will skip them
 //parameter format
 /* 
-{
     "questions":
     [
             "5bbf4f95141f8a24705203f3",
@@ -215,7 +214,7 @@ router.get("/survey_attended/:personId/:surveyId", (req, res, next) => {
             "5bbf4f28141f8a24705203f2"
             
             ]
-  } 
+  
   */
 router.put("/question_map/:survey_id", (req, res, next) => {
 
@@ -225,6 +224,7 @@ router.put("/question_map/:survey_id", (req, res, next) => {
     };
 
     var questionsArra = [];
+    var parameterArray = req.body;
 
     Survey.find({ _id: req.params.survey_id }, function (err, query_data) {
         if (err) {
@@ -241,7 +241,7 @@ router.put("/question_map/:survey_id", (req, res, next) => {
                     query_data[0].questions.forEach(function (item_exists) {
                         questionsArra.push(item_exists);
                     });
-                    req.body.questions.forEach(function (item) {
+                    parameterArray.forEach(function (item) {
 
                         questionsArra.push(item);
 
