@@ -18,12 +18,20 @@ export class ApiService {
     return this.httpClient.get(`${this.API_URL}/question/question`);
   }
 
+getAssignedQuestions(id) {
+  return this.httpClient.get(`${this.API_URL}/survey//get_one/` + id);
+}
+
   // SREERAG
+
   getUsers() {
     return this.httpClient.get(`${this.API_URL}/person/user`);
   }
-  getAssignedQuestions(id) {
-    return this.httpClient.get(`${this.API_URL}/survey/get_one/` + id);
+  deleteQuestion(_id) {
+    return this.httpClient.delete(`${this.API_URL}/question/question/` + _id);
+  }
+  editQuestion(_id) {
+    return this.httpClient.get(`${this.API_URL}/question/get_one/` + _id);
   }
 }
 

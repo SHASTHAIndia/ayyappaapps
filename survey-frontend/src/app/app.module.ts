@@ -13,13 +13,16 @@ import { NewquestionComponent } from './newquestion/newquestion.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { QuestionlistComponent } from './questionlist/questionlist.component';
 import { DataService } from './data.service';
+import { QuestionpopupComponent } from './questionpopup/questionpopup.component';
+
 
 const routes: Routes = [
   {path: 'survey', component: SurveyComponent},
   {path: 'question', component: QuestionComponent},
   {path: 'newquestion', component: NewquestionComponent},
   {path: 'userlist', component: UserListComponent},
-  {path: 'questionlist', component: QuestionlistComponent }
+  {path: 'questionlist', component: QuestionlistComponent },
+  {path: 'questionpopup/:id', component: QuestionpopupComponent}
 ];
 
 @NgModule({
@@ -29,7 +32,8 @@ const routes: Routes = [
     QuestionComponent,
     NewquestionComponent,
     UserListComponent,
-    QuestionlistComponent
+    QuestionlistComponent,
+    QuestionpopupComponent
   ],
   imports: [
     BrowserModule,
