@@ -121,9 +121,10 @@ getAvailableQuestions() {
     this.activequestions = data;
     const id = this.srv['_id'];
     this.apiService.getAssignedQuestions(id).subscribe((acqs: Array<object>) => {
-      for (let i = 0; i < acqs['questions'].length; i++) {
-       this.assignedquestions.push(acqs['questions'][i]);
-      }
+      // for (let i = 0; i < acqs['questions'].length; i++) {
+      //  this.assignedquestions.push(acqs['questions'][i]);
+      // }
+      this.assignedquestions = acqs['questions'];
       for ( let i = 0; i < this.activequestions.length; i++) {
         for (let j = 0; j < this.assignedquestions.length; j++) {
           if (this.activequestions[i]['_id'] === this.assignedquestions[j]['_id'] ) {
