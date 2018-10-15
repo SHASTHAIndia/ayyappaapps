@@ -14,12 +14,16 @@ color:blue;
 transition:background 0.5s ease;
 }
 .forchecked:hover{
+  content:'Add';
   background-color: blue;
   color:white;
   font-weight:normal;
 }
-.forchecked:hover i{
+.forchecked:hover i::before{
   content:'Add';
+  margin-right:35px;
+}
+.forchecked:hover i{
   color:white;
 }
 /* i{

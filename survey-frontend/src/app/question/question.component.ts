@@ -63,10 +63,10 @@ export class QuestionComponent implements OnInit {
      });
 
    }
-   assignquestions(frm): Observable<Response> {
-     console.log(frm);
-     console.log(this.assignedquestions);
-     console.log(this.activequestions);
+   assignquestions(): Observable<Response> {
+    //  console.log(frm);
+    //  console.log(this.assignedquestions);
+    //  console.log(this.activequestions);
      this.assignquestionrequestobject = {'questions': this.questionarray};
      this.questionarray = [];
      console.log(this.assignquestionrequestobject);
@@ -81,8 +81,7 @@ export class QuestionComponent implements OnInit {
       return;
    }
    addquestion(value) {
-    // console.log(value);
-    // console.log(this.questionarray);
+
     for (let i = 0 ; i < this.questionarray.length; i++) {
        if (this.questionarray[i] === value) {
          this.questionarray.splice(i, 1);
@@ -96,15 +95,7 @@ export class QuestionComponent implements OnInit {
 // if (this.selected === true) {
     this.questionarray.push(value);
     console.log(this.questionarray);
-//   }
-   /* removefromlist(value) {
-    this.questionarray.splice(value, 1);
-   } */
-  // this.qslist = this.quesser.getQuestions();
-  /*receiveMessage($event) {
-    this.survName = $event;
-    console.log('hey');
-  }*/
+    this.assignquestions();
 }
 getAvailableQuestions() {
  // this.availablequestions = this.getActiveQuestions();
