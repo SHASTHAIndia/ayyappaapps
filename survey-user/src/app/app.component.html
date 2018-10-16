@@ -109,14 +109,33 @@
                                     <div class="col-md-9">
                                         <div class="jumbotron">
                                                 <div *ngFor="let survey of question">
+                                                      
                                         
-                                                        <p>{{survey.question}}</p>
-                                                        <p>{{survey.questionType}}</p>
+                                              <p>{{survey.question}}</p>
+                                              <p></p>
+                                                     
+                                                    
+                                                        <div *ngIf="survey['questionType']=='TXT'"> 
+                                                     <input type="text" placeholder="type your answer">
+                                                        </div>
+                                                        <div *ngIf="survey['questionType']=='TXTA'"> 
+                                                            <textarea></textarea>
+                                                                   </div>
+                                                                   <div *ngIf="survey['questionType']=='CHK'"> 
+                                                                        <input type="checkbox" value="">{{survey.answerOptions}}
+                                                                               </div>   
+                                                                               <div *ngIf="survey['questionType']=='SLT'"> 
+                                                                                    <select>
+                                                                                            <option value="scroll">{{survey.answerOptions}}</option>    
+                                                                                    </select>
+                                                                                           </div>   
+                                                                                        </div>
                                                         
                                                 
-                                                        <p>{{survey.answerOptions}}</p>
-                                                                </div>
-                                                                               
+                                                      
+                                                                
+                                                           
+                                                            
                                              
 
                                                
