@@ -25,7 +25,7 @@
                                             <div class="form-group">
 
                                                 <input type="text" name="Adhar" class="form-control" ngModel required
-                                                    pattern="[0-9]*" maxlength="12" minlength="12" (focusout)="focusOutFunction(frm.Adhar)"
+                                                    pattern="[0-9]*" maxlength="12" minlength="12" (focusout)="focusOutFunction(frm.value['Adhar'])"
                                                     #adharUser="ngModel" placeholder="Enter your 12-digit Adhar number">
                                             </div>
                                             <div *ngIf="adharUser.touched">
@@ -36,6 +36,7 @@
                                                     class="alert alert-danger">
                                                     Adhar number is invalid!
                                                 </div>
+                                                
                                             </div>
 
 
@@ -96,7 +97,7 @@
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                 <div class="panel-body">
-                                   <!--  <div class="header" align="center">
+                                    <!--  <div class="header" align="center">
                                         <h3>Questions</h3>
                                     </div> -->
 
@@ -121,27 +122,31 @@
                                                             <label class="radio-inline" *ngFor="let ans of survey.answerOptions">
                                                                 <input type="radio" name="answer_radio{{i+1}}" value="{{ans}}">&nbsp;&nbsp;{{ans}}
                                                             </label>
-
-
                                                         </div>
+                                                        
                                                         <div *ngIf="survey['questionType']=='CHK'">
                                                             <label class="checkbox-inline" *ngFor="let ans of survey.answerOptions">
                                                                 <input type="checkbox" name="answer_check{{i+1}}" value="{{ans}}">&nbsp;&nbsp;{{ans}}
                                                             </label>
-                                                            
+
                                                         </div>
+
                                                         <div *ngIf="survey['questionType']=='SLT'">
                                                             <select>
-                                                                <option value="scroll">{{survey.answerOptions}}</option>
+
+
+                                                                <option value="{{ans}}" *ngFor="let ans of survey.answerOptions">{{ans}}</option>
+
                                                             </select>
+
+
+
                                                         </div>
-                                                        <hr>
+
+
                                                     </section>
+
                                                 </div>
-
-
-
-
 
 
 
@@ -177,7 +182,8 @@
 
                                                 <div class="form-group">
 
-                                                    <input type="checkbox" required> here by i declared that the survey
+                                                    <input type="checkbox" required> here by i declared that the
+                                                    survey
                                                     done by myself with my perception
                                                     <div class="next"><br><br>
                                                         <button type="submit" class="btn btn-primary" [disabled]="frm.invalid">SUBMIT</button>
