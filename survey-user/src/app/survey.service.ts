@@ -6,11 +6,13 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SurveyService {
+
+ 
   API_URL = 'http://localhost:3000';
 
   constructor(private httpClient: HttpClient) { }
-  getQuestions() {
-    var sid="5bbdda0d0648272d5c03a82c";
+  getQuestions(sid) {
+    //var sid="5bbdda0d0648272d5c03a82c";
     return this.httpClient.get(`${this.API_URL}/survey/get_one/`+sid);
   }
 
@@ -19,8 +21,8 @@ export class SurveyService {
   }
 
    
-  focusOutFunction(){
+  focusOutFunction(adhaar,sid){
 
-     return this.httpClient.get(`${this.API_URL}/person/user_verify/45678923456/5bc1c31d0c973907fce57bf9`);
+     return this.httpClient.get(`${this.API_URL}/person/user_verify/`+adhaar+`/`+sid);
   }
 }
