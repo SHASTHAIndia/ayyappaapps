@@ -1,0 +1,50 @@
+<div class="jumbotron"><h2><strong><i>{{srv.surveyName}} Responses</i></strong></h2></div>
+<div class="container">
+  <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>AdharNumber</th>
+              <th>Attended Date</th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+           <!-- <div *ngFor="let survey of surveys">-->
+            <tr *ngFor="let res of respons">
+              <td #surName><strong>{{res['userName']}}</strong></td>
+              <td><strong>{{res['userAdhaar']}}</strong></td>
+              <td><strong>{{res['surveyCompletedTS']}}</strong></td>
+              <td><button class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" (click)='details(res)'>View</button></td>
+              <!-- <td>{{survey['surveyStatus']}}</td>
+              <td><button class="btn btn-success btn-sm survey-edit mystyle">Edit </button><button class="btn btn-danger btn-sm survey-edit mystyle" (click)="deletesurvey(survey['_id'])">Delete </button><a routerLink='/question'><button class="btn btn-primary btn-sm survey-edit" (click)="sendMessage(survey)"> MapQuestions</button></a><a routerLink='/responses'><button class='btn btn-info btn-sm survey-response' (click)=sendMessage(survey)>Responses</button></a></td> -->
+            </tr><br></tbody>
+          <!--</div>-->
+
+      </table>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">{{currentres['userName']}}'s Responses</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let qs of currentres['resultSet'];let i=index">
+            <p><strong>{{i+1}}.{{qs['question']}}</strong></p>
+            <p>{{qs['answer']}}</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          </div>
+  </div>
+  </div>
+  </div>
+  </div>

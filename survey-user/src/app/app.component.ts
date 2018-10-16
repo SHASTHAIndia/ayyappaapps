@@ -12,9 +12,10 @@ export class AppComponent {
   constructor(private surveyService: SurveyService, private route: Router) { }
   public sid: any = "5bbdda0d0648272d5c03a82c";
   private qns: Array<object> = [];
-  private adhr: Array<object> = [];
+   adhr: Array<object> = [];
   question: Array<object> = [];
   answerOptions: Array<object> = [];
+  adh:Array<object>=[];
 
 
 
@@ -50,18 +51,20 @@ export class AppComponent {
 
     });
   }
-
-  public focusOutFunction(adhaar) {
-    // console.log(adhaar);
-    this.surveyService.focusOutFunction(adhaar, this.sid).subscribe((data: Array<object>) => {
-      console.log(data);
-
-
-
-    }
-    );
-
-  }
+ 
+ public focusOutFunction(adhaar){
+  //console.log(adhaar);
+  this.surveyService.focusOutFunction(adhaar,this.sid).subscribe((data:Array<object>)=>
+  {
+  
+    this.adhr=data;
+ 
+ 
+    console.log(this.adhr);
+    
+  
+  
+}
 
   public addUser(frm)
   {

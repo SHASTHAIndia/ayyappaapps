@@ -14,6 +14,7 @@ import { variable } from '../../../node_modules/@angular/compiler/src/output/out
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
+  deleterequest: any[] = [];
   selected: Boolean = false;
   assqs: Array<object>;
   availablequestions: Array<object>;
@@ -27,7 +28,17 @@ export class QuestionComponent implements OnInit {
   survName: String;
   testing = '';
   qslist: Question[];
-  activequestions: Array<object> = [];
+  activequestions: Array<object> = [
+    {
+      'questionMandatory': '',
+      'questionStatus': '',
+      'questionType': '',
+      'usedStatus': '',
+      'answerOptions': [],
+      '_id': '',
+      'question': '',
+    }
+  ];
   readonly readUrl = 'http://localhost:3000';
   constructor(private quesser: QuestionService,
   private dataservice: DataService,
@@ -42,7 +53,8 @@ export class QuestionComponent implements OnInit {
    //  console.log(this.assignedquestions);
    //  console.log(this.activequestions);
     this.getAvailableQuestions();
-
+    console.log(this.assignedquestions);
+    console.log(this.assignedquestions);
   }
    // console.log(this.srv['_id']);
   public getActiveQuestions() {
@@ -63,15 +75,15 @@ export class QuestionComponent implements OnInit {
      });
 
    }
-   assignquestions(frm): Observable<Response> {
-     console.log(frm);
-     console.log(this.assignedquestions);
-     console.log(this.activequestions);
-     this.assignquestionrequestobject = {'questions': this.questionarray};
-     this.questionarray = [];
-     console.log(this.assignquestionrequestobject);
+   assignquestions(): Observable<Response> {
+    //  console.log(frm);
+    //  console.log(this.assignedquestions);
+    //  console.log(this.activequestions);
+    //  this.assignquestionrequestobject = {'questions': this.questionarray};
+    //  this.questionarray = [];
+     console.log(this.questionarray);
      const id = this.srv['_id'];
-     this.http.put(this.readUrl + '/survey/question_map/' + id, this.assignquestionrequestobject).subscribe(res => {
+     this.http.put(this.readUrl + '/survey/question_map/' + id, this.questionarray).subscribe(res => {
 
         console.log(res);
        });
@@ -80,31 +92,29 @@ export class QuestionComponent implements OnInit {
        this.getAvailableQuestions();
       return;
    }
-   addquestion(value) {
-    // console.log(value);
-    // console.log(this.questionarray);
-    for (let i = 0 ; i < this.questionarray.length; i++) {
-       if (this.questionarray[i] === value) {
-         this.questionarray.splice(i, 1);
-        console.log(this.questionarray);
-         return;
-      }
+   addquestion(value): Observable<Response> {
+
+    // for (let i = 0 ; i < this.questionarray.length; i++) {
+    //    if (this.questionarray[i] === value) {
+    //      this.questionarray.splice(i, 1);
+    //     console.log(this.questionarray);
+    //      return;
+    //   }
  // this.questionarray.push(value);
-   }
+  //  }
 
 // console.log(this.selected);
 // if (this.selected === true) {
     this.questionarray.push(value);
     console.log(this.questionarray);
-//   }
-   /* removefromlist(value) {
-    this.questionarray.splice(value, 1);
-   } */
-  // this.qslist = this.quesser.getQuestions();
-  /*receiveMessage($event) {
-    this.survName = $event;
-    console.log('hey');
-  }*/
+    const id = this.srv['_id'];
+    this.http.put(this.readUrl + '/survey/question_map/' + id, this.questionarray).subscribe(res => {
+
+       console.log(res);
+      });
+      this.getAvailableQuestions();
+      return;
+   // this.assignquestions();
 }
 getAvailableQuestions() {
  // this.availablequestions = this.getActiveQuestions();
@@ -118,19 +128,24 @@ getAvailableQuestions() {
   // console.log(this.assignedquestions);
 });*/
   this.apiService.getActiveQuestions().subscribe((data: Array<object>) => {
-    this.activequestions = data;
+    console.log(data);
+      this.activequestions = data;
     const id = this.srv['_id'];
     this.apiService.getAssignedQuestions(id).subscribe((acqs: Array<object>) => {
       // for (let i = 0; i < acqs['questions'].length; i++) {
       //  this.assignedquestions.push(acqs['questions'][i]);
       // }
       this.assignedquestions = acqs['questions'];
+      console.log(this.assignedquestions);
+      if (this.assignedquestions != null) {
       for ( let i = 0; i < this.activequestions.length; i++) {
+
         for (let j = 0; j < this.assignedquestions.length; j++) {
           if (this.activequestions[i]['_id'] === this.assignedquestions[j]['_id'] ) {
             this.activequestions.splice(i, 1);
           }
         }
+      }
       }
       console.log(this.assignedquestions);
       console.log(this.activequestions);
@@ -138,7 +153,7 @@ getAvailableQuestions() {
    // console.log(this.activequestions);
   });
   // console.log(this.activequestions);
-  console.log(this.assignedquestions);
+ // console.log(this.assignedquestions);
  /* for ( let i = 0; i < this.activequestions.length; i++) {
     for (let j = 0; j < this.assignedquestions.length; j++) {
       if (this.activequestions[i]['_id'] === this.assignedquestions[j]['_id'] ) {
@@ -156,4 +171,35 @@ getAvailableQuestions() {
 //     console.log(this.questionarray);
 // }
 // }
+// add(value) {
+//  // console.log(this.assignedquestions);
+//  // console.log(this.activequestions);
+//   const id = this.srv['_id'];
+//   console.log(value);
+//   this.http.put(this.readUrl + '/survey/question_map/' + id, [value]).subscribe(res => {
+
+//     console.log(res);
+//    });
+//   if (this.assignedquestions.length >= 1) {
+//     for (let i = 0; i < this.activequestions.length; i++) {
+//       for (let j = 0; j < this.assignedquestions.length; j++) {
+//         if (this.assignedquestions[j]['_id'] === this.activequestions[i]['_id']) {
+//           this.activequestions.splice(i, 1);
+//         }
+//       }
+//     }
+//   }
+//   console.log(this.assignedquestions);
+//   console.log(this.activequestions);
+// }
+deletequestion(value): Observable<Response> {
+  const id = this.srv['_id'];
+  this.deleterequest = [value];
+  console.log(this.deleterequest);
+  this.http.put(this.readUrl + '/survey/unmap_question/' + id, this.deleterequest).subscribe(res => {
+    console.log(res);
+  });
+  this.getAvailableQuestions();
+  return;
+}
 }

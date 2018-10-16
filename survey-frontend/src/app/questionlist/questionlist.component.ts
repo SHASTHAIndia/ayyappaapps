@@ -15,7 +15,7 @@ export class QuestionlistComponent implements OnInit {
   readonly readUrl = 'http://localhost:3000';
   @Output() messageEvent = new EventEmitter();
   private questions: Array<object> = [];
-  private select: Array<object> = [];
+  //private select: Array<object> = [];
   
   constructor(private apiService: ApiService,
     private _router: Router,
@@ -35,12 +35,12 @@ export class QuestionlistComponent implements OnInit {
       window.location.reload();
   }
     public deleteQues(_id){
-       alert('are you sure?')
+       if(confirm('Are you sure you want to delete this question?')){       
         this.apiService.deleteQuestion(_id).subscribe((option: Array<object>)=>{
           this.questions=option;
           this.getQuestions();
-          
-    });
+        });  
+    }
   }
   public editQues(_id){
       this.apiService.editQuestion(_id).subscribe((option: Array<object>)=>{
@@ -115,14 +115,42 @@ removeChoices = function(form, index) {
   public editQuest(_id){
    
     this.apiService.editQuestion(_id).subscribe((data: Array<object>) => {
-      this.select=data;
-      console.log(this.select);
+      this.questions=data;
+      console.log(this.questions);
       // let arr=this.questions.toString();
       // console.log(arr);
       
       
   });
   }
+
+  updateQues=function(form)
+  {
+    var arr=[];
+    var optionLength=document.getElementsByClassName('option').length;
+    for(var i=0;i<optionLength;i++)
+    arr.push((document.getElementsByClassName('option')[i] as HTMLInputElement).value);
+    console.log(arr);
+    console.log(form.value.question_type)
+    var updates=
+    {
+      "questionType":form.value.questionType,
+      "question":form.value.question,
+      "questionMandatory":form.value.questionMandatory,
+      "questionStatus":form.value.questionStatus,
+      "answerOptions":arr
+      
+    }
+    console.log(updates);
+    this.apiService.updateQuestion( updates ).subscribe(
+      response => {
+        alert( 'added.' );
+      },
+      err => console.log( err )
+    );
+  
+  };
+  
  questionArr(){
   let arr=this.questions.toString();
 
