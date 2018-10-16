@@ -4,7 +4,7 @@
 <div class="content">
 <div class="container">
     <div class="jumbotron clearfix">
-    <h2>SurveyPoint<button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal" style='float:right'></button>+New Survey</button></h2>
+    <h2>SurveyPoint<button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal" style='float:right'>+New Survey</button></h2>
 
     <!-- Trigger the modal with a button -->
   </div>
@@ -28,7 +28,7 @@
               <td>{{survey['surveyMessage']}}</td>
               <td>{{survey['expiryDate']}}</td>
               <td>{{survey['surveyStatus']}}</td>
-              <td><button class="btn btn-success btn-sm survey-edit mystyle">Edit </button><button class="btn btn-danger btn-sm survey-edit mystyle">Delete </button><a routerLink='/question'><button class="btn btn-primary btn-sm survey-edit" (click)="sendMessage(survey)"> MapQuestions</button></a></td>
+              <td><button class="btn btn-success btn-sm survey-edit mystyle" data-toggle="modal" data-target="#updateModal" (click)="upsur(survey)">Edit </button><button class="btn btn-danger btn-sm survey-edit mystyle" (click)="deletesurvey(survey['_id'])">Delete </button><a routerLink='/question'><button class="btn btn-primary btn-sm survey-edit" (click)="sendMessage(survey)"> MapQuestions</button></a><a routerLink='/responses'><button class='btn btn-info btn-sm survey-response' (click)=sendMessage(survey)>Responses</button></a></td>
             </tr><br>
           <!--</div>-->
 
@@ -112,4 +112,41 @@
 </div>
 </div>
 </div>-->
+<div class="modal fade" id="updateModal" role="dialog">
+    <div class="modal-dialog">
 
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Survey</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <form class="form-group" #frm (ngSubmit)="addsurvey(frm)">
+              <label for="surveyName" #surveyName><strong> Title:</strong></label><br>
+              <input type="text"  class="form-control" name="surveyName" id="surveyName" required #surveyName placeholder="{{surv['surveyName']}}"><br>
+              <div *ngIf="surveyName.touched">
+                <div  *ngIf="surveyName.errors?.required" class="alert alert-danger">
+                    Survey title is required
+                </div>
+              </div>
+              <label for="surveyMessage"><strong>Survey Message</strong></label><br>
+              <textarea type="text" name="surveyMessage" id="surveyMessage"  class="form-control"></textarea><br>
+              <strong>Duration: <br></strong><label for="startDate" class="lightweight"> From:</label><input type="date"  name="startDate" id="startDate" class="form-control">
+              <label for="expiryDate" class="lightweight"> To:</label> <input type="date"  name="expiryDate" id="expiryDate" class="form-control"><br>
+              <label for="surveyStatus"><strong>Status:  </strong></label>
+              <input type="radio" id="surveyStatus" name="surveyStatus" value="A"  class="forstatus" checked>Active
+              <input type="radio" id="surveyStatus" name="surveyStatus" value="I" class="forstatus">Inactive<br>
+
+              <label for="surveyDeclaration"><strong>Declaration:</strong></label><br>
+              <textarea type="text"  name="surveyDeclaration" id="surveyDeclaration" class="form-control"></textarea><br>
+              <button type="submit" class="btn btn-success">save</button>
+          </form>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          </div>
+  </div>
+  </div>
+  </div>
+  </div>

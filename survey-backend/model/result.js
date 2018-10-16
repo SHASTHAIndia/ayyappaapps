@@ -27,11 +27,11 @@ const resultSchema = new Schema({
         default: Date.now,
 
     },
-    resultSet: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Result',
-        require: false
-    }]
+    resultSet: {
+        type : "array",
+
+        require : false
+    }
 
 });
 

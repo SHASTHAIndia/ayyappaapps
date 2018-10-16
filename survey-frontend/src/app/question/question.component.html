@@ -17,7 +17,7 @@
                 <tr *ngFor="let qs of assignedquestions;let i=index">
                   <td>{{qs['question']}}</td>
                   <!-- <td><input type="checkbox" name="qs{{i}}" value="{{qs['_id']}}"></td> -->
-                  <td><button class='btn btn-danger btn-sm'><i class="fas fa-trash"></i></button></td>
+                  <td><button class='btn btn-danger btn-sm' (click)="deletequestion(qs['_id'])"><i class="fas fa-trash"></i></button></td>
                 </tr>
 
 
