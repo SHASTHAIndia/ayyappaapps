@@ -17,15 +17,21 @@ export class ApiService {
   getQuestions() {
     return this.httpClient.get(`${this.API_URL}/question/question`);
   }
-  //SREERAG
+
+getAssignedQuestions(id) {
+  return this.httpClient.get(`${this.API_URL}/survey//get_one/` + id);
+}
+
+  // SREERAG
+
   getUsers() {
     return this.httpClient.get(`${this.API_URL}/person/user`);
   }
-  deleteQuestion(_id){
-    return this.httpClient.delete(`${this.API_URL}/question/question/`+_id);
+  deleteQuestion(_id) {
+    return this.httpClient.delete(`${this.API_URL}/question/question/` + _id);
   }
-  editQuestion(_id){
-    return this.httpClient.get(`${this.API_URL}/question/get_one/`+_id);
+  editQuestion(_id) {
+    return this.httpClient.get(`${this.API_URL}/question/get_one/` + _id);
   }
 }
 

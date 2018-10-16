@@ -4,7 +4,7 @@ import { HttpModule, Http, Response } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { ApiService } from '../api.service';
-
+import {FormsModule} from '@angular/forms';
 @Component({
   selector: 'app-questionlist',
   templateUrl: './questionlist.component.html',
@@ -15,7 +15,8 @@ export class QuestionlistComponent implements OnInit {
   readonly readUrl = 'http://localhost:3000';
   @Output() messageEvent = new EventEmitter();
   private questions: Array<object> = [];
-
+  private select: Array<object> = [];
+  
   constructor(private apiService: ApiService,
     private _router: Router,
     private http: Http) { }
@@ -48,4 +49,83 @@ export class QuestionlistComponent implements OnInit {
       this.getQuestions();
   });
 }
+questions_type: any = ['TXT', 'TXTA', 'OPT', 'SLT', 'CHK'];
+  choices: any = [{}];
+options: any = [{}];
+chooses: any = [{}];
+form: any = [{}];
+
+FormSet: any = [{
+  Question: '',
+
+  isMandatory: '',
+
+  options: [{
+
+      name: ''
+
+  }],
+  choices: [{
+
+    name: ''
+
+}],
+chooses: [{
+
+    name: ''
+
+}]
+
+}];
+
+
+
+removeForm = function(index) {
+  this.FormSet.splice(index, 1);
+
+};
+addNewOptionForSelect = function(item,option) {
+  item.options.push({option});
+    console.log(this.form)
+    
+};
+
+addNewOptionForCheckbox = function(item, choice) {
+    item.choices.push({choice});
+      console.log(this.form);
+};
+addNewOptionForOption = function(item, choose) {
+    item.chooses.push({choose});
+      console.log(this.form);
+};
+removeChoose = function(form, index) {
+
+  form.chooses.splice(index, 1);
+
+};
+removeChoices = function(form, index) {
+  form.choices.splice(index, 1);
+};
+/*remove form options*/
+ removeOption = function(form, index) {
+
+      form.options.splice(index, 1);
+
+  };
+  public editQuest(_id){
+   
+    this.apiService.editQuestion(_id).subscribe((data: Array<object>) => {
+      this.select=data;
+      console.log(this.select);
+      // let arr=this.questions.toString();
+      // console.log(arr);
+      
+      
+  });
+  }
+ questionArr(){
+  let arr=this.questions.toString();
+
+ 
+ }
 }

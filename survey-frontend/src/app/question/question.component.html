@@ -44,7 +44,7 @@
 
             <tr *ngFor="let qs of activequestions;let i=index">
               <td>{{qs['question']}}</td>
-              <td><input type="checkbox" name="qs{{i}}" [ngModel]="selected"  (click)=" addquestion(qs['_id'])"></td>
+              <td><input type="checkbox" name="qs{{i}}"   (click)=" addquestion(qs['_id'])"></td>
             </tr>
             <tr>
               <td></td>
