@@ -26,6 +26,7 @@ const routes: Routes = [
   {path: 'questionlist', component: QuestionlistComponent },
   {path: 'questionpopup/:id', component: QuestionpopupComponent},
   {path: '', component: SignupComponent},
+  {path: 'responses', component: ResponsesComponent}
   {path: 'login', component: LoginComponent}
 ];
 
@@ -40,6 +41,8 @@ const routes: Routes = [
     QuestionpopupComponent,
     SignupComponent,
     LoginComponent
+    QuestionpopupComponent,
+    ResponsesComponent
   ],
   imports: [
     BrowserModule,

@@ -144,7 +144,7 @@ router.get("/get_one/:id", (req, res, next) => {
 // For admin panel
 router.get("/responses/:survey_id", (req, res, next) => {
 
-    Result.findOne({ "surveyId": req.params.survey_id }).
+    Result.find({ "surveyId": req.params.survey_id }).
         populate('Survey').
         exec(function (err, question) {
             if (err) {

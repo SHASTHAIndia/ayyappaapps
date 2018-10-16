@@ -2,7 +2,7 @@
 <div class="container">
   <div>
   <form #frm1>
-      <div class="table-responsive" style="float:left;width:45%;">
+      <div class="table-responsive" style="float:right;width:45%;">
           <br><table class="table">
             <thead>
               <tr>
@@ -16,7 +16,8 @@
 
                 <tr *ngFor="let qs of assignedquestions;let i=index">
                   <td>{{qs['question']}}</td>
-                  <td><input type="checkbox" name="qs{{i}}" value="{{qs['_id']}}"></td>
+                  <!-- <td><input type="checkbox" name="qs{{i}}" value="{{qs['_id']}}"></td> -->
+                  <td><button class='btn btn-danger btn-sm' (click)="deletequestion(qs['_id'])"><i class="fas fa-trash"></i></button></td>
                 </tr>
 
 
@@ -25,12 +26,12 @@
             </tbody>
 
           </table>
-          <button class="btn btn-danger" type="submit">Remove</button>
+          <!-- <button class="btn btn-danger" type="submit">Remove</button> -->
 
         </div>
   </form>
   <form  #frm (ngSubmit)='assignquestions(frm)'>
-  <div class="table-responsive" style="width:45%;float:right;">
+  <div class="table-responsive" style="width:45%;float:left;">
       <br><table class="table">
         <thead>
           <tr>
@@ -43,12 +44,14 @@
            <!-- <div *ngFor="let survey of surveys">-->
 
             <tr *ngFor="let qs of activequestions;let i=index">
-              <td>{{qs['question']}}</td>
-              <td><input type="checkbox" name="qs{{i}}"   (click)=" addquestion(qs['_id'])"></td>
+              <td><label for="qs{{i}}">{{qs['question']}}</label></td>
+              <!-- <td><input type="checkbox" name="qs{{i}}"   (click)=" addquestion(qs['_id'])" id="qs{{i}}"></td> -->
+              <!-- <td><button class="forchecked" type="button" name="qs{{i}}"   (click)=" addquestion(qs['_id'])" id="qs{{i}}">>></button></td> -->
+              <td><button class="btn btn-sm forchecked" type="button" name="qs{{i}}"   (click)=" addquestion(qs['_id'])" id="qs{{i}}"><i class="fas fa-arrow-right arrow1"></i></button></td>
             </tr>
             <tr>
               <td></td>
-              <td><button class="btn btn-success" type="submit">Assign</button></td>
+              <!-- <td><button class="btn btn-success" type="submit">Assign</button></td> -->
             </tr>
 
           <!--</div>-->

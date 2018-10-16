@@ -19,7 +19,7 @@ export class ApiService {
   }
 
 getAssignedQuestions(id) {
-  return this.httpClient.get(`${this.API_URL}/survey//get_one/` + id);
+  return this.httpClient.get(`${this.API_URL}/survey/get_one/` + id);
 }
 postQuestion( questions ){
   return this.httpClient.post(`${this.API_URL}/question/question`,questions);
@@ -37,6 +37,9 @@ updateQuestion( updates ){
   }
   editQuestion(_id) {
     return this.httpClient.get(`${this.API_URL}/question/get_one/` + _id);
+  }
+  getresponses(id) {
+    return this.httpClient.get(`${this.API_URL}/survey/responses/` + id);
   }
   
   postAdmin(user){
