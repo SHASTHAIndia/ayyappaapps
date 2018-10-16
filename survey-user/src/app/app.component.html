@@ -1,192 +1,195 @@
-<form #frm="ngForm" (ngSubmit)="addUser(frm.Name,frm.Adhar)" >
-<section id="service">
-  <div class="container" >
-  
-    <div class="row">
-      <div class="col-md-10"  style="margin-left: 98px;">
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" >
-              <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingOne">
-                      <h4 class="panel-title">
-                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              Your Details
-                        </a>
-                          
-                      </h4>
-                  </div>
-                  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                       <div class="panel">
-                     
-                
-                        <div class="container" style="margin-left: 160px;" >
-                            <div class="col-md-6" style="margin-top: 30px;">
+<form #frm="ngForm" (ngSubmit)="addUser(frm.Name,frm.Adhar)">
+    <section id="service">
+        <div class="container">
 
-                                <div class="form-group">
-                                  
-                                    <input type="text"
-                                     name="Adhar" 
-                                     class="form-control" 
-                                     ngModel 
-                                     required 
-                                     pattern="[0-9]*" 
-                                     maxlength="12" 
-                                     minlength="12"
-                                     (focusout)="focusOutFunction(frm.Adhar)"
-                                     #adharUser="ngModel" placeholder="Enter your 12-digit Adharnumber">
-                                  </div>
-                                    <div *ngIf="adharUser.touched">
-                                        <div *ngIf="adharUser.errors?.required"  class="alert alert-danger">
-                                     Adhar Number is required!
-                                    </div>
-                                    <div *ngIf="adharUser.errors?.pattern || adharUser.errors?.minlength"  class="alert alert-danger">
-                                      Adhar number is invalid!
-                                    </div>
-                                  </div>
-                          
-                          
-                            
-                          
-                          
-                                   <div class="form-group">
-                                   
-                                        <input type="text"  
-                                        name="Name" 
-                                        class="form-control" 
-                                      
-                                        ngModel 
-                                        #nameUser="ngModel" placeholder="Enter your name"
-                                        required 
-                                        >
+            <div class="row">
+                <div class="col-md-10 accordion-align" >
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        Your Details
+                                    </a>
+
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel">
+
+
+                                    <div class="container accordion-align-textbox" >
+                                        <div class="col-md-6" style="margin-top: 30px;">
+
+                                            <div class="form-group">
+
+                                                <input type="text" name="Adhar" class="form-control" ngModel required
+                                                    pattern="[0-9]*" maxlength="12" minlength="12" (focusout)="focusOutFunction(frm.Adhar)"
+                                                    #adharUser="ngModel" placeholder="Enter your 12-digit Adharnumber">
+                                            </div>
+                                            <div *ngIf="adharUser.touched">
+                                                <div *ngIf="adharUser.errors?.required" class="alert alert-danger">
+                                                    Adhar Number is required!
+                                                </div>
+                                                <div *ngIf="adharUser.errors?.pattern || adharUser.errors?.minlength"
+                                                    class="alert alert-danger">
+                                                    Adhar number is invalid!
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="form-group">
+
+                                                <input type="text" name="Name" class="form-control" ngModel #nameUser="ngModel"
+                                                    placeholder="Enter your name" required>
+                                            </div>
+                                            <div *ngIf="nameUser.touched">
+                                                <div *ngIf="nameUser.errors?.required" class="alert alert-danger">
+                                                    Name is required!
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="form-group">
+
+
+
+
+                                                <span class="required">*</span> <label for="Gender"> Gender: </label>
+                                                <br><input type="radio" name="gender" value="male" (change)="handleChange($event)"
+                                                    ngModel> Male <input type="radio" name="gender" value="female"
+                                                    (change)="handleChange($event)" ngModel> Female
+
+                                                <input type="radio" name="gender" value="other" (change)="handleChange($event);"
+                                                    ngModel> Other
+                                            </div>
+
+
+
+
+
+
+
+
+
                                         </div>
-                                        <div *ngIf="nameUser.touched">    
-                                          <div *ngIf="nameUser.errors?.required" class="alert alert-danger">
-                                          Name is required!
-                                          </div>
-                                         
-                                          </div>
-                         
+                                    </div>
 
-                                <div class="form-group">
-                                 
-                                           
-                                        
-                                   
-                                    <span class="required">*</span> <label for="Gender"> Gender: </label> <br><input type="radio" name="gender" value="male"  (change)="handleChange($event)" ngModel> Male  <input type="radio" name="gender" value="female"  (change)="handleChange($event)" ngModel> Female
-                                        
-                                          <input type="radio" name="gender" value="other" (change)="handleChange($event);"  ngModel> Other
-                                          </div>
-                                    
-                          
-                          
 
-                                
-                          
-                          
-                          
-                                 
-                          </div>
-                          </div>
-                          
-                          
 
-                      </div>
-                  </div>
-              </div>
-                       <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingTwo">
-                      <h4 class="panel-title">
-                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                              Survey
-                          </a>
-                      </h4>
-                  </div>
-                  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                      <div class="panel-body">
-                            <div class="header">
-                                    <h1>Questions</h1>
                                 </div>
-                            <div class="container">
-                                    <div class="col-md-9">
-                                        <div class="jumbotron">
-                                                <div *ngFor="let survey of question">
-                                                      
-                                        
-                                              <p>{{survey.question}}</p>
-                                              <p></p>
-                                                     
-                                                    
-                                                        <div *ngIf="survey['questionType']=='TXT'"> 
-                                                     <input type="text" placeholder="type your answer">
-                                                        </div>
-                                                        <div *ngIf="survey['questionType']=='TXTA'"> 
-                                                            <textarea></textarea>
-                                                                   </div>
-                                                                   <div *ngIf="survey['questionType']=='CHK'"> 
-                                                                        <input type="checkbox" value="">{{survey.answerOptions}}
-                                                                               </div>   
-                                                                               <div *ngIf="survey['questionType']=='SLT'"> 
-                                                                                    <select>
-                                                                                            <option value="scroll">{{survey.answerOptions}}</option>    
-                                                                                    </select>
-                                                                                           </div>   
-                                                                                        </div>
-                                                        
-                                                
-                                                      
-                                                                
-                                                           
-                                                            
-                                             
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Survey
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <div class="header">
+                                        <h1>Questions</h1>
+                                    </div>
+                                    <div class="container">
+                                        <div class="col-md-9">
+                                            <div class="jumbotron">
+                                                <div *ngFor="let survey of question; let i = index">
 
-                                               
-                        <div class="next">
-                            <button class="btn btn-info btn-lg" (click)="onClick()">Next
-                                  <span class="glyphicon glyphicon-chevron-right"></span> 
-              
-                                </button>
-                            </div>
-                        </div>
-                        </div>
-                              </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingThree">
-                      <h4 class="panel-title">
-                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                              Declaration
-                          </a>
-                      </h4>
-                  </div>
-                  <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                      <div class="panel-body">
-                        <div class="container" >
-                            <div class="col-md-9" >
-                            <div class="jumbotron">
-                        
-                                  <div class="form-group" >
-                                     
-                                          <input type="checkbox" required>  here by i declared that the survey done by myself with my perception
-                                      <div class="next"><br><br>
-                                              <button type="submit" class="btn btn-primary" [disabled]="frm.invalid" >SUBMIT</button>
-                              
+
+                                                    <p>{{i+1}} : {{survey.question}}</p>
+
+
+
+                                                    <div *ngIf="survey['questionType']=='TXT'">
+                                                        <input type="text" placeholder="type your answer">
+                                                    </div>
+                                                    <div *ngIf="survey['questionType']=='TXTA'">
+                                                        <textarea></textarea>
+                                                    </div>
+                                                    <div *ngIf="survey['questionType']=='OPT'">
+                                                        <div *ngFor="let ans of survey.answerOptions">
+                                                            <input type="radio" value="{{ans}}">{{ans}}
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div *ngIf="survey['questionType']=='CHK'">
+                                                        <input type="checkbox" value="">{{survey.answerOptions}}
+                                                    </div>
+                                                    <div *ngIf="survey['questionType']=='SLT'">
+                                                        <select>
+                                                            <option value="scroll">{{survey.answerOptions}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+
+
+
+                                                <div class="next">
+                                                    <button class="btn btn-info btn-lg" (click)="onClick()">Next
+                                                        <span class="glyphicon glyphicon-chevron-right"></span>
+
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
-                                  </div>
-                                              
-                                
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Declaration
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <div class="container">
+                                        <div class="col-md-9">
+                                            <div class="jumbotron">
+
+                                                <div class="form-group">
+
+                                                    <input type="checkbox" required> here by i declared that the survey
+                                                    done by myself with my perception
+                                                    <div class="next"><br><br>
+                                                        <button type="submit" class="btn btn-primary" [disabled]="frm.invalid">SUBMIT</button>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
                         </div>
-                      
-                          
-                      </div>
-                  </div>
-              </div>
-             
+
+                    </div>
+                </div>
             </div>
-      </div>
-  </div>
-</div>
-</section>
+        </div>
+    </section>
 </form>
