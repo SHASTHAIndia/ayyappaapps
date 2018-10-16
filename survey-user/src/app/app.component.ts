@@ -13,7 +13,7 @@ export class AppComponent{
 
   private qns: Array<object> = [];
   private adhr: Array<object> = [];
- private question:Array<object>=[];
+  question:Array<object>=[];
   answerOptions:Array<object>=[];
 
   
@@ -30,19 +30,21 @@ export class AppComponent{
     this.surveyService.getQuestions().subscribe((data: Array<object>) => {
       
       this.qns = data['questions'];
-    
       for(var key in this.qns){
         this.question.push(this.qns[key]);
-        
+    
     
       }
-      for(var key in this.question){
-
-        this.answerOptions.push(this.question[key]);
-
+      
+    
+      for(var key in this.qns){
+        this.answerOptions.push(this.qns[key]);
+        console.log(this.answerOptions)
+    
       }
+      
      
-      console.log(this.qns)
+    
       
     
     });
@@ -54,7 +56,7 @@ export class AppComponent{
   this.surveyService.focusOutFunction().subscribe((data:Array<object>)=>
   {
     this.adhr = data;
-    console.log(data)
+    
   
   }
   );
