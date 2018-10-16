@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AppComponent{
   
   constructor(private surveyService : SurveyService, private route : Router) { }
-
+  public sid:any="5bbdda0d0648272d5c03a82c";
   private qns: Array<object> = [];
   private adhr: Array<object> = [];
   question:Array<object>=[];
@@ -22,12 +22,13 @@ export class AppComponent{
   
    
   ngOnInit() {
-    this.getQuestions();
+    
+    this.getQuestions(this.sid);
    
   }
   
- public getQuestions() {
-    this.surveyService.getQuestions().subscribe((data: Array<object>) => {
+ public getQuestions(sid) {
+    this.surveyService.getQuestions(sid).subscribe((data: Array<object>) => {
       
       this.qns = data['questions'];
       for(var key in this.qns){
@@ -50,12 +51,12 @@ export class AppComponent{
     });
   }
  
- public focusOutFunction(){
- 
-
-  this.surveyService.focusOutFunction().subscribe((data:Array<object>)=>
+ public focusOutFunction(adhaar){
+ // console.log(adhaar);
+  this.surveyService.focusOutFunction(adhaar,this.sid).subscribe((data:Array<object>)=>
   {
-    this.adhr = data;
+    console.log(data);
+ 
     
   
   }
