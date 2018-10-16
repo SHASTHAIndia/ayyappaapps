@@ -97,7 +97,7 @@
                             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                 <div class="panel-body">
                                     <div class="header">
-                                        <h1>Questions</h1>
+                                        <h3>Questions</h3>
                                     </div>
                                     <div class="container">
                                         <div class="col-md-9">
@@ -116,9 +116,9 @@
                                                         <textarea></textarea>
                                                     </div>
                                                     <div *ngIf="survey['questionType']=='OPT'">
-                                                        <div *ngFor="let ans of survey.answerOptions">
-                                                            <input type="radio" value="{{ans}}">{{ans}}
-                                                        </div>
+                                                        <span *ngFor="let ans of survey.answerOptions">
+                                                            <input type="radio" value="{{ans}}">&nbsp;&nbsp;{{ans}}
+                                                        </span>
 
 
                                                     </div>
