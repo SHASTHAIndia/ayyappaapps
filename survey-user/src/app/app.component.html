@@ -3,7 +3,7 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-10 accordion-align" >
+                <div class="col-md-10 accordion-align">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
@@ -19,7 +19,7 @@
                                 <div class="panel">
 
 
-                                    <div class="container accordion-align-textbox" >
+                                    <div class="container accordion-align-textbox">
                                         <div class="col-md-6" style="margin-top: 30px;">
 
                                             <div class="form-group">
@@ -110,10 +110,10 @@
 
 
                                                     <div *ngIf="survey['questionType']=='TXT'">
-                                                        <input type="text" placeholder="type your answer">
+                                                        <input type="text" class="form-control" placeholder="type your answer">
                                                     </div>
                                                     <div *ngIf="survey['questionType']=='TXTA'">
-                                                        <textarea></textarea>
+                                                        <textarea class="form-control"></textarea>
                                                     </div>
                                                     <div *ngIf="survey['questionType']=='OPT'">
                                                         <span *ngFor="let ans of survey.answerOptions">
@@ -123,13 +123,23 @@
 
                                                     </div>
                                                     <div *ngIf="survey['questionType']=='CHK'">
-                                                        <input type="checkbox" value="">{{survey.answerOptions}}
+                                                        <span *ngFor="let ans of survey.answerOptions">
+                                                            <input type="checkbox" value="{{ans}}">&nbsp;&nbsp;{{ans}}
+                                                        </span>
                                                     </div>
+
                                                     <div *ngIf="survey['questionType']=='SLT'">
                                                         <select>
-                                                            <option value="scroll">{{survey.answerOptions}}</option>
+
+
+                                                            <option value="{{ans}}" *ngFor="let ans of survey.answerOptions">{{ans}}</option>
+
                                                         </select>
+
+
+
                                                     </div>
+
                                                 </div>
 
 
