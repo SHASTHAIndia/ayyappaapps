@@ -24,8 +24,9 @@
     <td> {{ques.questionStatus}}</td>
     <td> {{ques.answerOptions}}</td>
     <td><button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" 
-      data-target="#myModal" style='float:right' (click)="editQuest(questions['_id'])">Edit </button>
+      data-target="#myModal" style='float:right' (click)="editQuest(ques['_id'])">Edit </button>
     <button class="btn btn-danger btn-sm question-edit" (click)="deleteQues(ques['_id'])">Delete</button>
+    
     </td>
   </tr>
 </tbody>
@@ -148,19 +149,12 @@
   
         </div>
         <div class="modal-body" >
-            <!-- <div *ngFor="let ques of questions">
-                <td> {{ques.question}}</td>
-                <td> {{ques.questionType}}</td>
-                <td> {{ques.questionMandatory}}</td>
-                <td> {{ques.questionStatus}}</td>
-                <td> {{ques.answerOptions}}</td>
-              </div> -->
+            
           <!-- <form class="form-group" #frm (ngSubmit)="editquestion(frm)"> -->
               <label for="question" #question ><strong> Question:</strong></label><br>
               <!-- <div *ngIf="questions"> -->
               <input type="text"  class="form-control" name="question" id="question" 
-                value={{select[i].question}}
-               required #question><br>
+                  required #question><br>
               <div *ngIf="question.touched">
                 <div  *ngIf="question.errors?.required" class="alert alert-danger">
                     Question is required
@@ -235,7 +229,7 @@
                     </div>
                   </div>
                   
-                      <button class="btn btn-success" type="button" >Update</button>
+                      <button class="btn btn-success" type="button" (click)="updateQues(frm)">Update</button>
                     <button class="btn btn-info" type="button" data-dismiss="modal">Cancel</button>
                   
           </form>

@@ -1,0 +1,117 @@
+<!--<nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+           <div class="navbar-header">
+            <a class="navbar-brand" href="#">Survey</a>
+          </div> 
+           <ul class="nav navbar-nav navbar-right">
+            <li><a class="active" routerLink="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          </ul> 
+        </div>
+      </nav>-->
+
+<!------ Include the above in your HEAD tag ---------->
+
+<html>
+  <head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  </head>
+<body id="LoginForm">
+<div class="container">
+
+<div class="login-form">
+<div class="main-div">
+    <div class="panel">
+   <h2>Signup</h2>
+    </div>
+    <form id="signup" #frm="ngForm">
+        <div class="form-group">
+            <label for="name">
+                
+               </label>
+               <input type="text" 
+               name="name" 
+               class="form-control" 
+               ngModel 
+               #nameUser="ngModel" placeholder="First name*"
+               required >           
+               <div *ngIf="nameUser.touched">    
+                 <div *ngIf="nameUser.errors?.required" class="alert alert-danger">
+                     First Name is required!
+                 </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                  <label for="name">
+                      
+                     </label>
+                     <input type="text" 
+                     name="name" 
+                     class="form-control" 
+                     placeholder="Last name"
+                     required >           
+                    </div>
+
+                    <div class="form-group">
+                    <label for="email">
+                    </label>
+                    <input type="text"
+                     name="email" 
+                     class="form-control" 
+                     ngModel 
+                     required 
+                     pattern="[\w-]+@([\w-]+\.)+[\w-]+" 
+                     #mail="ngModel" placeholder="Mail ID*  ">
+                  
+                    <div *ngIf="mail.touched">
+                        <div *ngIf="mail.errors?.required"  class="alert alert-danger">
+                            Mail ID is required!
+                    </div>
+                    <div *ngIf="mail.errors?.pattern" class="alert alert-danger">
+                        Mail ID is invalid!
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                  <label for="num">
+                      
+                    </label>
+                    <input type="text"
+                     name="num" 
+                     class="form-control" 
+                     ngModel 
+                     required 
+                     pattern="[0-9]*" 
+                     maxlength="10" 
+                     minlength="10"
+                     #num="ngModel" placeholder="10-digit Mobile number">
+                    </div>
+                  
+                    <div class="form-group">
+                    <label for="password">
+                  </label>
+                  <input type="password" 
+                  name="password" 
+                  class="form-control" 
+                  ngModel 
+                  #password="ngModel" 
+                  required 
+                  placeholder="Password*">
+                  
+                  <div *ngIf="password.touched">    
+                    <div *ngIf="password.errors?.required" class="alert alert-danger">
+                        Password is required!
+                    </div>
+                    </div>
+                  </div>
+                  <a routerLink="/login" ><button type="submit" name="button" class="btn btn-success" [disabled]="frm.invalid">Signup</button></a>
+    </form>
+    </div>
+</div></div>
+</body>
+</html>
