@@ -3,7 +3,7 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-10 accordion-align" >
+                <div class="col-md-10 accordion-align">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
@@ -19,14 +19,14 @@
                                 <div class="panel">
 
 
-                                    <div class="container accordion-align-textbox" >
+                                    <div class="container accordion-align-textbox">
                                         <div class="col-md-6" style="margin-top: 30px;">
 
                                             <div class="form-group">
 
                                                 <input type="text" name="Adhar" class="form-control" ngModel required
                                                     pattern="[0-9]*" maxlength="12" minlength="12" (focusout)="focusOutFunction(frm.Adhar)"
-                                                    #adharUser="ngModel" placeholder="Enter your 12-digit Adharnumber">
+                                                    #adharUser="ngModel" placeholder="Enter your 12-digit Adhar number">
                                             </div>
                                             <div *ngIf="adharUser.touched">
                                                 <div *ngIf="adharUser.errors?.required" class="alert alert-danger">
@@ -96,40 +96,45 @@
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                 <div class="panel-body">
-                                    <div class="header">
+                                   <!--  <div class="header" align="center">
                                         <h3>Questions</h3>
-                                    </div>
+                                    </div> -->
                                     <div class="container">
                                         <div class="col-md-9">
-                                            <div class="jumbotron">
+                                            <div class="">
                                                 <div *ngFor="let survey of question; let i = index ">
+                                                    <section class="row">
+
+                                                        <legend>{{i+1}} : {{survey.question}}</legend>
 
 
-                                                    <p>{{i+1}} : {{survey.question}}</p>
+
+                                                        <div *ngIf="survey['questionType']=='TXT'" class="form-group">
+                                                            <input type="text" class="form-control" placeholder=" Type your answer">
+                                                        </div>
+                                                        <div *ngIf="survey['questionType']=='TXTA'" class="form-group">
+                                                            <textarea class="form-control" rows="5"></textarea>
+                                                        </div>
+                                                        <div *ngIf="survey['questionType']=='OPT'">
+                                                            <label class="radio-inline" *ngFor="let ans of survey.answerOptions">
+                                                                <input type="radio" name="answer_radio{{i+1}}" value="{{ans}}">&nbsp;&nbsp;{{ans}}
+                                                            </label>
 
 
-
-                                                    <div *ngIf="survey['questionType']=='TXT'">
-                                                        <input type="text" placeholder="type your answer">
-                                                    </div>
-                                                    <div *ngIf="survey['questionType']=='TXTA'">
-                                                        <textarea></textarea>
-                                                    </div>
-                                                    <div *ngIf="survey['questionType']=='OPT'">
-                                                        <span *ngFor="let ans of survey.answerOptions">
-                                                            <input type="radio" value="{{ans}}">&nbsp;&nbsp;{{ans}}
-                                                        </span>
-
-
-                                                    </div>
-                                                    <div *ngIf="survey['questionType']=='CHK'">
-                                                        <input type="checkbox" value="">{{survey.answerOptions}}
-                                                    </div>
-                                                    <div *ngIf="survey['questionType']=='SLT'">
-                                                        <select>
-                                                            <option value="scroll">{{survey.answerOptions}}</option>
-                                                        </select>
-                                                    </div>
+                                                        </div>
+                                                        <div *ngIf="survey['questionType']=='CHK'">
+                                                            <label class="checkbox-inline" *ngFor="let ans of survey.answerOptions">
+                                                                <input type="checkbox" name="answer_check{{i+1}}" value="{{ans}}">&nbsp;&nbsp;{{ans}}
+                                                            </label>
+                                                            
+                                                        </div>
+                                                        <div *ngIf="survey['questionType']=='SLT'">
+                                                            <select>
+                                                                <option value="scroll">{{survey.answerOptions}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <hr>
+                                                    </section>
                                                 </div>
 
 
