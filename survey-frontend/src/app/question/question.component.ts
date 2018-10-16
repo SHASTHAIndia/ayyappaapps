@@ -67,11 +67,11 @@ export class QuestionComponent implements OnInit {
     //  console.log(frm);
     //  console.log(this.assignedquestions);
     //  console.log(this.activequestions);
-     this.assignquestionrequestobject = {'questions': this.questionarray};
-     this.questionarray = [];
-     console.log(this.assignquestionrequestobject);
+    //  this.assignquestionrequestobject = {'questions': this.questionarray};
+    //  this.questionarray = [];
+     console.log(this.questionarray);
      const id = this.srv['_id'];
-     this.http.put(this.readUrl + '/survey/question_map/' + id, this.assignquestionrequestobject).subscribe(res => {
+     this.http.put(this.readUrl + '/survey/question_map/' + id, this.questionarray).subscribe(res => {
 
         console.log(res);
        });
@@ -80,22 +80,29 @@ export class QuestionComponent implements OnInit {
        this.getAvailableQuestions();
       return;
    }
-   addquestion(value) {
+   addquestion(value): Observable<Response> {
 
-    for (let i = 0 ; i < this.questionarray.length; i++) {
-       if (this.questionarray[i] === value) {
-         this.questionarray.splice(i, 1);
-        console.log(this.questionarray);
-         return;
-      }
+    // for (let i = 0 ; i < this.questionarray.length; i++) {
+    //    if (this.questionarray[i] === value) {
+    //      this.questionarray.splice(i, 1);
+    //     console.log(this.questionarray);
+    //      return;
+    //   }
  // this.questionarray.push(value);
-   }
+  //  }
 
 // console.log(this.selected);
 // if (this.selected === true) {
     this.questionarray.push(value);
     console.log(this.questionarray);
-    this.assignquestions();
+    const id = this.srv['_id'];
+    this.http.put(this.readUrl + '/survey/question_map/' + id, this.questionarray).subscribe(res => {
+
+       console.log(res);
+      });
+      this.getAvailableQuestions();
+      return;
+   // this.assignquestions();
 }
 getAvailableQuestions() {
  // this.availablequestions = this.getActiveQuestions();
@@ -116,12 +123,16 @@ getAvailableQuestions() {
       //  this.assignedquestions.push(acqs['questions'][i]);
       // }
       this.assignedquestions = acqs['questions'];
+      console.log(this.assignedquestions);
+      if (this.assignedquestions != null) {
       for ( let i = 0; i < this.activequestions.length; i++) {
+
         for (let j = 0; j < this.assignedquestions.length; j++) {
           if (this.activequestions[i]['_id'] === this.assignedquestions[j]['_id'] ) {
             this.activequestions.splice(i, 1);
           }
         }
+      }
       }
       console.log(this.assignedquestions);
       console.log(this.activequestions);
@@ -129,7 +140,7 @@ getAvailableQuestions() {
    // console.log(this.activequestions);
   });
   // console.log(this.activequestions);
-  console.log(this.assignedquestions);
+ // console.log(this.assignedquestions);
  /* for ( let i = 0; i < this.activequestions.length; i++) {
     for (let j = 0; j < this.assignedquestions.length; j++) {
       if (this.activequestions[i]['_id'] === this.assignedquestions[j]['_id'] ) {
