@@ -1,3 +1,12 @@
+<html>
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+
+    
 <form #frm="ngForm" (ngSubmit)="addUser(frm.Name,frm.Adhar)" >
 <section id="service">
   <div class="container" >
@@ -129,6 +138,12 @@
                                                                                             <option value="scroll">{{survey.answerOptions}}</option>    
                                                                                     </select>
                                                                                            </div>   
+                                                                                          
+                                                                               <div *ngIf="survey['questionType']=='OPT'"> 
+                                                                                    <input type="radio" name="gender" value="">{{survey.answerOptions}}
+                                                                                           </div>   
+
+
                                                                                         </div>
                                                         
                                                 
@@ -190,3 +205,5 @@
 </div>
 </section>
 </form>
+</body>
+</html>
