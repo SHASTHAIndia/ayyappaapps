@@ -8,12 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
+  
   constructor(private surveyService : SurveyService, private route : Router) { }
 
   private qns: Array<object> = [];
   private adhr: Array<object> = [];
-  question:Array<object>=[];
-  Option:Array<object>=[];
+ private question:Array<object>=[];
+  answerOptions:Array<object>=[];
+
+  
 
 
   
@@ -25,13 +28,22 @@ export class AppComponent{
   
  public getQuestions() {
     this.surveyService.getQuestions().subscribe((data: Array<object>) => {
-      console.log(data)
+      
       this.qns = data['questions'];
     
       for(var key in this.qns){
         this.question.push(this.qns[key]);
-        }
-      console.log(this.question)
+        
+    
+      }
+      for(var key in this.question){
+
+        this.answerOptions.push(this.question[key]);
+
+      }
+     
+      console.log(this.qns)
+      
     
     });
   }
