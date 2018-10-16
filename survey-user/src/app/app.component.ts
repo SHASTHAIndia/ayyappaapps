@@ -8,41 +8,56 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
+  
   constructor(private surveyService : SurveyService, private route : Router) { }
-
+  public sid:any="5bbdda0d0648272d5c03a82c";
   private qns: Array<object> = [];
   private adhr: Array<object> = [];
   question:Array<object>=[];
-  Option:Array<object>=[];
+  answerOptions:Array<object>=[];
+
+  
 
 
   
    
   ngOnInit() {
-    this.getQuestions();
+    
+    this.getQuestions(this.sid);
    
   }
   
- public getQuestions() {
-    this.surveyService.getQuestions().subscribe((data: Array<object>) => {
-      console.log(data)
+ public getQuestions(sid) {
+    this.surveyService.getQuestions(sid).subscribe((data: Array<object>) => {
+      
       this.qns = data['questions'];
-    
       for(var key in this.qns){
         this.question.push(this.qns[key]);
-        }
-      console.log(this.question)
+    
+    
+      }
+      
+    
+      for(var key in this.qns){
+        this.answerOptions.push(this.qns[key]);
+        console.log(this.answerOptions)
+    
+      }
+      
+     
+    
+      
     
     });
   }
  
- public focusOutFunction(){
- 
-
-  this.surveyService.focusOutFunction().subscribe((data:Array<object>)=>
+ public focusOutFunction(adhaar){
+ // console.log(adhaar);
+  this.surveyService.focusOutFunction(adhaar,this.sid).subscribe((data:Array<object>)=>
   {
-    this.adhr = data;
-    console.log(data)
+    console.log(data);
+ 
+    
   
   }
   );

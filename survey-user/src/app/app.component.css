@@ -95,3 +95,16 @@ label span,.required{
     padding-left: 100px;
     font-size: 10px;
 }
+
+@media (min-width:900px){
+	.accordion-align{
+        margin-left: 98px;
+    }
+
+    .accordion-align-textbox{
+        margin-left: 160px;
+    }
+
+
+	
+}
