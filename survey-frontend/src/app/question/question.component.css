@@ -1,0 +1,80 @@
+input[type=checkbox] ,label {
+  display:block;
+  margin:0.2em
+}
+ /* input[type=checkbox] {
+   display:none;
+} */
+.forchecked{
+border:1pxsolid black;
+background:white;
+width:50%;
+border-radius:3px;
+color:blue;
+transition:background 0.5s ease;
+}
+.forchecked:hover{
+  content:'Add';
+  background-color: blue;
+  color:white;
+  font-weight:normal;
+}
+.forchecked:hover i::before{
+  content:'Add';
+  margin-right:35px;
+}
+.forchecked:hover i{
+  color:white;
+}
+/* i{
+  color:blue;
+  margin-left: 10px
+} */
+.arrow1{
+  margin-right: 25px;
+  color:blue;
+  animation:slide 1s ease-in-out infinite;
+  margin-left:9px
+}
+.fordelet{
+  width:1.5em;
+  height:1em;
+  padding-left: 0.1em;
+  padding-right: 0.1em;
+  padding-bottom: .3em;
+  margin-bottom:.2em;
+  text-align: center;
+
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+input[type=checkbox]::before{
+ content:">>";
+  border:0.07em solid #000;
+  border-radius:50%;
+  display: inline-block;
+  width:2em;
+  height:1.3em;
+  padding-right:0.2em;
+  padding-bottom:1.5em;
+ margin-right:0.4em;
+ padding-left:0.3em;
+ vertical-align: bottom;
+ color:transparent;
+}
+ label::before{
+  background-color: #262639;
+  color:#fff;
+}
+@keyframes slide1{
+  0%,
+  100%{
+    transform:translate(0,0);
+  }
+  50%{
+    transform:translate(5px,0);
+  }
+}

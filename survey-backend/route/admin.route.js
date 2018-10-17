@@ -25,6 +25,11 @@ router.post("/admin", (req, res, next) => {
 
 //method for changing password
 router.put("/password", (req, res, next) => {
+
+    var result ={
+        "status":false,
+        "msg":"No operation"
+    };
     Admin.findOneAndUpdate({ }, {
         $set: {
             password: req.body.password,
@@ -33,9 +38,17 @@ router.put("/password", (req, res, next) => {
     },
         function (err, result) {
             if (err) {
-                res.json(err);
+                var result ={
+                    "status":false,
+                    "msg":err.message
+                };
+                res.json(result);
             }
             else {
+                var result ={
+                    "status":true,
+                    "msg":"Password Changed Successfully"
+                };
                 res.json(result);
             }
         }

@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {NewquestionService} from '../newquestion.service';
+import { HttpModule, Http, Response } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { Observable } from '../../../node_modules/rxjs';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-newquestion',
   templateUrl: './newquestion.component.html',
   styleUrls: ['./newquestion.component.css'],
-  providers:[NewquestionService]
+  
 })
 export class NewquestionComponent implements OnInit {
   editQuestion:boolean=false;
@@ -50,7 +53,7 @@ chooses: [{
 
 }];
 
-  constructor(private _questionService : NewquestionService) { }
+  constructor(private apiService : ApiService) { }
   ngOnInit() {
   }
 
@@ -130,7 +133,7 @@ removeChoices = function(form, index) {
       
     }
     console.log(questions);
-    this._questionService.addQuestion( questions ).subscribe(
+    this.apiService.postQuestion( questions ).subscribe(
       response => {
         alert( 'added.' );
       },

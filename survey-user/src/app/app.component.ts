@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import{FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { SurveyService } from './survey.service';
 import { Router } from '@angular/router';
 @Component({
@@ -7,48 +7,72 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
-  
-  constructor(private surveyService : SurveyService, private route : Router) { }
-  public sid:any="5bbdda0d0648272d5c03a82c";
+export class AppComponent {
+
+  constructor(private surveyService: SurveyService, private route: Router) { }
+  public sid: any = "5bbdda0d0648272d5c03a82c";
   private qns: Array<object> = [];
+
   adhr: Array<object> = [];
   question:Array<object>=[];
   answerOptions:Array<object>=[];
+
   adh:Array<object>=[];
 
-  
 
 
-  
-   
+
+
+
   ngOnInit() {
-    
+
     this.getQuestions(this.sid);
-   
+
   }
-  
- public getQuestions(sid) {
+
+  addResult=function(frm){
+    console.log(frm.value)
+
+
+
+    var rslt={
+
+      "adhar":frm.value.Adhar,
+      "name":frm.value.Name,
+      "gender":frm.value.gender
+
+    
+
+
+    }
+   // console.log(rslt)
+
+  }
+
+
+  public getQuestions(sid) {
     this.surveyService.getQuestions(sid).subscribe((data: Array<object>) => {
-      
+
       this.qns = data['questions'];
-      for(var key in this.qns){
+      for (var key in this.qns) {
         this.question.push(this.qns[key]);
-    
-    
+
+
       }
-      
-    
-      for(var key in this.qns){
+
+
+      for (var key in this.qns) {
         this.answerOptions.push(this.qns[key]);
+
         //console.log(this.answerOptions)
     
+
       }
-      
-     
-    
-      
-    
+
+
+
+
+
     });
   }
  
@@ -58,39 +82,32 @@ export class AppComponent{
   {
   
     this.adhr=data;
-    if(this.adhr['survey_attended']!=true){
-      alert('already exist');
+    
+    if(this.adhr['survey_attended']==true){
+      alert('User already attended the survey');
     }
    
       console.log(this.adhr)
-  
-    
- 
- 
-    
-    
-  
-  
-}
-  );
 
+  });
+
+ 
   }
 
 
-  
- private_prevSelected: any;
+  private_prevSelected: any;
 
-    handleChange(evt) {
-      var target = evt.target;
-      if (target.checked) {
-        this.route.navigate(['/question'])
-        
-      } 
-    } 
+  handleChange(evt) {
+    var target = evt.target;
+    if (target.checked) {
+      this.route.navigate(['/question'])
 
-  
+    }
+  }
+
+
   title = 'sur';
 
-    
-  }
+
+}
 

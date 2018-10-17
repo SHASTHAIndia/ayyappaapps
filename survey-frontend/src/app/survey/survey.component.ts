@@ -14,6 +14,7 @@ import {DataService} from '../data.service';
   styleUrls: ['./survey.component.css']
 })
 export class SurveyComponent implements OnInit {
+
   readonly readUrl = 'http://localhost:3000';
   message: string;
   srname: String;
@@ -175,5 +176,20 @@ export class SurveyComponent implements OnInit {
          };
     return this._surveyser.save(this.surveys);
   }*/
+deletesurvey(id): Observable<Response> {
+  console.log(id);
 
+  this.http.delete(this.readUrl + '/survey/survey/' + id).subscribe(res => {
+    console.log(res);
+    this.apiService.getSurveys().subscribe((data: Array<object>) => {
+      this.surveys = data;
+       console.log(this.surveys);
+    });
+  });
+  return ;
+}
+upsur(survey) {
+  this.surv = survey;
+  console.log(this.surv);
+}
 }

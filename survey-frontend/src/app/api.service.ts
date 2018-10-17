@@ -19,9 +19,14 @@ export class ApiService {
   }
 
 getAssignedQuestions(id) {
-  return this.httpClient.get(`${this.API_URL}/survey//get_one/` + id);
+  return this.httpClient.get(`${this.API_URL}/survey/get_one/` + id);
 }
-
+postQuestion( questions ){
+  return this.httpClient.post(`${this.API_URL}/question/question`,questions);
+}
+updateQuestion( updates ){
+  return this.httpClient.put(`${this.API_URL}/question/question`,updates);
+}
   // SREERAG
 
   getUsers() {
@@ -32,6 +37,13 @@ getAssignedQuestions(id) {
   }
   editQuestion(_id) {
     return this.httpClient.get(`${this.API_URL}/question/get_one/` + _id);
+  }
+  getresponses(id) {
+    return this.httpClient.get(`${this.API_URL}/survey/responses/` + id);
+  }
+  
+  postAdmin(user){
+    return this.httpClient.post(`${this.API_URL}/admin/admin`,user);
   }
 }
 
