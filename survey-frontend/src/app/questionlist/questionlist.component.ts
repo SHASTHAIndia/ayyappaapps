@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { ApiService } from '../api.service';
 import {FormsModule} from '@angular/forms';
+//import{ questionpopup} from '../questionpopup'
 @Component({
   selector: 'app-questionlist',
   templateUrl: './questionlist.component.html',
@@ -112,16 +113,22 @@ removeChoices = function(form, index) {
       form.options.splice(index, 1);
 
   };
-  public editQuest(_id){
+   ed=function(ques){
+     
+    //console.log('_id');
+    console.log(ques);
+   document.getElementById('quest').style.display='none';
+     document.getElementById('edit').style.display='block';
+    
    
-    this.apiService.editQuestion(_id).subscribe((data: Array<object>) => {
-      this.questions=data;
-      console.log(this.questions);
+    //  this.apiService.editQuestion(ques['_id']).subscribe((data: Array<object>) => {
+    //   this.questions=data;
+    //   console.log(this.questions);
       // let arr=this.questions.toString();
       // console.log(arr);
       
       
-  });
+  //});
   }
 
   updateQues=function(form)

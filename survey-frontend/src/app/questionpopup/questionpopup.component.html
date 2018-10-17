@@ -1,4 +1,4 @@
-<div class="modal-dialog">
+<!-- <div class="modal-dialog">
 	<div class="modal-content">
 		<div class="modal-header">
         <h3 class="modal-title" id="lineModalLabel">Edit your question!</h3>
@@ -8,7 +8,7 @@
     <button class="btn btn-info btn-sm" (click)="editQuest(_id)">Display </button>
     
     
-            <!-- content goes here -->
+            <!-- content goes here --
             <form  name="frm" class="form-horizontal" #frm="ngForm" style="margin-top:35px">
                 <div class="options-form" *ngFor="let Form of FormSet let i=index">
               <div class="form-group">
@@ -102,6 +102,136 @@
         <button type="button" id="updatequestion" class="btn btn-success" data-action="save" role="button">Update</button>
 			<button type="button" class="btn btn-primary" data-dismiss="modal"  role="button">Cancel</button>
 	  </div>
-	</div>
-   
+  </div>-->
   
+  <div class="container">
+      <div class="jumbotron">
+       <div class="row" style="padding:24px">    
+         <h1>ADD A QUESTION</h1>  
+          <div class="col-md-12">
+           <form  name="OptionForm" class="form-horizontal" #OptionForm="ngForm" style="margin-top:35px">
+             <div class="options-form" *ngFor="let Form of FormSet let i = index " >
+               <div class="form-group row">
+                 <div class="col-sm-4">
+                  <span class="require">*</span>
+                   <label>Enter your question</label>                        
+                     <input class="form-control" type="text" name="question" [(ngModel)]="Form.Question" #ques=ngModel placeholder="Enter your question" required>
+                       <div *ngIf="ques.touched">  
+                         <div *ngIf="ques.errors?.required" class="alert alert-danger">                        
+                                 Enter the Question!                     
+                         </div>
+                       </div>
+                 </div>                        
+               <div class="col-md-12">
+                 <span class="require">*</span>
+                   <label class="control" for="mandatory">Is it mandatory to answer this?</label>
+                    <div class="radio">
+                      <label class="mr12">
+                        <input icheck="" type="radio" name="questionMandatory" value="yes" [(ngModel)]="Form.isMandatory" id="mandatory" required> YES
+                          </label>
+                           <label style="margin-left:10px">
+                             <input icheck="" type="radio" name="questionMandatory" value="no" [(ngModel)]="Form.isMandatory" id="mandatory" required> NO
+                           </label>
+                     </div>
+                 </div>
+                 <div class="col-sm-12">
+                  <span class="require">*</span>
+                   <label>Status</label>
+                     <div class="radio" for="qesStatus">
+                       <label class="mr12" >
+                        <input type="radio" checked name="questionStatus" value="A" [(ngModel)]="Form.active" id="qesStatus" required> Active
+                         </label>
+                          <label style="margin-left:10px">
+                           <input type="radio" name="questionStatus" value="I" [(ngModel)]="Form.active" id="qesStatus" required> Inactive
+                         </label>
+                     </div>
+                 </div>
+                 </div>
+                 <div class="form-group row" >
+                  <div class="col-sm-4" for="quesType">
+                    <span class="require">*</span>
+                     <label>Questipon Type</label>
+                       <select name = "questionType" class="form-control" [(ngModel)]="Form.type" id="quesType" required >
+                        <option *ngFor="let type of questions_type" [ngValue]="type" >
+                             {{type}}
+                         </option>
+                      </select>
+                   </div>
+                 </div>                  
+                   <div class="form-group row" *ngIf="Form.type ==='SLT'" for="select">
+                     <div class="col-sm-3 form-block" *ngFor="let option of Form.options;let i = index">
+                       <div class="input-group">
+                         <input class="form-control option"  type="text" [(ngModel)]="option.name" name="select{{i}}" placeholder="Enter Options" id="select" required>
+                           <span class="input-group-btn">
+                            <button class="btn-md btn btn-danger" type="submit" (click)="removeOption(Form,i)"><i>-</i></button>
+                             </span>
+                       </div>
+                     </div>
+                     <div class="col-sm-3 form-block">
+                      <button class="btn-success btn btn-md" (click)="addNewOptionForSelect(Form)"><i>+</i></button>
+                     </div>
+                     </div>
+                       <div class="form-group row" *ngIf="Form.type ==='OPT'" for="sel_Opt">
+                         <div class="col-sm-3 form-block" *ngFor="let choose of Form.chooses; let i = index">
+                           <div class="input-group">
+                            <input class="form-control option" type="text" [(ngModel)]="choose.name"  name="radio{{i}}" placeholder="Enter Options" id="sel_Opt" required>
+                              <span class="input-group-btn">
+                               <button class="btn-md btn btn-danger" type="submit" (click)="removeChoose(Form, i)"><i>-</i></button>
+                               </span>
+                             </div>
+                             
+                         </div>
+                         <div class="col-sm-3 form-block">
+                          <button class="btn-success btn btn-md" (click)="addNewOptionForOption(Form,choose)"><i>+</i></button>
+                         </div>
+                       </div>
+                       <div class="form-group row" *ngIf="Form.type ==='CHK'" for="click">
+                         <div class="col-sm-3 form-block" *ngFor="let choice of Form.choices;let i = index">
+                           <div class="input-group">
+                            <input class="form-control option" type="text" [(ngModel)]="choice.name" name="answerOptions{{i}}" placeholder="Enter Options" id="click" required>
+                              <span class="input-group-btn">
+                               <button class="btn-md btn btn-danger" type="submit" (click)="removeChoices(Form, i)"><i>-</i></button>
+                              </span>
+                           </div>
+                           </div>
+                           <div class="col-sm-3 form-block">
+                             <button class="btn-success btn btn-md" (click)="addNewOptionForCheckbox(Form,choice)"><i>+</i></button>
+                           </div>
+                       </div>
+                     </div>
+                 <!-- <div class="form-group row" *ngIf="Form.type ==='Boolean'">
+                       <input icheck="" type="radio" name="status1" value="true" [(ngModel)]="Form.true">True
+                         <input icheck="" type="radio" name="status2" value="false" [(ngModel)]="Form.false">False
+                      </div> -->
+                     
+                      <!-- <button type="button" class="btn-danger btn btn-md" (click)="removeForm($index)">
+                           <i>-</i> Remove Form
+                       </button>
+     
+     
+                   <div style="margin-top:10px;margin-right:600px">
+                     <button type="button" class="btn-success btn btn-md" (click)="addForm()">
+                         <i>+</i> Add Form
+                    </button>
+                 </div><br> -->
+             <div>
+              <input type="submit" value="Submit" class="btn btn-primary" (click)="submitForm(OptionForm)" [disabled]="OptionForm.invalid">
+             </div>
+             </form>
+     
+         <!-- <div class="form-group row text-right" style="margin: 0;">
+                   <div class="col-sm-12 add-form">
+                       <p (click)='addForm()'><i>+</i> Add More</p>
+                   </div>
+               </div> -->
+     
+             </div>
+     
+       </div>
+       </div>
+       </div>
+  
+   
+   
+   
+   

@@ -46,7 +46,7 @@ updateQuestion( updates ){
     return this.httpClient.post(`${this.API_URL}/admin/admin`,user);
   }
   changePassword(password){
-    return this.httpClient.post(`${this.API_URL}/admin/password`,password);
+    return this.httpClient.put(`${this.API_URL}/admin/password`,password);
   }
 }
 
