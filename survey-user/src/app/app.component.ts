@@ -12,9 +12,11 @@ export class AppComponent {
   constructor(private surveyService: SurveyService, private route: Router) { }
   public sid: any = "5bbdda0d0648272d5c03a82c";
   private qns: Array<object> = [];
-   adhr: Array<object> = [];
-  question: Array<object> = [];
-  answerOptions: Array<object> = [];
+
+  adhr: Array<object> = [];
+  question:Array<object>=[];
+  answerOptions:Array<object>=[];
+
   adh:Array<object>=[];
 
 
@@ -27,6 +29,26 @@ export class AppComponent {
     this.getQuestions(this.sid);
 
   }
+
+  addResult=function(frm){
+    console.log(frm.value)
+
+
+
+    var rslt={
+
+      "adhar":frm.value.Adhar,
+      "name":frm.value.Name,
+      "gender":frm.value.gender
+
+    
+
+
+    }
+   // console.log(rslt)
+
+  }
+
 
   public getQuestions(sid) {
     this.surveyService.getQuestions(sid).subscribe((data: Array<object>) => {
@@ -41,7 +63,9 @@ export class AppComponent {
 
       for (var key in this.qns) {
         this.answerOptions.push(this.qns[key]);
-        console.log(this.answerOptions)
+
+        //console.log(this.answerOptions)
+    
 
       }
 
@@ -58,17 +82,16 @@ export class AppComponent {
   {
   
     this.adhr=data;
- 
- 
-    console.log(this.adhr);
     
-  
-  
-}
+    if(this.adhr['survey_attended']==true){
+      alert('User already attended the survey');
+    }
+   
+      console.log(this.adhr)
 
-  public addUser(frm)
-  {
-    console.log(frm);
+  });
+
+ 
   }
 
 
