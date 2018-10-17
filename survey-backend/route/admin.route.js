@@ -11,7 +11,7 @@ router.post("/admin", (req, res, next) => {
     let newEntry = new Admin({
         userName: req.body.userName,
         password: req.body.password,
-       
+
     });
     newEntry.save((err, user) => {
         if (err) {
@@ -26,33 +26,62 @@ router.post("/admin", (req, res, next) => {
 //method for changing password
 router.put("/password", (req, res, next) => {
 
-    var result ={
-        "status":false,
-        "msg":"No operation"
+    var result = {
+        "status": false,
+        "msg": "No operation"
     };
-    Admin.findOneAndUpdate({ }, {
-        $set: {
-            password: req.body.password,
-           
+    Admin.find({ password: req.body.oldPassword }, function (err, query_data) {
+        if (err) {
+            result = {
+                "status": false,
+                "msg": err.message
+            };
+            res.json(result);
         }
-    },
-        function (err, result) {
-            if (err) {
-                var result ={
-                    "status":false,
-                    "msg":err.message
+        else {
+            //res.json(query_data);
+            //if (!query_data) {
+            if (query_data === undefined || query_data.length == 0) {
+                result = {
+                    "status": false,
+                    "msg": "Invalid current password"
                 };
                 res.json(result);
+
+
+
             }
             else {
-                var result ={
-                    "status":true,
-                    "msg":"Password Changed Successfully"
-                };
-                res.json(result);
+               
+                Admin.findOneAndUpdate({}, {
+                    $set: {
+                        password: req.body.newPassword,
+
+                    }
+                },
+                    function (err, result) {
+                        if (err) {
+                            result = {
+                                "status": false,
+                                "msg": err.message
+                            };
+                            res.json(result);
+                        }
+                        else {
+                            result = {
+                                "status": true,
+                                "msg": "Password Changed Successfully"
+                            };
+                            res.json(result);
+                        }
+                    }
+                );
             }
+
         }
-    );
+    });
+
+
 });
 
 
@@ -71,7 +100,7 @@ router.get("/admin", (req, res, next) => {
 
 //for listing all countries
 router.get("/countries", (req, res, next) => {
-    Question.find({ }, function (err, query_data) {
+    Question.find({}, function (err, query_data) {
         if (err) {
             res.send(err.message);
         }
@@ -83,7 +112,7 @@ router.get("/countries", (req, res, next) => {
 });
 // for listing all states under a country
 router.get("/get_states", (req, res, next) => {
-    Question.find({ countryId: req.body.country_id}, function (err, query_data) {
+    Question.find({ countryId: req.body.country_id }, function (err, query_data) {
         if (err) {
             res.send(err.message);
         }
@@ -96,7 +125,7 @@ router.get("/get_states", (req, res, next) => {
 
 // for listing all cities under a state
 router.get("/get_cities", (req, res, next) => {
-    Question.find({ stateId: req.body.state_id}, function (err, query_data) {
+    Question.find({ stateId: req.body.state_id }, function (err, query_data) {
         if (err) {
             res.send(err.message);
         }
