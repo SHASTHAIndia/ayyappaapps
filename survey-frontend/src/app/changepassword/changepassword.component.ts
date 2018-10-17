@@ -22,12 +22,13 @@ export class ChangepasswordComponent implements OnInit {
     console.log("hello")
     var password=
     {
-      "userName":form.value.userName,
-      "password":form.value.password
+      "oldPassword":form.value.oldPassword,
+      "newPassword":form.value.newPassword
     }
     console.log(password);
     this.apiService.changePassword( password ).subscribe(
-      response => {        
+      response => {   
+        alert("Password changed successfully!")     
       },
       err => console.log( err )
     );
