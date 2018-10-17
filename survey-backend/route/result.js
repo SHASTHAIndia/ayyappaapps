@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 const Result = require("../model/result");
+const Person = require("../model/person");
+var request = require('request');
 
 router.get("/test_route", (req, res) => {
     res.send("router tested.");
@@ -25,6 +27,160 @@ router.post("/result", (req, res, next) => {
             res.json({ msg: "Survey saved success fullly!!" });
         }
     })
+});
+
+
+//api for saaving survey result
+//pass newUser = "YES", if this is a new user. Unless pass "NO"
+router.post("/save/:surveyId/:adhaarNo", (req, res, next) => {
+
+    var baseUrl = req.protocol + '://' + req.get('host');
+
+    var dateToday = new Date().toLocaleDateString();
+
+    var rsltarr = {
+        "status": false,
+        "msg": ""
+    };
+
+    request(baseUrl + '/person/user_verify/' + req.params.adhaarNo + '/' + req.params.surveyId, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            //console.log(body) // Print the google web page.
+            // JSON.parse(response.body)
+            var resultApi = JSON.parse(response.body);
+
+            if (resultApi.user_exists) { // User exists
+
+                Person.find({ "userAdhaar": req.params.adhaarNo }, function (err, query_data) {
+                    if (err) {
+                        resultArr = {
+                            "status": false,
+                            "msg": err.message
+                        };
+                        res.json(resultArr);
+            
+                    }
+                    else {
+            
+                        //res.json(query_data._id); 
+
+                        Person.update({ userAdhaar: req.params.adhaarNo }, {
+                            $set: {
+                                userName: req.body.userName,
+                                userGender: req.body.userGender,
+        
+                            }
+                        },
+                            function (err, responseArr) {
+                                if (err) {
+                                    rsltarr = {
+                                        "status": false,
+                                        "msg": err.message
+                                    };
+                                    res.json(rsltarr);
+                                }
+                                else { // user updated 
+                                   
+                                    let newEntry = new Result({
+                                        personId: query_data._id,
+                                        userName: req.body.userName,
+                                        userAdhaar: req.body.userAdhaar,
+                                        surveyId: req.params.surveyId,
+                                        surveyCompletedTS: dateToday,
+                                        resultSet: req.body.resultSet
+            
+                                    });
+                                    newEntry.save((err, user) => {
+                                        if (err) {
+                                            rsltarr = {
+                                                "status": false,
+                                                "msg": err.message
+                                            };
+                                            res.json(rsltarr);
+            
+                                        }
+                                        else {
+                                            rsltarr = {
+                                                "status": true,
+                                                "msg": "Survey saved success fullly!!"
+                                            };
+                                            res.json(rsltarr);
+            
+                                        }
+                                    });
+                                    
+                                }
+                            }
+                        );
+                    }
+                });
+
+               
+            }
+            else // new user
+            {
+                let newEntry = new Person({
+                    userName: req.body.userName,
+                    userAdhaar: req.body.userAdhaar,
+                    userGender: req.body.userGender,
+
+                });
+                newEntry.save((err, user) => {
+                    if (err) {
+                        rsltarr = {
+                            "status": false,
+                            "msg": err.message
+                        };
+                        res.json(rsltarr);
+                    }
+                    else {
+
+
+                        let newEntry = new Result({
+                            personId: user._id,
+                            userName: req.body.userName,
+                            userAdhaar: req.body.userAdhaar,
+                            surveyId: req.params.surveyId,
+                            surveyCompletedTS: dateToday,
+                            resultSet: req.body.resultSet
+
+                        });
+                        newEntry.save((err, user) => {
+                            if (err) {
+                                rsltarr = {
+                                    "status": false,
+                                    "msg": err.message
+                                };
+                                res.json(rsltarr);
+
+                            }
+                            else {
+                                rsltarr = {
+                                    "status": true,
+                                    "msg": "Survey saved success fullly!!"
+                                };
+                                res.json(rsltarr);
+
+                            }
+                        });
+
+                        // res.json({ msg: "Survey saved success fullly!!" });
+                    }
+                })
+
+            }
+        }
+        else {
+            rsltarr = {
+                "status": false,
+                "msg": error.message
+            };
+            res.json(rsltarr);
+        }
+    })
+
+
+
 });
 
 //method for updating entry
