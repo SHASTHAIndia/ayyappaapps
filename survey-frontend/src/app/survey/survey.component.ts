@@ -7,7 +7,7 @@ import { HttpModule, Http, Response } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { ApiService } from '../api.service';
-import {DataService} from '../data.service';
+import { DataService } from '../data.service';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
@@ -32,7 +32,7 @@ export class SurveyComponent implements OnInit {
   testsur: object;
   surv: Survey;
   sur: any = {};
-   surveys: Array<object> = [];
+  surveys: Array<object> = [];
 
   constructor(private apiService: ApiService,
     private _router: Router,
@@ -49,16 +49,16 @@ export class SurveyComponent implements OnInit {
     // this.surveys.push(this.sur);
 
     // this.http.get(this.readUrl + '/survey/survey').subscribe(data => { this.result = (data['_body'] | JSON);
-       // this.surveys.push(data['_body']|JSON);
+    // this.surveys.push(data['_body']|JSON);
     // console.log(data);
-  // console.log(data['_body']);
-  // });
+    // console.log(data['_body']);
+    // });
 
-   /*  this.http.get(this.readUrl + '/survey/survey').subscribe(data => {
-      this.surveys.push(data['_body']);
-      //console.log(data);
-      console.log(data['_body']);
-    }); */
+    /*  this.http.get(this.readUrl + '/survey/survey').subscribe(data => {
+       this.surveys.push(data['_body']);
+       //console.log(data);
+       console.log(data['_body']);
+     }); */
   }
 
   public getSurveys() {
@@ -80,7 +80,7 @@ export class SurveyComponent implements OnInit {
     };
     console.log(this.surv);
     this.http.post(this.readUrl + '/survey/survey', this.surv).subscribe(res => {
-    this.result = res;
+      this.result = res;
       console.log(res);
       this.apiService.getSurveys().subscribe((data: Array<object>) => {
         this.surveys = data;
@@ -95,12 +95,12 @@ export class SurveyComponent implements OnInit {
     // console.log(frm);
   }
   sendMessage(srvy: Survey) {
-  console.log(this.message);
-  this.dataservice.changeMessage(srvy);
-  this.dataservice.currentMessage.subscribe(message => this.srv = message);
-  console.log(this.srv);
-  // console.log(Name);
-  // this.messageEvent.emit(Name);
+    console.log(this.message);
+    this.dataservice.changeMessage(srvy);
+    this.dataservice.currentMessage.subscribe(message => this.srv = message);
+    console.log(this.srv);
+    // console.log(Name);
+    // this.messageEvent.emit(Name);
   }
   /*addSurvey(frm) {
     this.surveys = {
@@ -114,17 +114,27 @@ export class SurveyComponent implements OnInit {
          };
     return this._surveyser.save(this.surveys);
   }*/
-deletesurvey(id): Observable<Response> {
-  console.log(id);
+  deletesurvey(id): Observable<Response> {
+    if (confirm('Are you sure you want to delete this survey?')) {
+      //console.log(id);
 
-  this.http.delete(this.readUrl + '/survey/survey/' + id).subscribe(res => {
-    console.log(res);
-    this.apiService.getSurveys().subscribe((data: Array<object>) => {
-      this.surveys = data;
-       console.log(this.surveys);
-    });
-  });
-  return ;
+      this.http.delete(this.readUrl + '/survey/survey/' + id).subscribe(res => {
+        var body = res['_body'];
+        var response = JSON.parse(body);
+        alert(response.msg);
+        //console.log(response.msg);
+        this.apiService.getSurveys().subscribe((data: Array<object>) => {
+          this.surveys = data;
+          // console.log(this.surveys);
+        });
+      });
+      return;
+    }
+  }
+  upsur(survey) {
+    this.surv = survey;
+    console.log(this.surv);
+  }
 }
  upsur(survey) {
   this.updSur = survey;

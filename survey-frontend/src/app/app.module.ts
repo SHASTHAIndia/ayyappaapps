@@ -14,7 +14,9 @@ import { UserListComponent } from './user-list/user-list.component';
 import { QuestionlistComponent } from './questionlist/questionlist.component';
 import { DataService } from './data.service';
 import { QuestionpopupComponent } from './questionpopup/questionpopup.component';
-import { ResponsesComponent } from './responses/responses.component';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+import {ResponsesComponent} from './responses/responses.component';
 
 
 const routes: Routes = [
@@ -24,7 +26,9 @@ const routes: Routes = [
   {path: 'userlist', component: UserListComponent},
   {path: 'questionlist', component: QuestionlistComponent },
   {path: 'questionpopup/:id', component: QuestionpopupComponent},
-  {path: 'responses', component: ResponsesComponent}
+  {path: '', component: SignupComponent},
+  {path: 'responses', component: ResponsesComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
@@ -35,6 +39,9 @@ const routes: Routes = [
     NewquestionComponent,
     UserListComponent,
     QuestionlistComponent,
+    QuestionpopupComponent,
+    SignupComponent,
+    LoginComponent,
     QuestionpopupComponent,
     ResponsesComponent
   ],
