@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import{FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { SurveyService } from './survey.service';
 import { Router } from '@angular/router';
 @Component({
@@ -7,48 +7,48 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
-  
-  constructor(private surveyService : SurveyService, private route : Router) { }
-  public sid:any="5bbdda0d0648272d5c03a82c";
+export class AppComponent {
+
+  constructor(private surveyService: SurveyService, private route: Router) { }
+  public sid: any = "5bbdda0d0648272d5c03a82c";
   private qns: Array<object> = [];
    adhr: Array<object> = [];
-  question:Array<object>=[];
-  answerOptions:Array<object>=[];
+  question: Array<object> = [];
+  answerOptions: Array<object> = [];
   adh:Array<object>=[];
 
-  
 
 
-  
-   
+
+
+
   ngOnInit() {
-    
+
     this.getQuestions(this.sid);
-   
+
   }
-  
- public getQuestions(sid) {
+
+  public getQuestions(sid) {
     this.surveyService.getQuestions(sid).subscribe((data: Array<object>) => {
-      
+
       this.qns = data['questions'];
-      for(var key in this.qns){
+      for (var key in this.qns) {
         this.question.push(this.qns[key]);
-    
-    
+
+
       }
-      
-    
-      for(var key in this.qns){
+
+
+      for (var key in this.qns) {
         this.answerOptions.push(this.qns[key]);
         console.log(this.answerOptions)
-    
+
       }
-      
-     
-    
-      
-    
+
+
+
+
+
     });
   }
  
@@ -65,25 +65,26 @@ export class AppComponent{
   
   
 }
-  );
 
+  public addUser(frm)
+  {
+    console.log(frm);
   }
 
 
-  
- private_prevSelected: any;
+  private_prevSelected: any;
 
-    handleChange(evt) {
-      var target = evt.target;
-      if (target.checked) {
-        this.route.navigate(['/question'])
-        
-      } 
-    } 
+  handleChange(evt) {
+    var target = evt.target;
+    if (target.checked) {
+      this.route.navigate(['/question'])
 
-  
+    }
+  }
+
+
   title = 'sur';
 
-    
-  }
+
+}
 
