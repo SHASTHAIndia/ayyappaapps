@@ -22,11 +22,11 @@ const surveySchema = new Schema({
         default:"A"
     },
     startDate: {
-        type: "string",
+        type: Date,
         require:[true,'Start Date is required']
     },
     expiryDate: {
-        type: "string",
+        type: Date,
         require:[true,'Expiry Date is required']
     },
     /* createdBy: {
@@ -36,7 +36,7 @@ const surveySchema = new Schema({
         require:false
     }, */
     createdOn: {
-        type: "string",
+        type: Date,
         require:[true,'CreatedOn is required']
     },
     /* questions: {

@@ -37,7 +37,8 @@ const personSchema = new Schema({
     },
     userAdhaar: {
         type: "string",
-        require:true
+        require:true,
+        unique:true
     },
     userPhone: {
         type: "string",
