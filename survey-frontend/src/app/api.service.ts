@@ -36,6 +36,9 @@ getAssignedQuestions(id) {
   getresponses(id) {
     return this.httpClient.get(`${this.API_URL}/survey/responses/` + id);
   }
+  updateSurvey(id, reqbody) {
+    return this.httpClient.put(`${this.API_URL}/survey/survey/` + id, reqbody);
+  }
 }
 
 

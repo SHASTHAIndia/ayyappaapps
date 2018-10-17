@@ -19,72 +19,19 @@ export class SurveyComponent implements OnInit {
   message: string;
   srname: String;
   @Output() messageEvent = new EventEmitter();
-  /*surveyName: String = 'hello';
-  surveyMessage: String = null;
-  surveyDeclaration: string = null;
-  surveyStatus: string = null;
-  startDate: string = null;
-  expiryDate: string = null;
-  createdBy: string = null;
-  createdOn: string = null;
-  questions: string[] = null;
-  survey: Survey = {
-  surveyName: this.surveyName,
-  surveyMessage: this.surveyMessage,
-  surveyDeclaration: this.surveyDeclaration,
-  surveyStatus: this.surveyStatus,
-  startDate: this.startDate,
-  expiryDate: this.expiryDate,
-  createdBy: this.createdBy,
-  createdOn: this.createdOn,*/
-  /* questions: {
-      type: "array",
-      }, */
-
-  /*questions: this.questions
-  };*/
+  updSur: Survey = {'surveyName': '',
+'surveyMessage': '',
+'surveyDeclaration': '',
+'surveyStatus': '',
+'startDate': '',
+'expiryDate': '',
+'questions': []
+};
   srv: Survey;
   result: any;
   testsur: object;
   surv: Survey;
   sur: any = {};
-  // surveys: Survey[] = [];
-  /*surveys: Survey[];*/ /* = [{'surveyName': 'Test Survey 2',
-  'surveyMessage': 'Welcome Msg',
-  'surveyDeclaration': 'Decl',
-  'surveyStatus': 'A',
-  'startDate': '03/10/2018',
-  'expiryDate': '23/10/2018',
-  'createdBy': '5bb5e0ead72cc717cc3be713',
-  'createdOn': '03/10/2018',
-  'questions':
-  [
-  '5bb49f110d9e321bcc8055b5',
-  '5bb5e1f1d72cc717cc3be714',
-  '5bb5e2afd72cc717cc3be718'
- ]},
- {'surveyName': 'Test Survey 3',
- 'surveyMessage': 'Welcome Msg3',
- 'surveyDeclaration': 'Decl3',
- 'surveyStatus': 'A',
- 'startDate': '03/10/2018',
- 'expiryDate': '23/10/2018',
- 'createdBy': '5bb5e0ead72cc717cc3be713',
- 'createdOn': '03/10/2018',
- 'questions':
- [
- '5bb49f110d9e321bcc8055b53',
- '5bb5e1f1d72cc717cc3be7143',
- '5bb5e2afd72cc717cc3be7183'
-]}];*/
-  /*stitle: String = '';
-  smessage: String = '';
-  ssdate: String = '';
-  esdate: String = '';
-  decl: String = '';
-  sts: String = '';
-  qs: String[] ;*/
-
    surveys: Array<object> = [];
 
   constructor(private apiService: ApiService,
@@ -117,20 +64,11 @@ export class SurveyComponent implements OnInit {
   public getSurveys() {
     this.apiService.getSurveys().subscribe((data: Array<object>) => {
       this.surveys = data;
-      // console.log(data);
+       console.log(data);
     });
 
   }
   addsurvey(frm): Observable<Response> {
-    /*this.surveys.push({
- 'surveyName': frm.surveyName.value,
- 'surveyMessage': frm.surveyMessage.value,
- 'surveyDeclaration': frm.surveyDeclaration.value,
- 'surveyStatus': frm.surveyStatus.value,
- 'startDate': frm.startDate.value,
- 'expiryDate': frm.expiryDate.value,
- 'questions': []
-    });*/
     this.surv = {
       'surveyName': frm.surveyName.value,
       'surveyMessage': frm.surveyMessage.value,
@@ -188,8 +126,26 @@ deletesurvey(id): Observable<Response> {
   });
   return ;
 }
-upsur(survey) {
-  this.surv = survey;
-  console.log(this.surv);
+ upsur(survey) {
+  this.updSur = survey;
+   console.log(this.updSur);
+   console.log(this.updSur['startDate']);
+   console.log(this.updSur['expiryDate']);
 }
+ updateSur(survey) {
+   console.log(this.updSur['_id']);
+   console.log(this.updSur);
+   this.apiService.updateSurvey(this.updSur['_id'], this.updSur).subscribe(res => {
+     alert('Survey Succesfully Updated');
+     console.log(res);
+   });
+   this.updSur = {'surveyName': '',
+   'surveyMessage': '',
+   'surveyDeclaration': '',
+   'surveyStatus': '',
+   'startDate': '',
+   'expiryDate': '',
+   'questions': []
+   };
+ }
 }
