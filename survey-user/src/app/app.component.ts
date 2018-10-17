@@ -12,7 +12,7 @@ export class AppComponent{
   constructor(private surveyService : SurveyService, private route : Router) { }
   public sid:any="5bbdda0d0648272d5c03a82c";
   private qns: Array<object> = [];
-   adhr: Array<object> = [];
+  adhr: Array<object> = [];
   question:Array<object>=[];
   answerOptions:Array<object>=[];
   adh:Array<object>=[];
@@ -41,7 +41,7 @@ export class AppComponent{
     
       for(var key in this.qns){
         this.answerOptions.push(this.qns[key]);
-        console.log(this.answerOptions)
+        //console.log(this.answerOptions)
     
       }
       
@@ -58,9 +58,16 @@ export class AppComponent{
   {
   
     this.adhr=data;
+    if(this.adhr['survey_attended']!=true){
+      alert('already exist');
+    }
+   
+      console.log(this.adhr)
+  
+    
  
  
-    console.log(this.adhr);
+    
     
   
   
