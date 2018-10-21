@@ -107,7 +107,7 @@
   <div class="container">
       <div class="jumbotron">
        <div class="row" style="padding:24px">    
-         <h1>ADD A QUESTION</h1>  
+         <h1>EDIT QUESTION</h1>  
           <div class="col-md-12">
            <form  name="OptionForm" class="form-horizontal" #OptionForm="ngForm" style="margin-top:35px">
              <div class="options-form" *ngFor="let Form of FormSet let i = index " >
@@ -115,7 +115,7 @@
                  <div class="col-sm-4">
                   <span class="require">*</span>
                    <label>Enter your question</label>                        
-                     <input class="form-control" type="text" name="question" [(ngModel)]="Form.Question" #ques=ngModel placeholder="Enter your question" required>
+                     <input class="form-control" type="text" name="question" [(ngModel)]="question.question" #ques=ngModel placeholder="Enter your question" required>
                        <div *ngIf="ques.touched">  
                          <div *ngIf="ques.errors?.required" class="alert alert-danger">                        
                                  Enter the Question!                     
@@ -127,10 +127,10 @@
                    <label class="control" for="mandatory">Is it mandatory to answer this?</label>
                     <div class="radio">
                       <label class="mr12">
-                        <input icheck="" type="radio" name="questionMandatory" value="yes" [(ngModel)]="Form.isMandatory" id="mandatory" required> YES
+                        <input type="radio" name="questionMandatory" value="Yes" [(ngModel)]="question.questionMandatory" id="mandatory" required> YES
                           </label>
                            <label style="margin-left:10px">
-                             <input icheck="" type="radio" name="questionMandatory" value="no" [(ngModel)]="Form.isMandatory" id="mandatory" required> NO
+                             <input type="radio" name="questionMandatory" value="No"  [(ngModel)]="question.questionMandatory" id="mandatory" required> NO
                            </label>
                      </div>
                  </div>
@@ -139,10 +139,10 @@
                    <label>Status</label>
                      <div class="radio" for="qesStatus">
                        <label class="mr12" >
-                        <input type="radio" checked name="questionStatus" value="A" [(ngModel)]="Form.active" id="qesStatus" required> Active
+                        <input type="radio" checked name="questionStatus" value="A" [(ngModel)]="question.questionStatus" id="qesStatus" required> Active
                          </label>
                           <label style="margin-left:10px">
-                           <input type="radio" name="questionStatus" value="I" [(ngModel)]="Form.active" id="qesStatus" required> Inactive
+                           <input type="radio" name="questionStatus" value="I" [(ngModel)]="question.questionStatus" id="qesStatus" required> Inactive
                          </label>
                      </div>
                  </div>
@@ -151,14 +151,14 @@
                   <div class="col-sm-4" for="quesType">
                     <span class="require">*</span>
                      <label>Questipon Type</label>
-                       <select name = "questionType" class="form-control" [(ngModel)]="Form.type" id="quesType" required >
+                       <select name = "questionType" class="form-control" [(ngModel)]="question.questionType" id="quesType" required >
                         <option *ngFor="let type of questions_type" [ngValue]="type" >
                              {{type}}
                          </option>
                       </select>
                    </div>
                  </div>                  
-                   <div class="form-group row" *ngIf="Form.type ==='SLT'" for="select">
+                   <div class="form-group row" *ngIf="question.questionType ==='SLT'" for="select">
                      <div class="col-sm-3 form-block" *ngFor="let option of Form.options;let i = index">
                        <div class="input-group">
                          <input class="form-control option"  type="text" [(ngModel)]="option.name" name="select{{i}}" placeholder="Enter Options" id="select" required>
@@ -171,7 +171,7 @@
                       <button class="btn-success btn btn-md" (click)="addNewOptionForSelect(Form)"><i>+</i></button>
                      </div>
                      </div>
-                       <div class="form-group row" *ngIf="Form.type ==='OPT'" for="sel_Opt">
+                       <div class="form-group row" *ngIf="question.questionType ==='OPT'" for="sel_Opt">
                          <div class="col-sm-3 form-block" *ngFor="let choose of Form.chooses; let i = index">
                            <div class="input-group">
                             <input class="form-control option" type="text" [(ngModel)]="choose.name"  name="radio{{i}}" placeholder="Enter Options" id="sel_Opt" required>
@@ -185,7 +185,7 @@
                           <button class="btn-success btn btn-md" (click)="addNewOptionForOption(Form,choose)"><i>+</i></button>
                          </div>
                        </div>
-                       <div class="form-group row" *ngIf="Form.type ==='CHK'" for="click">
+                       <div class="form-group row" *ngIf="question.questionType ==='CHK'" for="click">
                          <div class="col-sm-3 form-block" *ngFor="let choice of Form.choices;let i = index">
                            <div class="input-group">
                             <input class="form-control option" type="text" [(ngModel)]="choice.name" name="answerOptions{{i}}" placeholder="Enter Options" id="click" required>
@@ -215,7 +215,7 @@
                     </button>
                  </div><br> -->
              <div>
-              <input type="submit" value="Submit" class="btn btn-primary" (click)="submitForm(OptionForm)" [disabled]="OptionForm.invalid">
+              <input type="submit" value="Submit" class="btn btn-primary" (click)="updateQues(OptionForm)" >
              </div>
              </form>
      

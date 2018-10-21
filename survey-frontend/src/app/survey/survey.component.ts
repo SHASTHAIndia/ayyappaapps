@@ -135,13 +135,13 @@ export class SurveyComponent implements OnInit {
     this.surv = survey;
     console.log(this.surv);
   }
-}
- upsur(survey) {
-  this.updSur = survey;
-   console.log(this.updSur);
-   console.log(this.updSur['startDate']);
-   console.log(this.updSur['expiryDate']);
-}
+
+//  upsur(sur) {
+//   this.updSur = sur;
+//    console.log(this.updSur);
+//    console.log(this.updSur['startDate']);
+//    console.log(this.updSur['expiryDate']);
+// }
  updateSur(survey) {
    console.log(this.updSur['_id']);
    console.log(this.updSur);

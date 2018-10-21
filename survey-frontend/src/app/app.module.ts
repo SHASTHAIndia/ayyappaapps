@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'newquestion', component: NewquestionComponent},
   {path: 'userlist', component: UserListComponent},
   {path: 'questionlist', component: QuestionlistComponent },
-  {path: 'questionpopup/:id', component: QuestionpopupComponent},
+  {path: 'questionpopup', component: QuestionpopupComponent},
   {path: '', component: SignupComponent},
   {path: 'responses', component: ResponsesComponent},
   {path: 'login', component: LoginComponent},

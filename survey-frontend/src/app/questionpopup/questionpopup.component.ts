@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { ApiService } from '../api.service';
+import { QuestionlistComponent } from '../questionlist/questionlist.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-questionpopup',
@@ -9,10 +11,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class QuestionpopupComponent implements OnInit {
   
 // @Input() quescomp:Object;
-  constructor() { }
+
+
+@Input() question:any;
+  constructor(private apiService: ApiService,private router:Router  ) { }
     
     ngOnInit() {
-      // console.log(this.quescomp)
+      
+      
+      console.log(this.question)
     }
 questions_type: any = ['TXT', 'TXTA', 'OPT', 'SLT', 'CHK'];
 choices: any = [{}];
@@ -75,6 +82,37 @@ removeChoices = function(form, index) {
  removeOption = function(form, index) {
 
       form.options.splice(index, 1);
+
+  };
+  updateQues = function (form) {
+    var arr = [];
+    var optionLength = document.getElementsByClassName('option').length;
+    for (var i = 0; i < optionLength; i++)
+      arr.push((document.getElementsByClassName('option')[i] as HTMLInputElement).value);
+    console.log(arr);
+    console.log(form.value.question_type)
+    var updates =
+    {
+      "id":this.question._id,
+      "questionType": form.value.questionType,
+      "question": form.value.question,
+      "questionMandatory": form.value.questionMandatory,
+      "questionStatus": form.value.questionStatus,
+      "answerOptions": arr
+
+    }
+    console.log(updates);
+    
+    this.apiService.updateQuestion(updates).subscribe(
+      response => {
+        
+        alert('updated.');
+        //this.router.navigateByUrl(['/questionlist']);
+        
+        //alert('updated.');
+      },
+      err => console.log(err)
+    );
 
   };
   

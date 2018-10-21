@@ -33,7 +33,7 @@
   </tr>
 </tbody>
 </table>
-
+</div>
 <!--Modal part-->
 
 <!-- <div class="modal fade" id="myModal" role="dialog">
@@ -141,8 +141,8 @@
 
 
 
-  <div class="editpopup" id="edit">
-    <app-questionpopup ></app-questionpopup>
+  <div class="editpopup" id="editpopup">
+    <app-questionpopup  *ngIf="loadComponent" [question]="editQuestion"></app-questionpopup>
   </div>
   <!-- [quescomp]="questions" -->
 
