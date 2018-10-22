@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from './data.service';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +12,8 @@ export class AppComponent implements OnInit {
   title = 'admprof';
   constructor(private dataservice: DataService) {}
   ngOnInit() {
-  this.dataservice.currentMessage.subscribe(message => this.message = message); }
+   this.dataservice.currentMessage.subscribe(message => this.message = message); 
+}
   receiveMessage($event) {
     this.survName = $event;
   }
