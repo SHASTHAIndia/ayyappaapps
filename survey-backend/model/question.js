@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 // Defining ENUMs for the gender field which will use for validation.
 var status = ['A','I'];
+var mandatory_values = ['YES','NO'];
 var Schema = mongoose.Schema;
 //var used_status = ['Y','N'];
 var type = ['TXT','TXTA','OPT','SLT','CHK'];
@@ -10,9 +11,10 @@ const questionSchema = new Schema({
         require:[true,'question is required']
     },
     questionMandatory: {
-        type: "boolean",
+        type: "string",
+        enum:mandatory_values,
         require:[true,'Mandatory is required'],
-        default : false
+        default : "NO"
     },
     questionStatus: {
         type: "string",

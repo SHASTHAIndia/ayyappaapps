@@ -28,7 +28,10 @@
               <td>{{survey['surveyMessage']}}</td>
               <td>{{survey['expiryDate']}}</td>
               <td>{{survey['surveyStatus']}}</td>
-              <td><button class="btn btn-success btn-sm survey-edit mystyle" data-toggle="modal" data-target="#updateModal" (click)="upsur(survey)">Edit </button><button class="btn btn-danger btn-sm survey-edit mystyle" (click)="deletesurvey(survey['_id'])">Delete </button><a routerLink='/question'><button class="btn btn-primary btn-sm survey-edit" (click)="sendMessage(survey)"> MapQuestions</button></a><a routerLink='/responses'><button class='btn btn-info btn-sm survey-response' (click)=sendMessage(survey)>Responses</button></a></td>
+              <td><button class="btn btn-success btn-sm survey-edit mystyle" data-toggle="modal" data-target="#updateModal" (click)="upsur(survey)">Edit </button>
+                <button class="btn btn-danger btn-sm survey-edit mystyle" (click)="deletesurvey(survey['_id'])">Delete </button>
+                <a routerLink='/survey/question'><button class="btn btn-primary btn-sm survey-edit" (click)="sendMessage(survey)"> MapQuestions</button>
+                </a><a routerLink='/survey/responses'><button class='btn btn-info btn-sm survey-response' (click)=sendMessage(survey)>Responses</button></a></td>
             </tr></tbody>
 
       </table>

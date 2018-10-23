@@ -106,8 +106,8 @@ removeChoices = function(form, index) {
     this.apiService.updateQuestion(updates).subscribe(
       response => {
         
-        alert('updated.');
-        //this.router.navigateByUrl(['/questionlist']);
+        //(alert('updated.'))
+        this.router.navigate(['questionlist']);
         
         //alert('updated.');
       },

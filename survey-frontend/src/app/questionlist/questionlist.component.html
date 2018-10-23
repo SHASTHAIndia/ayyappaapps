@@ -3,7 +3,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <div  id="quest">
 <div>
-<a routerLink='/newquestion'><button class="btn btn-info">+New Question</button></a> 
+<a routerLink='/survey/newquestion'><button class="btn btn-info">+New Question</button></a> 
 </div><br>
     <table class="table table-hover table-responsive">
       <thead class="table-success">
@@ -25,7 +25,7 @@
     <td> {{ques.questionStatus}}</td>
     <td> {{ques.answerOptions}}</td>
     <td>
-        <button class='btn btn-primary' (click)="ed(ques)">Edit</button>
+        <button class='btn btn-primary btn-sm question-edit' (click)="ed(ques)">Edit</button>
       <!-- <button class="btn btn-success btn-sm question-edit" type="button" (click)="ed(ques)">edit</button> -->
     <button class="btn btn-danger btn-sm question-edit" (click)="deleteQues(ques['_id'])">Delete</button>
     
