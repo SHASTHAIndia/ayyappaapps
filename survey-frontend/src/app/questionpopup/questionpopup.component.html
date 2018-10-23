@@ -161,7 +161,7 @@
                    <div class="form-group row" *ngIf="question.questionType ==='SLT'" for="select">
                      <div class="col-sm-3 form-block" *ngFor="let option of Form.options;let i = index">
                        <div class="input-group">
-                         <input class="form-control option"  type="text" [(ngModel)]="option.name" name="select{{i}}" placeholder="Enter Options" id="select" required>
+                         <input class="form-control option"  type="text" [(ngModel)]="question.answerOptions[i]" name="select{{i}}" placeholder="Enter Options" id="select" required>
                            <span class="input-group-btn">
                             <button class="btn-md btn btn-danger" type="submit" (click)="removeOption(Form,i)"><i>-</i></button>
                              </span>
@@ -174,7 +174,7 @@
                        <div class="form-group row" *ngIf="question.questionType ==='OPT'" for="sel_Opt">
                          <div class="col-sm-3 form-block" *ngFor="let choose of Form.chooses; let i = index">
                            <div class="input-group">
-                            <input class="form-control option" type="text" [(ngModel)]="choose.name"  name="radio{{i}}" placeholder="Enter Options" id="sel_Opt" required>
+                            <input class="form-control option" type="text" [(ngModel)]="question.answerOptions[i]"  name="radio{{i}}" placeholder="Enter Options" id="sel_Opt" required>
                               <span class="input-group-btn">
                                <button class="btn-md btn btn-danger" type="submit" (click)="removeChoose(Form, i)"><i>-</i></button>
                                </span>
@@ -188,7 +188,7 @@
                        <div class="form-group row" *ngIf="question.questionType ==='CHK'" for="click">
                          <div class="col-sm-3 form-block" *ngFor="let choice of Form.choices;let i = index">
                            <div class="input-group">
-                            <input class="form-control option" type="text" [(ngModel)]="choice.name" name="answerOptions{{i}}" placeholder="Enter Options" id="click" required>
+                            <input class="form-control option" type="text" [(ngModel)]="question.answerOptions[i]" name="answerOptions{{i}}" placeholder="Enter Options" id="click" required>
                               <span class="input-group-btn">
                                <button class="btn-md btn btn-danger" type="submit" (click)="removeChoices(Form, i)"><i>-</i></button>
                               </span>
@@ -215,7 +215,7 @@
                     </button>
                  </div><br> -->
              <div>
-              <input type="submit" value="Submit" class="btn btn-primary" (click)="updateQues(OptionForm)" >
+              <input type="submit" value="Submit" class="btn btn-primary" (click)="updateQues(OptionForm)" [disabled]="OptionForm.invalid">
              </div>
              </form>
      

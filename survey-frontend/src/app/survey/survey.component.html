@@ -50,9 +50,9 @@
 
       </div>
       <div class="modal-body">
-        <form class="form-group" #frm (ngSubmit)="addsurvey(frm)">
+        <form class="form-group" role="form" #frm  (ngSubmit)="addsurvey(frm)">
             <label for="surveyName" #surveyName><strong> Title:</strong></label><br>
-            <input type="text"  class="form-control" name="surveyName" id="surveyName" required #surveyName><br>
+            <input type="text"  class="form-control" name="surveyName" id="surveyName" required #surveyName=ngModel ngModel require><br>
             <div *ngIf="surveyName.touched">
               <div  *ngIf="surveyName.errors?.required" class="alert alert-danger">
                   Survey title is required
@@ -112,10 +112,10 @@
 </div>
 </div>
 </div>-->
-<div class="modal fade" id="updateModal" role="dialog">
+ <div class="modal fade" id="updateModal" role="dialog">
     <div class="modal-dialog">
 
-      <!-- Modal content-->
+
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Survey</h4>
@@ -150,3 +150,23 @@
   </div>
   </div>
   </div>
+   <!-- <form class="form-group" #frm (ngSubmit)="addsurvey(frm)">
+    <label for="surveyName" #surveyName><strong> Title:</strong></label><br>
+    <input type="text"  class="form-control" name="surveyName" id="surveyName" required #surveyName=ngModel ngModel required ><br>
+    <div *ngIf="surveyName.touched">
+      <div  *ngIf="surveyName.errors?.required" class="alert alert-danger">
+          Survey title is required
+      </div>
+    </div>
+    <label for="surveyMessage"><strong>Survey Message</strong></label><br>
+    <textarea type="text" name="surveyMessage" id="surveyMessage"  class="form-control"></textarea><br>
+    <strong>Duration: <br></strong><label for="startDate" class="lightweight"> From:</label><input type="date"  name="startDate" id="startDate" class="form-control">
+    <label for="expiryDate" class="lightweight"> To:</label> <input type="date"  name="expiryDate" id="expiryDate" class="form-control"><br>
+    <label for="surveyStatus"><strong>Status:  </strong></label>
+    <input type="radio" id="surveyStatus" name="surveyStatus" value="A"  class="forstatus" checked>Active
+    <input type="radio" id="surveyStatus" name="surveyStatus" value="I" class="forstatus">Inactive<br>
+
+    <label for="surveyDeclaration"><strong>Declaration:</strong></label><br>
+    <textarea type="text"  name="surveyDeclaration" id="surveyDeclaration" class="form-control"></textarea><br>
+    <button type="submit" class="btn btn-success">save</button>
+</form> -->

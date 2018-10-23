@@ -12,7 +12,7 @@
 <div class="main-div">
     <div class="panel">
    <h2>Admin Login</h2>
-   <p>Please enter your email and password</p>
+   <p>Please enter your Username and password</p>
    </div>
     <form id="Login" #frm="ngForm">
         <div class="form-group">
@@ -20,19 +20,14 @@
                 <input type="text"   
                 name="userName" 
                 class="form-control"
-                placeholder="Email Address" 
                 ngModel 
                 required 
-                pattern="[\w-]+@([\w-]+\.)+[\w-]+" 
-                #mail="ngModel" placeholder="Enter your mail ID">
+                #user_name="ngModel" placeholder="*Username">
              </div>
-               <div *ngIf="mail.touched">
-                   <div *ngIf="mail.errors?.required"  class="alert alert-danger">
-                 Mail ID is required!
-               </div>
-               <div *ngIf="mail.errors?.pattern" class="alert alert-danger">
-                   Mail ID is invalid!
-               </div>
+               <div *ngIf="user_name.touched">
+                   <div *ngIf="user_name.errors?.required"  class="alert alert-danger">
+                 Username is required!
+               </div>               
              </div>
 
              <div class="form-group">
@@ -44,17 +39,24 @@
                   ngModel 
                   #password="ngModel" 
                   required 
-                  placeholder="Password">
+                  placeholder="*Password">
                   </div>
                   <div *ngIf="password.touched">    
                     <div *ngIf="password.errors?.required" class="alert alert-danger">
                         Password is required!
                     </div>                   
                     </div>         
-        <a routerLink="/survey" ><button type="submit" name="button" class="btn btn-dark" [disabled]="frm.invalid" (click)="submitForm(frm)">Login</button></a><br>
+        <a routerLink="/survey/surveyList" ><button type="submit" name="button" class="btn btn-dark" [disabled]="frm.invalid" (click)="submitForm(frm)">Login</button></a><br>
         <!-- <a routerLink="signup"><span>New to Survey? Sign up</span></a> -->
     </form>
     </div>
 </div></div>
 </body>
 </html>
+<footer class="sticky-footer" style="margin-left:-  10px">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto" >
+        <span>Copyright © Website 2018</span>
+      </div>
+    </div>
+  </footer>

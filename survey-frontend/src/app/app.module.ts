@@ -24,14 +24,14 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: '', component: LoginComponent},
   {path: 'survey', component: NavbarComponent,
-  children: [  
+  children: [
   {path: 'question', component: QuestionComponent},
   {path: 'newquestion', component: NewquestionComponent},
   {path: 'userlist', component: UserListComponent},
   {path: 'questionlist', component: QuestionlistComponent },
   {path: 'questionpopup', component: QuestionpopupComponent},
   {path: 'responses', component: ResponsesComponent},
-  {path: 'surveyList', component: SurveyComponent},  
+  {path: 'surveyList', component: SurveyComponent},
   {path: 'changepassword', component: ChangepasswordComponent}
   ]}
 ];

@@ -106,7 +106,7 @@ export class QuestionComponent implements OnInit {
 
 // console.log(this.selected);
 // if (this.selected === true) {
-    this.questionarray.push(value);
+    this.questionarray = [value];
     console.log(this.questionarray);
     const id = this.srv['_id'];
     this.http.put(this.readUrl + '/survey/question_map/' + id, this.questionarray).subscribe(res => {
