@@ -52,13 +52,13 @@ export class QuestionlistComponent implements OnInit {
       });
     }
   }
-  public editQues(_id) {
-    this.apiService.editQuestion(_id).subscribe((option: Array<object>) => {
-      this.questions = option;
-      console.log(this.questions);
-      this.getQuestions();
-    });
-  }
+  // public editQues(_id) {
+  //   this.apiService.editQuestion(_id).subscribe((option: Array<object>) => {
+  //     this.questions = option;
+  //     console.log(this.questions);
+  //     this.getQuestions();
+  //   });
+  // }
   questions_type: any = ['TXT', 'TXTA', 'OPT', 'SLT', 'CHK'];
   choices: any = [{}];
   options: any = [{}];
@@ -129,6 +129,7 @@ export class QuestionlistComponent implements OnInit {
     
     //console.log('_id');
     console.log(ques);
+    console.log(ques.answerOptions);
    document.getElementById('quest').style.display='none';
      document.getElementById('editpopup').style.display='block';
      
