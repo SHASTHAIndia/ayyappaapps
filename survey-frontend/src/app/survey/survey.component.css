@@ -20,6 +20,7 @@ textarea{
   content: "";
   clear: both;
   display: table;
+  height: 0.05em;
 }
 @media screen and (max-width: 700px) {
   .sidebar {
@@ -45,4 +46,15 @@ textarea{
 }
 button.mystyle {
   width:94px;
+}
+thead{
+  background-color: #878f99;
+  color:black;
+  font-weight: bold;
+}
+tbody{
+  background-color: #e6e2d3
+}
+.jumbotron{
+  padding:2rem 2rem;
 }

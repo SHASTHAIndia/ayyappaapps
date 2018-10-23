@@ -4,6 +4,7 @@ import { HttpModule, Http, Response } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newquestion',
@@ -53,7 +54,7 @@ chooses: [{
 
 }];
 
-  constructor(private apiService : ApiService) { }
+  constructor(private apiService : ApiService, private router: Router) { }
   ngOnInit() {
   }
 
@@ -136,6 +137,7 @@ removeChoices = function(form, index) {
     this.apiService.postQuestion( questions ).subscribe(
       response => {
         alert( 'added.' );
+        this.router.navigate(['/survey/questionlist'])
       },
       err => console.log( err )
     );

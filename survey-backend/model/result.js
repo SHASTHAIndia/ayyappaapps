@@ -22,7 +22,7 @@ const resultSchema = new Schema({
         require: [true, 'Survey is required']
     },
     surveyCompletedTS: {
-        type: "string",
+        type: Date,
         //require:[true,'completed time is required'],
         default: Date.now,
 

@@ -39,6 +39,7 @@ export class QuestionComponent implements OnInit {
       'question': '',
     }
   ];
+ // availablequestions: Array<object>
   readonly readUrl = 'http://localhost:3000';
   constructor(private quesser: QuestionService,
   private dataservice: DataService,
@@ -48,13 +49,13 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.dataservice.currentMessage.subscribe(message => this.srv = message);
     this.srname = this.message;
-    // this.getActiveQuestions();
-    // this.getAssignedQuestions();
-   //  console.log(this.assignedquestions);
-   //  console.log(this.activequestions);
+   //  this.getActiveQuestions();
+   //  this.getAssignedQuestions();
+     console.log(this.assignedquestions);
+     console.log(this.activequestions);
     this.getAvailableQuestions();
-    console.log(this.assignedquestions);
-    console.log(this.assignedquestions);
+  //  console.log(this.assignedquestions);
+  //  console.log(this.assignedquestions);
   }
    // console.log(this.srv['_id']);
   public getActiveQuestions() {
@@ -105,7 +106,7 @@ export class QuestionComponent implements OnInit {
 
 // console.log(this.selected);
 // if (this.selected === true) {
-    this.questionarray.push(value);
+    this.questionarray = [value];
     console.log(this.questionarray);
     const id = this.srv['_id'];
     this.http.put(this.readUrl + '/survey/question_map/' + id, this.questionarray).subscribe(res => {
@@ -117,32 +118,26 @@ export class QuestionComponent implements OnInit {
    // this.assignquestions();
 }
 getAvailableQuestions() {
- // this.availablequestions = this.getActiveQuestions();
- //  this.getAssignedQuestions().subscribe( (data: Array <object>) =>{})
- // console.log(this.availablequestions);
- // const id = this.srv['_id'];
-/* this.apiService.getAssignedQuestions(id).subscribe((data: Array<object>) => {
-   for (let i = 0; i < data['questions'].length; i++) {
-    this.assignedquestions.push(data['questions'][i]);
-   }
-  // console.log(this.assignedquestions);
-});*/
   this.apiService.getActiveQuestions().subscribe((data: Array<object>) => {
     console.log(data);
       this.activequestions = data;
     const id = this.srv['_id'];
     this.apiService.getAssignedQuestions(id).subscribe((acqs: Array<object>) => {
-      // for (let i = 0; i < acqs['questions'].length; i++) {
-      //  this.assignedquestions.push(acqs['questions'][i]);
-      // }
       this.assignedquestions = acqs['questions'];
       console.log(this.assignedquestions);
+      console.log(this.activequestions);
+      this.availablequestions = this.activequestions;
+      console.log(this.availablequestions);
       if (this.assignedquestions != null) {
-      for ( let i = 0; i < this.activequestions.length; i++) {
+      for ( let i = 0; i < this.assignedquestions.length; i++) {
 
-        for (let j = 0; j < this.assignedquestions.length; j++) {
-          if (this.activequestions[i]['_id'] === this.assignedquestions[j]['_id'] ) {
-            this.activequestions.splice(i, 1);
+        for (let j = 0; j < this.activequestions.length; j++) {
+          if (this.assignedquestions[i]['_id'] === this.activequestions[j]['_id'] ) {
+           // console.log(this.activequestions[i]);
+           // console.log(this.assignedquestions[j]);
+            this.activequestions.splice(j, 1);
+          // this.availablequestions.splice(i, 1);
+           console.log(this.availablequestions);
           }
         }
       }

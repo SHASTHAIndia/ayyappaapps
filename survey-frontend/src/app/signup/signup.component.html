@@ -19,10 +19,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   </head>
-<body id="LoginForm">
+<body id="signupForm">
 <div class="container">
 
-<div class="login-form">
+<div class="signup-form">
 <div class="main-div">
     <div class="panel">
    <h2>Signup</h2>
@@ -109,9 +109,16 @@
                     </div>
                     </div>
                   </div>
-                  <a routerLink="/login" ><button type="submit" name="button" class="btn btn-success" [disabled]="frm.invalid">Signup</button></a>
+                  <a routerLink="/survey/login" ><button type="submit" name="button" class="btn btn-success" [disabled]="frm.invalid">Signup</button></a>
     </form>
     </div>
 </div></div>
 </body>
 </html>
+<footer class="sticky-footer" style="margin-left:-  10px">
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto" >
+      <span>Copyright © Website 2018</span>
+    </div>
+  </div>
+</footer>

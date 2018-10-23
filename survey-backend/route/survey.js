@@ -15,15 +15,17 @@ router.post("/survey", (req, res, next) => {
         "status": false,
         "msg": ""
     };
+    var dateToday = new Date().toLocaleDateString();
+    //res.json(dateToday);
     let newSurvey = new Survey({
         surveyName: req.body.surveyName,
         surveyMessage: req.body.surveyMessage,
         surveyDeclaration: req.body.surveyDeclaration,
         surveyStatus: req.body.surveyStatus,
-        startDate: req.body.startDate,
-        expiryDate: req.body.expiryDate,
+        startDate: new Date(req.body.startDate).toLocaleDateString(),
+        expiryDate: new Date(req.body.expiryDate).toLocaleDateString(),
         createdBy: req.body.createdBy,
-        createdOn: req.body.createdOn,
+        createdOn: dateToday,
         questions: req.body.questions
 
     });
@@ -48,16 +50,18 @@ router.post("/survey", (req, res, next) => {
 
 //method for updating entry
 router.put("/survey/:id", (req, res, next) => {
-    Survey.findOneAndUpdate({ _id: req.params.id }, {
+
+    var dateToday = new Date().toLocaleDateString();
+    Survey.update({ _id: req.params.id }, {
         $set: {
             surveyName: req.body.surveyName,
             surveyMessage: req.body.surveyMessage,
             surveyDeclaration: req.body.surveyDeclaration,
             surveyStatus: req.body.surveyStatus,
-            startDate: req.body.startDate,
-            expiryDate: req.body.expiryDate,
+            startDate: new Date(req.body.startDate).toLocaleDateString(),
+            expiryDate: new Date(req.body.expiryDate).toLocaleDateString(),
             createdBy: req.body.createdBy,
-            createdOn: req.body.createdOn,
+            createdOn: dateToday,
             questions: req.body.questions
         }
     },
@@ -74,14 +78,57 @@ router.put("/survey/:id", (req, res, next) => {
 
 //method for deleting entry
 router.delete("/survey/:id", (req, res, next) => {
-    Survey.remove({ _id: req.params.id }, function (err, result) {
+
+    var resultArr = {
+        "status": false,
+        "msg": "No Operation"
+    };
+    //check question is used
+    Result.find({ "surveyId": req.params.id }, function (err, query_data) {
+
         if (err) {
-            res.json(err);
+
+
+            resultArr = {
+                "status": false,
+                "msg": err.message
+            };
+            res.json(resultArr);
+
         }
+
         else {
-            res.json(result);
+
+            if (query_data === undefined || query_data.length == 0) {
+                Survey.remove({ _id: req.params.id }, function (err, result) {
+                    if (err) {
+                        resultArr = {
+                            "status": false,
+                            "msg": err.message
+                        };
+                        res.json(resultArr);
+
+                    }
+                    else {
+                        resultArr = {
+                            "status": true,
+                            "msg": "Successfully Deleted"
+                        };
+                        res.json(resultArr);
+                    }
+                });
+            }
+            else {
+                resultArr = {
+                    "status": false,
+                    "msg": "You cannot delete this survey since people attended this survey"
+                };
+                res.json(resultArr);
+            }
         }
     });
+
+
 });
 
 //method for reading entry
@@ -235,8 +282,15 @@ router.put("/question_map/:survey_id", (req, res, next) => {
             res.json(rsltarr);
         }
         else {
-            if (query_data) {
 
+            if (query_data === undefined || query_data.length == 0) {
+                rsltarr = {
+                    "status": false,
+                    "msg": "Invalid survey ID. No survey exist with the provided ID"
+                };
+                res.json(rsltarr);
+            }
+            else {
                 if (query_data[0]) {
                     query_data[0].questions.forEach(function (item_exists) {
                         questionsArra.push(item_exists);
@@ -273,15 +327,8 @@ router.put("/question_map/:survey_id", (req, res, next) => {
 
 
                 }
+            }
 
-            }
-            else {
-                rsltarr = {
-                    "status": false,
-                    "msg": "Invalid survey ID. No survey exist with the provided ID"
-                };
-                res.json(rsltarr);
-            }
 
         }
     });
@@ -330,8 +377,14 @@ router.put("/unmap_question/:survey_id", (req, res, next) => {
             res.json(rsltarr);
         }
         else {
-            if (query_data) {
-
+            if (query_data === undefined || query_data.length == 0) {
+                rsltarr = {
+                    "status": false,
+                    "msg": "Invalid survey ID. No survey exist with the provided ID"
+                };
+                res.json(rsltarr);
+            }
+            else {
                 if (query_data[0]) {
                     query_data[0].questions.forEach(function (item_exists) {
                         /* var inArray = require('in-array');
@@ -376,15 +429,8 @@ router.put("/unmap_question/:survey_id", (req, res, next) => {
 
 
                 }
+            }
 
-            }
-            else {
-                rsltarr = {
-                    "status": false,
-                    "msg": "Invalid survey ID. No survey exist with the provided ID"
-                };
-                res.json(rsltarr);
-            }
 
         }
     });
