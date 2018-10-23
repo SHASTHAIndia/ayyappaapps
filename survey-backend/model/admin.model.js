@@ -9,10 +9,6 @@ const adminSchema = new Schema({
         require: [true, 'User Name is required'],
         unique: true
     },
-    password: {
-        type: "string",
-        require: [true, 'password is required']
-    },
     hash: {
         type: "string"
        

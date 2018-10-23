@@ -12,7 +12,7 @@ var passport = require('passport');
 var cookieParser = require('cookie-parser'); */
 
 // [SH] Bring in the Passport config after model is defined
-//require('./config/passport');
+require('./config/passport');
 
 
 var app = express();
@@ -42,7 +42,7 @@ const PORT = 3000;
 app.use(cors()); //allow server to request and response from different ports in the same machine. Usedto interact with angular project which runs in another port
 
 
-//app.use(passport.initialize());
+app.use(passport.initialize());
 app.use(bodyparser.json()); //helps to parse json data in the request body
 
 //app.use("/api",route); // any call to api will diverted to routes.js
