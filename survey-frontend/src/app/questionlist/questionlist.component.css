@@ -25,3 +25,12 @@
 .modal-footer .btn-group:last-child > button {
 	border-right: 0;
 }
+
+
+.editpopup{
+	display: none;
+	z-index: 5;
+}
+.questy{
+	display: none;
+}

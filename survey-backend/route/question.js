@@ -32,8 +32,8 @@ router.post("/question", (req, res, next) => {
 });
 
 //method for updating entry
-router.put("/question/:id", (req, res, next) => {
-    Question.findOneAndUpdate({ _id: req.params.id }, {
+router.put("/question", (req, res, next) => {
+    Question.findOneAndUpdate({ _id: req.body.id }, {
         $set: {
             question: req.body.question,
             //questionCodeNo: req.body.questionCodeNo,

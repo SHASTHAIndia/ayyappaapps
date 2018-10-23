@@ -5,13 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { ApiService } from '../api.service';
 import { FormsModule } from '@angular/forms';
+//import{ questionpopup} from '../questionpopup'
 @Component({
   selector: 'app-questionlist',
   templateUrl: './questionlist.component.html',
   styleUrls: ['./questionlist.component.css']
 })
 export class QuestionlistComponent implements OnInit {
-
+  
+  loadComponent:boolean;
+  editQuestion:any;
   readonly readUrl = 'http://localhost:3000';
   @Output() messageEvent = new EventEmitter();
   private questions: Array<object> = [];
@@ -22,6 +25,7 @@ export class QuestionlistComponent implements OnInit {
     private http: Http) { }
   id: number
   ngOnInit() {
+    
     this.getQuestions();
   }
   public getQuestions() {
@@ -35,16 +39,15 @@ export class QuestionlistComponent implements OnInit {
     window.location.reload();
   }
   public deleteQues(_id) {
+    var response={
+      "status":"",
+      "msg":""
+    }
     if (confirm('Are you sure you want to delete this question?')) {
-
-
-
-      this.apiService.deleteQuestion(_id).subscribe((option: Array<object>) => {
-        this.questions = option;
-        var body = option['_body'];
-        var response = JSON.parse(body);
-        alert(response.msg);
-
+      this.apiService.deleteQuestion(_id).subscribe((option: {"status",
+      "msg"}) => {
+        if(option.status=="success")
+        alert(option.msg);
         this.getQuestions();
       });
     }
@@ -119,16 +122,25 @@ export class QuestionlistComponent implements OnInit {
     form.options.splice(index, 1);
 
   };
-  public editQuest(_id) {
-
-    this.apiService.editQuestion(_id).subscribe((data: Array<object>) => {
-      this.questions = data;
-      console.log(this.questions);
+   ed=function(ques){
+    this.editQuestion=ques;
+    
+    this.loadComponent = true;
+    
+    //console.log('_id');
+    console.log(ques);
+   document.getElementById('quest').style.display='none';
+     document.getElementById('editpopup').style.display='block';
+     
+   
+    //  this.apiService.editQuestion(ques['_id']).subscribe((data: Array<object>) => {
+    //   this.questions=data;
+    //   console.log(this.questions);
       // let arr=this.questions.toString();
       // console.log(arr);
-
-
-    });
+      
+      
+  //});
   }
 
   updateQues = function (form) {

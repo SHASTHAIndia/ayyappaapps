@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../api.service';
-import { HttpModule, Http, Response } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { QuestionlistComponent } from '../questionlist/questionlist.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-questionpopup',
@@ -11,21 +10,114 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class QuestionpopupComponent implements OnInit {
   
+// @Input() quescomp:Object;
 
-  constructor(private apiService: ApiService,
-    private _router: Router,
-    private http: Http) { }
-    _id:number;
+
+@Input() question:any;
+  constructor(private apiService: ApiService,private router:Router  ) { }
+    
     ngOnInit() {
-      this.editQuest(this._id)
-    }
-  
- public editQuest(_id){
-   
-    this.apiService.editQuestion(_id).subscribe((data: Array<object>) => {
       
-  });
+      
+      console.log(this.question)
+    }
+questions_type: any = ['TXT', 'TXTA', 'OPT', 'SLT', 'CHK'];
+choices: any = [{}];
+options: any = [{}];
+chooses: any = [{}];
+form: any = [{}];
+
+FormSet: any = [{
+  Question: '',
+
+  isMandatory: '',
+
+  options: [{
+
+      name: ''
+
+  }],
+  choices: [{
+
+    name: ''
+
+}],
+chooses: [{
+
+    name: ''
+
+}]
+
+}];
+
+
+
+removeForm = function(index) {
+  this.FormSet.splice(index, 1);
+
+};
+addNewOptionForSelect = function(item,option) {
+  item.options.push({option});
+    console.log(this.form)
+    
+};
+
+addNewOptionForCheckbox = function(item, choice) {
+    item.choices.push({choice});
+      console.log(this.form);
+};
+addNewOptionForOption = function(item, choose) {
+    item.chooses.push({choose});
+      console.log(this.form);
+};
+removeChoose = function(form, index) {
+
+  form.chooses.splice(index, 1);
+
+};
+removeChoices = function(form, index) {
+  form.choices.splice(index, 1);
+};
+/*remove form options*/
+ removeOption = function(form, index) {
+
+      form.options.splice(index, 1);
+
+  };
+  updateQues = function (form) {
+    var arr = [];
+    var optionLength = document.getElementsByClassName('option').length;
+    for (var i = 0; i < optionLength; i++)
+      arr.push((document.getElementsByClassName('option')[i] as HTMLInputElement).value);
+    console.log(arr);
+    console.log(form.value.question_type)
+    var updates =
+    {
+      "id":this.question._id,
+      "questionType": form.value.questionType,
+      "question": form.value.question,
+      "questionMandatory": form.value.questionMandatory,
+      "questionStatus": form.value.questionStatus,
+      "answerOptions": arr
+
+    }
+    console.log(updates);
+    
+    this.apiService.updateQuestion(updates).subscribe(
+      response => {
+        
+        //(alert('updated.'))
+        this.router.navigate(['questionlist']);
+        
+        //alert('updated.');
+      },
+      err => console.log(err)
+    );
+
+  };
+  
+ 
   }
 
   
-}
+
