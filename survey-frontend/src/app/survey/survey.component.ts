@@ -116,13 +116,13 @@ export class SurveyComponent implements OnInit {
   }*/
   deletesurvey(id): Observable<Response> {
     if (confirm('Are you sure you want to delete this survey?')) {
-      //console.log(id);
+      // console.log(id);
 
       this.http.delete(this.readUrl + '/survey/survey/' + id).subscribe(res => {
-        var body = res['_body'];
-        var response = JSON.parse(body);
+        const body = res['_body'];
+        const response = JSON.parse(body);
         alert(response.msg);
-        //console.log(response.msg);
+        // console.log(response.msg);
         this.apiService.getSurveys().subscribe((data: Array<object>) => {
           this.surveys = data;
           // console.log(this.surveys);
@@ -135,14 +135,14 @@ export class SurveyComponent implements OnInit {
     this.surv = survey;
     console.log(this.surv);
   }
-}
- upsur(survey) {
-  this.updSur = survey;
-   console.log(this.updSur);
-   console.log(this.updSur['startDate']);
-   console.log(this.updSur['expiryDate']);
-}
- updateSur(survey) {
+
+//  upsur(survey) {
+//   this.updSur = survey;
+//    console.log(this.updSur);
+//    console.log(this.updSur['startDate']);
+//    console.log(this.updSur['expiryDate']);
+// }
+updateSur() {
    console.log(this.updSur['_id']);
    console.log(this.updSur);
    this.apiService.updateSurvey(this.updSur['_id'], this.updSur).subscribe(res => {
