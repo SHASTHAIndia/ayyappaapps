@@ -8,29 +8,31 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { ApiService } from '../api.service';
 import { DataService } from '../data.service';
+import { isoStringToDate } from '../../../node_modules/@angular/common/src/i18n/format_date';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css']
 })
 export class SurveyComponent implements OnInit {
-
+  strDate: Date;
   readonly readUrl = 'http://localhost:3000';
   message: string;
   srname: String;
+  rbod = {};
   @Output() messageEvent = new EventEmitter();
-  updSur: Survey = {'surveyName': '',
-'surveyMessage': '',
-'surveyDeclaration': '',
-'surveyStatus': '',
-'startDate': '',
-'expiryDate': '',
-'questions': []
-};
+   updSur = {'surveyName': '',
+ 'surveyMessage': '',
+ 'surveyDeclaration': '',
+ 'surveyStatus': '',
+ 'startDate': new Date(),
+ 'expiryDate': new Date(),
+ 'questions': []
+ };
   srv: Survey;
   result: any;
   testsur: object;
-  surv: Survey;
+  surv = {};
   sur: any = {};
   surveys: Array<object> = [];
 
@@ -64,6 +66,10 @@ export class SurveyComponent implements OnInit {
   public getSurveys() {
     this.apiService.getSurveys().subscribe((data: Array<object>) => {
       this.surveys = data;
+      for (let i = 0; i < this.surveys.length; i++) {
+        this.surveys[i]['expiryDate'] = this.surveys[i]['expiryDate'].substring(0, 10);
+      }
+    //  this.surveys['expiryDate'] = this.surveys['startDate'].substring(0, 10);
        console.log(data);
     });
 
@@ -74,8 +80,8 @@ export class SurveyComponent implements OnInit {
       'surveyMessage': frm.surveyMessage.value,
       'surveyDeclaration': frm.surveyDeclaration.value,
       'surveyStatus': frm.surveyStatus.value,
-      'startDate': frm.startDate.value,
-      'expiryDate': frm.expiryDate.value,
+      'startDate': new Date(frm.startDate.value),
+      'expiryDate': new Date(frm.expiryDate.value),
       'questions': []
     };
     console.log(this.surv);
@@ -116,13 +122,13 @@ export class SurveyComponent implements OnInit {
   }*/
   deletesurvey(id): Observable<Response> {
     if (confirm('Are you sure you want to delete this survey?')) {
-      //console.log(id);
+      // console.log(id);
 
       this.http.delete(this.readUrl + '/survey/survey/' + id).subscribe(res => {
-        var body = res['_body'];
-        var response = JSON.parse(body);
+        const body = res['_body'];
+        const response = JSON.parse(body);
         alert(response.msg);
-        //console.log(response.msg);
+        // console.log(response.msg);
         this.apiService.getSurveys().subscribe((data: Array<object>) => {
           this.surveys = data;
           // console.log(this.surveys);
@@ -131,31 +137,51 @@ export class SurveyComponent implements OnInit {
       return;
     }
   }
-  upsur(survey) {
-    this.surv = survey;
-    console.log(this.surv);
-  }
+  // upsur(survey) {
+  //   this.surv = survey;
+  //   console.log(this.surv);
+  // }
 
-//  upsur(sur) {
-//   this.updSur = sur;
-//    console.log(this.updSur);
-//    console.log(this.updSur['startDate']);
-//    console.log(this.updSur['expiryDate']);
-// }
- updateSur(survey) {
-   console.log(this.updSur['_id']);
-   console.log(this.updSur);
+  upsur(survey) {
+  // this.strDate = new Date(survey['starDate']);
+   console.log(survey['startDate']);
+
+  survey['startDate'] = survey['startDate'].substring(0, 10);
+  survey['expiryDate'] = survey['expiryDate'].substring(0, 10);
+   // console.log(this.strDate);
+   this.updSur = survey;
+     console.log(this.updSur);
+   //  console.log(this.updSur['startDate']);
+   //  console.log(this.updSur['expiryDate']);
+  }
+ updateSur() {
+  //  console.log(this.updSur['_id']);
+  //  console.log(this.updSur);
+  // this.updSur['expiryDate'] = this.updSur['expiryDate'];
+  // this.rbod = {
+  //    'surveyName': this.updSur['surveyName'],
+  //    'surveyMessage': this.updSur['surveyMessage'],
+  //    'surveyStatus' : this.updSur['surveyStatus'],
+  //    'surveyDeclaration' : this.updSur['surveyStatus'],
+  //    'startDate' : this.updSur['startDate']
+  // };
+  // this.updSur['startDate'] = new Date(this.updSur['startDate']);
    this.apiService.updateSurvey(this.updSur['_id'], this.updSur).subscribe(res => {
-     alert('Survey Succesfully Updated');
+     if (res['n'] != null) {
+       alert('Updated Successfully');
+     } else {
+       alert('Updation Failed.Try Again');
+     }
      console.log(res);
    });
-   this.updSur = {'surveyName': '',
-   'surveyMessage': '',
-   'surveyDeclaration': '',
-   'surveyStatus': '',
-   'startDate': '',
-   'expiryDate': '',
+    this.updSur = {'surveyName': '',
+    'surveyMessage': '',
+    'surveyDeclaration': '',
+    'surveyStatus': '',
+    'startDate': new Date(),
+   'expiryDate': new Date(),
    'questions': []
-   };
- }
+    };
+  }
+
 }

@@ -53,7 +53,7 @@ router.put("/survey/:id", (req, res, next) => {
 
     var dateToday = new Date().toLocaleDateString();
     Survey.update({ _id: req.params.id }, {
-        $addToSet: {
+        $set: {
             surveyName: req.body.surveyName,
             surveyMessage: req.body.surveyMessage,
             surveyDeclaration: req.body.surveyDeclaration,
