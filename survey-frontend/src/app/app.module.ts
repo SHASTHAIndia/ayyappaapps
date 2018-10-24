@@ -20,6 +20,7 @@ import { ResponsesComponent } from './responses/responses.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthGuardService } from './auth-guard.service';
+import { EqualValidator } from './equal-validator.directive';
 
 const routes: Routes = [
   {path: 'signup', component: SignupComponent},
@@ -52,7 +53,8 @@ const routes: Routes = [
     QuestionpopupComponent,
     ResponsesComponent,
     ChangepasswordComponent,
-    NavbarComponent
+    NavbarComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,
