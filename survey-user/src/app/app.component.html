@@ -108,49 +108,57 @@
                                     <!-- collaps 2 container start-->
                                     <div class="container">
                                         <div class="col-md-9">
-                                            <div class="">
+                                                
                                                 <div *ngFor="let survey of question; let i = index ">
+                                                
                                                     <section class="row">
 
-                                                        <legend>{{i+1}} : {{survey.question}}</legend>
+                                                   <legend>{{i+1}} : {{survey.question}} 
+                                                       <input type="hidden" name="question{{i+1}}" id="question{{i+1}}" [(ngModel)]="survey.question" ngModel />
+                                                        </legend>
 
+                                                  
 
-
-                                                        <div *ngIf="survey['questionType']=='TXT'" class="form-group">
-                                                            <input type="text" name="qtypetxt{{i+1}}" id="qtypetxt{{i+1}}" class="form-control" placeholder=" Type your answer">
+                                                        <div *ngIf="survey['questionType']=='TXT'" cl
+                                                        ass="form-group">
+                                                               
+                                                            <input type="text" name="answer{{i+1}}" id="answer{{i+1}}" class="form-control" placeholder=" Type your answer" ngModel>
                                                         </div>
-                                                        <div *ngIf="survey['questionType']=='TXTA'" class="form-group">
-                                                            <textarea class="form-control"  name="qttypetxta{{i+1}}" id="qtypetxta{{i+1}}" rows="5"></textarea>
+                                                   
+                                                         <div *ngIf="survey['questionType']=='TXTA'" class="form-group">
+                                                            <textarea class="form-control"  name="answer{{i+1}}"  id="answer{{i+1}}" rows="5" ngModel></textarea>
                                                         </div>
                                                         <div *ngIf="survey['questionType']=='OPT'">
                                                             <label class="radio-inline" *ngFor="let ans of survey.answerOptions">
-                                                                <input type="radio" name="answer_radio{{i+1}}" id="answer_radio{{i+1}}" value="{{ans}}">&nbsp;&nbsp;{{ans}}
+                                                                <input type="radio" name="answer{{i+1}}" id="answer{{i+1}}" value="{{ans}}" ngModel>&nbsp;&nbsp;{{ans}}
                                                             </label>
                                                         </div>
 
                                                         <div *ngIf="survey['questionType']=='CHK'">
                                                             <label class="checkbox-inline" *ngFor="let ans of survey.answerOptions">
-                                                                <input type="checkbox" name="answer_check{{i+1}}" value="{{ans}}">&nbsp;&nbsp;{{ans}}
+                                                                <input type="checkbox" name="answer{{i+1}}[]"   value="{{ans}}" ngModel>&nbsp;&nbsp;{{ans}}
                                                             </label>
 
                                                         </div>
 
-                                                        <div *ngIf="survey['questionType']=='SLT'">
-                                                            <select>
+                                                        <div *ngIf="survey['questionType']=='SLT'" class="col-md-4">
+                                                            <select class="form-control" name="answer{{i+1}}" ngModel >
 
 
-                                                                <option value="{{ans}}" *ngFor="let ans of survey.answerOptions">{{ans}}</option>
+                                                                <option value="{{ans}}"   *ngFor="let ans of survey.answerOptions" >{{ans}}</option>
 
                                                             </select>
 
 
 
                                                         </div>
+                                                       
 
+                                                        <br>
                                                         <br>
                                                     </section>
 
-                                                </div>
+                                           
 
 
 
@@ -163,7 +171,17 @@
                                                     </button>
                                                 </div>
                                                 -->
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                
+                                            
+                                            
                                             </div>
+                                            
+                                           
                                         </div>
                                     </div>
                                     <!-- collaps 2 container end-->
@@ -187,9 +205,12 @@
 
                                                 <div class="form-group">
 
-                                                    <input type="checkbox" required> here by i declared that the
+                                                    <input  type="checkbox" name="isTCAccepted" [ngModel]="frm.isTCAccepted" required #tc="ngModel"> here by i declared that the
                                                     survey
                                                     done by myself with my perception
+                                                    <div *ngIf="tc.invalid"> 
+                                                    
+                                                   </div> 
                                                     <div class="next"><br><br>
                                                         <button type="submit" class="btn btn-primary" [disabled]="frm.invalid"  >SUBMIT</button>
 

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../api.service';
 import { QuestionlistComponent } from '../questionlist/questionlist.component';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-questionpopup',
@@ -14,7 +15,7 @@ export class QuestionpopupComponent implements OnInit {
 
 
 @Input() question:any;
-  constructor(private apiService: ApiService,private router:Router  ) { }
+  constructor(private apiService: ApiService,private _location: Location  ) { }
     
     ngOnInit() {
       
@@ -101,22 +102,15 @@ removeChoices = function(form, index) {
       "answerOptions": arr
 
     }
-    console.log(updates);
-    
+    console.log(updates);    
     this.apiService.updateQuestion(updates).subscribe(
-      response => {
-        
-        //(alert('updated.'))
-        this.router.navigate(['questionlist']);
-        
-        //alert('updated.');
+      response => {        
+        (alert('updated.'));
+        this._location.back();
       },
       err => console.log(err)
     );
-
   };
-  
- 
   }
 
   

@@ -1,0 +1,4 @@
+footer.sticky-footer {
+    width: calc(100% - 241px);
+    margin-bottom: 20px;    
+}
