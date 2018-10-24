@@ -8,21 +8,42 @@ router.get("/test_route", (req, res) => {
     res.send("router tested.");
 });
 
-//method for creating new entry
-router.post("/admin", (req, res, next) => {
-    let newEntry = new Admin({
-        userName: req.body.userName,
-        password: req.body.password,
+//method for creating admin user / Also used for resting admin password to "admin"
+// pass only key as GET parameter ; Key  : 780787
+router.post("/admin/:key", (req, res, next) => {
 
-    });
-    newEntry.save((err, user) => {
-        if (err) {
-            res.json(err);
-        }
-        else {
-            res.json({ msg: "Admin saved success fullly!!" });
-        }
-    })
+    if (req.params.key == "780787") {
+        //delete old admin user
+        Admin.remove({}, function (err, result) {
+            if (err) {
+                res.json(err);
+            }
+            else {
+                let adminObj = new Admin();
+                adminObj.setPassword("admin");
+
+                let newEntry = new Admin({
+                    userName: 'admin',
+                    hash: adminObj.hash,
+                    salt: adminObj.salt
+
+                });
+                newEntry.save((err, user) => {
+                    if (err) {
+                        res.json(err);
+                    }
+                    else {
+                        res.json({ msg: "Admin saved success fullly!!" });
+                    }
+                })
+            }
+        });
+
+    }
+    else {
+        res.json({ msg: "Invalid Key!!" });
+    }
+
 });
 
 //method for changing password
@@ -140,7 +161,7 @@ router.post("/login", (req, res, next) => {
                 "status": true,
                 "msg": info,
                 "token": token,
-                "user":user
+                "user": user
             };
             res.json(result);
 

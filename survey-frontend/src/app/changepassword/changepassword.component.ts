@@ -18,21 +18,28 @@ export class ChangepasswordComponent implements OnInit {
 
   ngOnInit() {
   }
-  submitForm=function(form){
-    console.log("hello")
-    var password=
+  submitForm = function (form) {
+    //console.log("hello")
+    var password =
     {
-      "oldPassword":form.value.oldPassword,
-      "newPassword":form.value.newPassword,
-      "userName":"admin"
+      "oldPassword": form.value.oldPassword,
+      "newPassword": form.value.newPassword,
+      "userName": "admin"
     }
-    console.log(password);
-    this.apiService.changePassword( password ).subscribe(
+    // console.log(password);
+
+    this.apiService.changePassword(password).subscribe((data: Array<object>) => {
+      
+       //console.log(data);
+       alert(data['msg']);
+    });
+
+    /* this.apiService.changePassword( password ).subscribe(
       response => {   
         alert("Password changed successfully!")     
       },
       err => console.log( err )
-    );
+    ); */
   }
 
 }
