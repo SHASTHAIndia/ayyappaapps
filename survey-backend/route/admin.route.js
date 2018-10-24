@@ -168,7 +168,7 @@ router.post("/login", (req, res, next) => {
         } else {
             result = {
                 "status": false,
-                "msg": "User not found"
+                "msg": "Invalid Password"
 
                 // If user is not found
 

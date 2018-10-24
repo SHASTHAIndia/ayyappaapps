@@ -5,6 +5,7 @@ import { HttpModule, Http, Response } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { ApiService } from '../api.service';
+//import {TokenPayload} from '../authenticate.service';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,10 @@ import { ApiService } from '../api.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  /* credentials: TokenPayload = {
+    userName: '',
+    password: ''
+  }; */
 
   constructor(private apiService: ApiService,
     private _router: Router,
@@ -20,18 +25,37 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   submitForm=function(form){
-    console.log("hello")
+    
+   //console.log("hello")
     var user=
     {
       "userName":form.value.userName,
       "password":form.value.password
     }
-    console.log(user);
-    this.apiService.postAdmin( user ).subscribe(
+    //console.log(user);
+
+    this.apiService.login( user ).subscribe((res) => {
+      if(res.status)
+      {
+        alert('succ');
+        this.router.navigateByUrl('/surveyList');
+      }
+      else 
+      {
+        //alert('fail');
+        alert(res.msg);
+      }
+     
+     
+    }, (err) => {
+      alert(err);
+      //console.error(err);
+    }); 
+    /* this.apiService.postAdmin( user ).subscribe(
       response => {        
       },
       err => console.log( err )
-    );
+    ); */
   }
 
 }

@@ -17,9 +17,8 @@ interface TokenResponse {
 }
 
 export interface TokenPayload {
-  adhaar: string;
   password: string;
-  name?: string;
+  userName?: string;
 }
 
 @Injectable()

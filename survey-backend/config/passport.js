@@ -1,12 +1,13 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../model/person');
+
+var Admin = require('../model/admin.model');
 
 passport.use(new LocalStrategy({
     usernameField: 'userName'
 },
     function (username, password, done) {
-        User.findOne({ userName: username }, function (err, user) {
+        Admin.findOne({ userName: username }, function (err, user) {
             if (err) { return done(err); }
             // Return if user not found in database
             if (!user) {

@@ -8,8 +8,8 @@ var morgan = require('morgan');
 var passport = require('passport');
 //var config = require('./config/database');
 
-/* var favicon = require('serve-favicon');
-var cookieParser = require('cookie-parser'); */
+var favicon = require('serve-favicon');
+var cookieParser = require('cookie-parser');
 
 // [SH] Bring in the Passport config after model is defined
 require('./config/passport');
@@ -38,7 +38,7 @@ mongoose.connection.on("error", (err) => {
 });
 
 const PORT = 3000;
-
+app.use(cookieParser());
 app.use(cors()); //allow server to request and response from different ports in the same machine. Usedto interact with angular project which runs in another port
 
 
@@ -52,6 +52,22 @@ app.use("/survey", route_survey);
 app.use("/question", route_question);
 app.use("/result", route_result);
 app.use("/admin", route_admin);
+
+// ------ For JWT ---------------------------------
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+// [SH] Catch unauthorised errors
+app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+      res.status(401);
+      res.json({"message" : err.name + ": " + err.message});
+    }
+  });
+// ------ For JWT ---------------------------------
 
 app.get("/", (req, res) => {
     res.send("Node Server has been started from the port - " + PORT);

@@ -51,6 +51,10 @@ export class ApiService {
   changePassword(password) {
     return this.httpClient.put(`${this.API_URL}/admin/password`, password);
   }
+
+  login(user) {
+    return this.httpClient.post(`${this.API_URL}/admin/login`,user);
+  }
 }
 
 
