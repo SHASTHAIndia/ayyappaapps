@@ -44,10 +44,10 @@ export class AppComponent {
     resultArr[i]['answer']=frm.value.answer+i;
     
    }
-   resultArr[1]['question']=frm.value.question1;
+  /* resultArr[1]['question']=frm.value.question1;
     resultArr[1]['answer']=frm.value.answer1;
     resultArr[2]['question']=frm.value.question2;
-    resultArr[2]['answer']=frm.value.answer2;
+    resultArr[2]['answer']=frm.value.answer2;*/
     
    //console.log(frm.value.question1);
    console.log(resultArr);
