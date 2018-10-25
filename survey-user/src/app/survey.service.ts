@@ -1,28 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
- 
+
 @Injectable({
   providedIn: 'root'
 })
 export class SurveyService {
 
- 
+
   API_URL = 'http://localhost:3000';
 
   constructor(private httpClient: HttpClient) { }
   getQuestions(sid) {
-    //var sid="5bbdda0d0648272d5c03a82c";
-    return this.httpClient.get(`${this.API_URL}/survey/get_one/`+sid);
+    // var sid="5bbdda0d0648272d5c03a82c";
+    return this.httpClient.get(`${this.API_URL}/survey/get_one/` + sid);
   }
 
   getUsers() {
     return this.httpClient.get(`${this.API_URL}/person/user`);
   }
 
-   
-  focusOutFunction(adhaar,sid){
+  focusOutFunction(adhaar, sid) {
 
-     return this.httpClient.get(`${this.API_URL}/person/user_verify/`+adhaar+`/`+sid);
+     return this.httpClient.get(`${this.API_URL}/person/user_verify/` + adhaar + `/` + sid);
+  }
+  addresponse(sid, adrno, rsset) {
+    return this.httpClient.post(`${this.API_URL}/result/save/` + sid + '/' + adrno, rsset);
   }
 }
