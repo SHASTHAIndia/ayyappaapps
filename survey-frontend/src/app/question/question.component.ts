@@ -51,8 +51,8 @@ export class QuestionComponent implements OnInit {
     this.srname = this.message;
    //  this.getActiveQuestions();
    //  this.getAssignedQuestions();
-     console.log(this.assignedquestions);
-     console.log(this.activequestions);
+    // console.log(this.assignedquestions);
+     //console.log(this.activequestions);
     this.getAvailableQuestions();
   //  console.log(this.assignedquestions);
   //  console.log(this.assignedquestions);
@@ -119,15 +119,15 @@ export class QuestionComponent implements OnInit {
 }
 getAvailableQuestions() {
   this.apiService.getActiveQuestions().subscribe((data: Array<object>) => {
-    console.log(data);
+    //console.log(data);
       this.activequestions = data;
     const id = this.srv['_id'];
     this.apiService.getAssignedQuestions(id).subscribe((acqs: Array<object>) => {
       this.assignedquestions = acqs['questions'];
-      console.log(this.assignedquestions);
-      console.log(this.activequestions);
+      //console.log(this.assignedquestions);
+      //console.log(this.activequestions);
       this.availablequestions = this.activequestions;
-      console.log(this.availablequestions);
+      //console.log(this.availablequestions);
       if (this.assignedquestions != null) {
       for ( let i = 0; i < this.assignedquestions.length; i++) {
 
@@ -137,13 +137,13 @@ getAvailableQuestions() {
            // console.log(this.assignedquestions[j]);
             this.activequestions.splice(j, 1);
           // this.availablequestions.splice(i, 1);
-           console.log(this.availablequestions);
+           //console.log(this.availablequestions);
           }
         }
       }
       }
-      console.log(this.assignedquestions);
-      console.log(this.activequestions);
+     // console.log(this.assignedquestions);
+      //console.log(this.activequestions);
    });
    // console.log(this.activequestions);
   });

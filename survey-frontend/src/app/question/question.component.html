@@ -15,7 +15,7 @@
                <!-- <div *ngFor="let survey of surveys">-->
 
                 <tr *ngFor="let qs of assignedquestions;let i=index">
-                  <td>{{qs['question']}}</td>
+                  <td title="{{qs['answerOptions']}}">{{qs['question']}}</td>
                   <!-- <td><input type="checkbox" name="qs{{i}}" value="{{qs['_id']}}"></td> -->
                   <td><button class='btn btn-danger btn-sm' (click)="deletequestion(qs['_id'])"><i class="fas fa-trash"></i></button></td>
                 </tr>
@@ -44,7 +44,7 @@
            <!-- <div *ngFor="let survey of surveys">-->
 
             <tr *ngFor="let qs of activequestions;let i=index">
-              <td><label for="qs{{i}}">{{qs['question']}}</label></td>
+              <td  title="{{qs['answerOptions']}}"><label for="qs{{i}}">{{qs['question']}}</label></td>
               <!-- <td><input type="checkbox" name="qs{{i}}"   (click)=" addquestion(qs['_id'])" id="qs{{i}}"></td> -->
               <!-- <td><button class="forchecked" type="button" name="qs{{i}}"   (click)=" addquestion(qs['_id'])" id="qs{{i}}">>></button></td> -->
               <td><button class="btn btn-sm forchecked" type="button" name="qs{{i}}"   (click)=" addquestion(qs['_id'])" id="qs{{i}}"><i class="fas fa-arrow-right arrow1"></i></button></td>
