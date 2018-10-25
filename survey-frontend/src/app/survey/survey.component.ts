@@ -9,6 +9,8 @@ import { Observable } from '../../../node_modules/rxjs';
 import { ApiService } from '../api.service';
 import { DataService } from '../data.service';
 import { isoStringToDate } from '../../../node_modules/@angular/common/src/i18n/format_date';
+
+import { AuthenticateService } from '../authenticate.service';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
@@ -39,9 +41,20 @@ export class SurveyComponent implements OnInit {
   constructor(private apiService: ApiService,
     private _router: Router,
     private http: Http,
-    private dataservice: DataService) { }
+    private dataservice: DataService,
+    private auth: AuthenticateService,
+    private router:Router
+    ) { }
 
   ngOnInit() {
+    
+    /* if(!this.auth.isLoggedIn())
+    {
+      alert("Invalid access!!! Please login to continue.");
+      this.router.navigateByUrl('/');
+    } */
+    
+
     this.dataservice.currentMessage.subscribe(message => this.srv = message);
     this.getSurveys();
     // this.surveys = this.http.get(this.url + '/survey/survey');
