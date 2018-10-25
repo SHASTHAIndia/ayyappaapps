@@ -18,15 +18,15 @@ export class ApiService {
     return this.httpClient.get(`${this.API_URL}/question/question`);
   }
 
-getAssignedQuestions(id) {
-  return this.httpClient.get(`${this.API_URL}/survey/get_one/` + id);
-}
-postQuestion( questions ) {
-  return this.httpClient.post(`${this.API_URL}/question/question`, questions);
-}
-updateQuestion( updates ) {
-  return this.httpClient.put(`${this.API_URL}/question/question`, updates);
-}
+  getAssignedQuestions(id) {
+    return this.httpClient.get(`${this.API_URL}/survey/get_one/` + id);
+  }
+  postQuestion(questions) {
+    return this.httpClient.post(`${this.API_URL}/question/question`, questions);
+  }
+  updateQuestion(updates) {
+    return this.httpClient.put(`${this.API_URL}/question/question`, updates);
+  }
   // SREERAG
 
   getUsers() {
@@ -50,6 +50,10 @@ updateQuestion( updates ) {
   }
   changePassword(password) {
     return this.httpClient.put(`${this.API_URL}/admin/password`, password);
+  }
+
+  login(user) {
+    return this.httpClient.post(`${this.API_URL}/admin/login`,user);
   }
 }
 

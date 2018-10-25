@@ -19,20 +19,24 @@ import { LoginComponent } from './login/login.component';
 import { ResponsesComponent } from './responses/responses.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AuthGuardService } from './auth-guard.service';
+import { EqualValidator } from './equal-validator.directive';
+import { AuthenticateService } from './authenticate.service';
 
 const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: '', component: LoginComponent},
   {path: 'survey', component: NavbarComponent,
   children: [
-  {path: 'question', component: QuestionComponent},
-  {path: 'newquestion', component: NewquestionComponent},
-  {path: 'userlist', component: UserListComponent},
-  {path: 'questionlist', component: QuestionlistComponent },
-  {path: 'questionpopup', component: QuestionpopupComponent},
-  {path: 'responses', component: ResponsesComponent},
-  {path: 'surveyList', component: SurveyComponent},
-  {path: 'changepassword', component: ChangepasswordComponent}
+  {path: 'question', component: QuestionComponent,canActivate:[AuthGuardService]},
+  {path: 'newquestion', component: NewquestionComponent,canActivate:[AuthGuardService]},
+  {path: 'userlist', component: UserListComponent,canActivate:[AuthGuardService]},
+  {path: 'questionlist', component: QuestionlistComponent,canActivate:[AuthGuardService] },
+  {path: 'questionpopup', component: QuestionpopupComponent,canActivate:[AuthGuardService]},
+  {path: 'responses', component: ResponsesComponent,canActivate:[AuthGuardService]},
+  {path: 'surveyList', component: SurveyComponent,canActivate:[AuthGuardService]},
+  /* {path: 'surveyList', component: SurveyComponent}, */
+  {path: 'changepassword', component: ChangepasswordComponent,canActivate:[AuthGuardService]}
   ]}
 ];
 
@@ -50,7 +54,8 @@ const routes: Routes = [
     QuestionpopupComponent,
     ResponsesComponent,
     ChangepasswordComponent,
-    NavbarComponent
+    NavbarComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,7 @@ const routes: Routes = [
     HttpClientModule,
     // HttpClient
   ],
-  providers: [SurveyService, QuestionService, DataService],
+  providers: [SurveyService, QuestionService, DataService,AuthenticateService,AuthGuardService],
   bootstrap: [AppComponent],
   schemas: []
 })

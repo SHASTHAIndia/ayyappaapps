@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../data.service';
+import { AuthenticateService } from '../authenticate.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ export class NavbarComponent implements OnInit {
   message: any;
   survName: String;
   title = 'admprof';
-  constructor(private dataservice: DataService) {}
+  constructor(private dataservice: DataService, private auth:AuthenticateService) {}
   ngOnInit() {
   this.dataservice.currentMessage.subscribe(message => this.message = message); }
   receiveMessage($event) {
