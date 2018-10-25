@@ -19,6 +19,8 @@ import { LoginComponent } from './login/login.component';
 import { ResponsesComponent } from './responses/responses.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AuthGuardService } from './auth-guard.service';
+import { EqualValidator } from './equal-validator.directive';
 
 const routes: Routes = [
   {path: 'signup', component: SignupComponent},
@@ -31,6 +33,7 @@ const routes: Routes = [
   {path: 'questionlist', component: QuestionlistComponent },
   {path: 'questionpopup', component: QuestionpopupComponent},
   {path: 'responses', component: ResponsesComponent},
+ /*  {path: 'surveyList', component: SurveyComponent,canActivate:[AuthGuardService]}, */
   {path: 'surveyList', component: SurveyComponent},
   {path: 'changepassword', component: ChangepasswordComponent}
   ]}
@@ -50,7 +53,8 @@ const routes: Routes = [
     QuestionpopupComponent,
     ResponsesComponent,
     ChangepasswordComponent,
-    NavbarComponent
+    NavbarComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,

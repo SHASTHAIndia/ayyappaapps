@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 export class AppComponent {
 
   constructor(private surveyService: SurveyService, private route: Router) { }
-  public sid: any = "5bbdda0d0648272d5c03a82c";
+  //public sid: any = "5bbdda0d0648272d5c03a82c";
+  public sid: any = "5bb7402d6ef3300dbcda9dcb";
   private qns: Array<object> = [];
 
   adhr: Array<object> = [];
@@ -40,8 +41,11 @@ export class AppComponent {
    var resultArr=[];
    for(var i=1;i<=qstnCount;i++)
    {
-    resultArr[i]['question']=frm.value.question+i;
-    resultArr[i]['answer']=frm.value.answer+i;
+   /*  resultArr[i]['question']=frm.value.question+i;
+    resultArr[i]['answer']=frm.value.answer+i; */
+
+    resultArr[i]=frm.value.question1;
+    //resultArr[i]=frm.value.answer+i;
     
    }
   /* resultArr[1]['question']=frm.value.question1;

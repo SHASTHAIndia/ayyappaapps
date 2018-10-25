@@ -11,27 +11,40 @@ import { ApiService } from '../api.service';
   styleUrls: ['./changepassword.component.css']
 })
 export class ChangepasswordComponent implements OnInit {
-
+  n_password: string;
+  c_password: string;
+  submitAttempt: boolean = false;
   constructor(private apiService: ApiService,
     private _router: Router,
     private http: Http) { }
 
   ngOnInit() {
   }
-  submitForm=function(form){
-    console.log("hello")
-    var password=
+  
+  submitForm = function (form) {
+    //console.log("hello")
+    
+    var password =
     {
-      "oldPassword":form.value.oldPassword,
-      "newPassword":form.value.newPassword
+      "oldPassword": form.value.oldPassword,
+      "newPassword": form.value.newPassword,
+      "userName": "admin"
     }
-    console.log(password);
-    this.apiService.changePassword( password ).subscribe(
+    // console.log(password);
+
+    this.apiService.changePassword(password).subscribe((data: Array<object>) => {
+      
+       //console.log(data);
+       alert(data['msg']);
+    });
+  
+
+    /* this.apiService.changePassword( password ).subscribe(
       response => {   
         alert("Password changed successfully!")     
       },
       err => console.log( err )
-    );
+    ); */
   }
 
 }
