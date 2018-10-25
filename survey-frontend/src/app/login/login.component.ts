@@ -5,7 +5,7 @@ import { HttpModule, Http, Response } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { ApiService } from '../api.service';
-//import {TokenPayload} from '../authenticate.service';
+import {AuthenticateService} from '../authenticate.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   }; */
 
   constructor(private apiService: ApiService,
-    private _router: Router,
+    private router: Router, private auth : AuthenticateService,
     private http: Http ) { }
 
   ngOnInit() {
@@ -37,8 +37,10 @@ export class LoginComponent implements OnInit {
     this.apiService.login( user ).subscribe((res) => {
       if(res.status)
       {
-        alert('succ');
-        this.router.navigateByUrl('/surveyList');
+        //alert(res.token);
+        this.auth.saveToken(res.token);
+
+        this.router.navigateByUrl('/survey/surveyList');
       }
       else 
       {

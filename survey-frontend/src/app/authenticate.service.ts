@@ -22,7 +22,7 @@ export interface TokenPayload {
 }
 
 @Injectable()
-export class AuthenticationService {
+export class AuthenticateService {
   private token: string;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -30,17 +30,21 @@ export class AuthenticationService {
   private saveToken(token: string): void {
     localStorage.setItem('mean-token', token);
     this.token = token;
+    //alert("Entered in saveToken(); Token : "+this.token)
   }
 
   private getToken(): string {
     if (!this.token) {
       this.token = localStorage.getItem('mean-token');
     }
+    //alert("Entered in getToken(); Token : "+this.token)
     return this.token;
   }
 
   public getUserDetails(): UserDetails {
     const token = this.getToken();
+   // alert("Entered in getUserDetails(); Token : "+token)
+   
     let payload;
     if (token) {
       payload = token.split('.')[1];

@@ -3,6 +3,8 @@ import { SurveyService } from '../survey.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Survey } from '../models/survey.model';
+import { Observable } from '../../../node_modules/rxjs';
+import {Rsset} from '../models/rsset.model';
 
 @Component({
   selector: 'app-question',
@@ -15,14 +17,14 @@ export class QuestionComponent implements OnInit {
 //public sid: any = "5bbdda0d0648272d5c03a82c";
 //public sid: any = "5bb7402d6ef3300dbcda9dcb";
 private qns: Array<object> = [];
-
+srv:Survey;
 adhr: Array<object> = [];
-srv={};
-question:Array<object>=[];
-answerOptions:Array<object>=[];
-
-adh:Array<object>=[];
-
+question: Array<object> = [];
+answerOptions: Array<object> = [];
+adh: Array<object> = [];
+qslis = [];
+anslis: Array<object> = [];
+rsArr: Rsset[] = [];
 
 //qscnt:any=0;
 
@@ -38,55 +40,69 @@ ngOnInit() {
 }
 
 
-addResult=function(frm){
- // console.log(frm.value)
+addResult = function(frm): Observable<Response> {
+  // console.log(frm.value)
+ const qstnCount = Object.keys(this.question).length;
+  // console.log("sree"+ Object.keys(this.question).length);
+  const resultArr = [];
+   for (let i = 0; i < qstnCount; i++) {
+ //  /*  resultArr[i]['question']=frm.value.question+i;
+ //   resultArr[i]['answer']=frm.value.answer+i; */
+ //   const val = 'frm.value.' + 'question' + (i + 1);
+ //   console.log(this.anslis[i]);
+  //  console.log(this.rsArr);
+  //  resultArr[i] = frm.value.question1;
+//  resultArr[i]['question'] = this.question['question'];
+this.qslis[i] = this.question[i]['question'];
+this.rsArr[i] = {
+  'question': this.qslis[i],
+  'answer': this.anslis[i]
+ };
+// console.log(this.rsArr[i].question); // = this.question[i]['question'];
+ // this.rsArr[i]['answer'] = this.anslis[i];
+ // resultArr[i]=frm.value.answer+i;
 
-var qstnCount = Object.keys(this.question).length;
- //console.log("sree"+ Object.keys(this.question).length);
- var resultArr=[];
- for(var i=1;i<=qstnCount;i++)
- {
- /*  resultArr[i]['question']=frm.value.question+i;
-  resultArr[i]['answer']=frm.value.answer+i; */
+   }
+// const qst1 =  resultArr[1].value;
+console.log(this.rsArr);
+// console.log(this.question);
+console.log(this.anslis);
 
-  resultArr[i]=frm.value.question1;
-  //resultArr[i]=frm.value.answer+i;
-  
- }
-/* resultArr[1]['question']=frm.value.question1;
-  resultArr[1]['answer']=frm.value.answer1;
-  resultArr[2]['question']=frm.value.question2;
-  resultArr[2]['answer']=frm.value.answer2;*/
-  
- //console.log(frm.value.question1);
- console.log(resultArr);
-
-
-  var rslt={
-
-    "userAdhaar":frm.value.Adhar,
-    "userName":frm.value.Name,
-    "userGender":frm.value.gender,
-    "surveyCompletedTS": Date.now,
-    "resultSet":resultArr,
-
-    "txtAnswer":frm.value.qst,
-    "optAnswer":frm.value.qstop,
-    "chkAnswer":frm.value.qstchk,
-    "txtArea":frm.value.qsta,
-    "selectAnswer":frm.value.qstslt,
-  
-
-  
+  // console.log(frm.value.question1);
+//   console.log(resultArr);
 
 
-  }
- // console.log(this.question)
-  //console.log(frm.value)
+   const rslt = {
+
+     'userAdhaar': frm.value.Adhar,
+     'userName': frm.value.Name,
+     'userGender': frm.value.gender,
+     'surveyCompletedTS': Date.now,
+     'resultSet': this.rsArr,
+
+     // "txtAnswer":frm.value.qst,
+     // "optAnswer":frm.value.qstop,
+     // "chkAnswer":frm.value.qstchk,
+     // "txtArea":frm.value.qsta,
+     // "selectAnswer":frm.value.qstslt,
 
 
 
-}
+
+
+   };
+ //  console.log(rslt);
+  // console.log(this.question)
+   // console.log(frm.value)
+this.surveyService.addresponse(this.srv['_id'], rslt['userAdhaar'], rslt).subscribe(res => {
+ alert(res.msg);
+ this.route.navigate(['/']);
+  console.log(res);
+});
+return ;
+
+ };
+
 
 
 
