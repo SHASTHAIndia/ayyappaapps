@@ -13,6 +13,7 @@ import { ApiService } from '../api.service';
 export class ChangepasswordComponent implements OnInit {
   n_password: string;
   c_password: string;
+  p1:string;p2:string;
   submitAttempt: boolean = false;
   constructor(private apiService: ApiService,
     private _router: Router,
@@ -37,8 +38,7 @@ export class ChangepasswordComponent implements OnInit {
        //console.log(data);
        alert(data['msg']);
     });
-  
-
+    
     /* this.apiService.changePassword( password ).subscribe(
       response => {   
         alert("Password changed successfully!")     
@@ -46,5 +46,11 @@ export class ChangepasswordComponent implements OnInit {
       err => console.log( err )
     ); */
   }
-
+  
+  setPassword=function(){
+     this.p1=document.getElementById("new_Password").nodeValue;
+    this.p2=document.getElementById("confirm_password").nodeValue;
+    console.log(this.p1);
+    console.log(this.p2);
+  }
 }
