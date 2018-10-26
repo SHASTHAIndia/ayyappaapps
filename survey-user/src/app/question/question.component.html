@@ -41,7 +41,7 @@
                                             <div class="form-group">
 
                                                 <input type="text" name="Adhar" class="form-control" ngModel required
-                                                    pattern="[0-9]*" maxlength="12" minlength="12" (focusout)="focusOutFunction(frm.value['Adhar'])"
+                                                    pattern="[0-9]*"   maxlength="12" minlength="12" (focusout)="focusOutFunction(frm.value['Adhar'])"
                                                     #adharUser="ngModel" placeholder="Enter your 12-digit Adhar number">
                                             </div>
                                             <div *ngIf="adharUser.touched">
@@ -52,12 +52,12 @@
                                                     class="alert alert-danger">
                                                     Adhar number is invalid!
                                                 </div>
-
-                                                <!--  <div *ngIf="adhr['survey_attended']==true" class="alert alert-danger">
+                                               
+                                                <div *ngIf="adhr['survey_attended']==true" class="alert alert-danger">
                                                          User Already Attended the Survey!
-                                                        </div> -->
+                                                        </div>
 
-                                            </div>
+                                                      </div>
 
 
 
@@ -228,13 +228,13 @@
                                                 <div class="form-group">
 
                                                     <input type="checkbox" name="isTCAccepted" [ngModel]="frm.isTCAccepted"
-                                                        required #tc="ngModel"> {{srv['surveyMessage']}}
+                                                        required #tc="ngModel"> {{srv['surveyDeclaration']}}
                                                    
                                                     <div *ngIf="tc.invalid">
 
                                                     </div>
                                                     <div class="next"><br><br>
-                                                        <button type="submit" class="btn btn-primary" [disabled]="frm.invalid">SUBMIT</button>
+                                                        <button type="submit" class="btn btn-primary" [disabled]="frm.invalid||focusOutFunction(adhaar)">SUBMIT</button>
 
                                                     </div>
                                                 </div>

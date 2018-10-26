@@ -35,7 +35,7 @@ ngOnInit() {
   this.surveyService.currentMessage.subscribe(message => this.srv = message);
   this.getQuestions(this.srv['_id']);
   
-  console.log(this.srv)
+ // console.log(this.srv)
 
 }
 
@@ -146,7 +146,7 @@ this.surveyService.focusOutFunction(adhaar,this.srv['_id']).subscribe((data:Arra
     alert('User already attended the survey');
   }
  
-   // console.log(this.adhr)
+   console.log(this.adhr)
 
 });
 
