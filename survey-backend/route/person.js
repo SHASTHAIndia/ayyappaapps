@@ -17,15 +17,15 @@ router.get("/test_route", (req, res) => {
     }).catch(err => {  res.send(err); }); */
 
     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-    var baseUrl = req.protocol + '://' + req.get('host') ;
+    var baseUrl = req.protocol + '://' + req.get('host');
 
     //res.send(baseUrl);
 
-    request(baseUrl+'/person/user_verify/244515861487/5bb7402d6ef3300dbcda9dcb', function (error, response, body) {
+    request(baseUrl + '/person/user_verify/244515861487/5bb7402d6ef3300dbcda9dcb', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             //console.log(body) // Print the google web page.
-           // JSON.parse(response.body)
-           var resultApi = JSON.parse(response.body);
+            // JSON.parse(response.body)
+            var resultApi = JSON.parse(response.body);
             //res.json(resultApi.user_details._id);
             res.json(resultApi);
         }
@@ -152,17 +152,7 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
 
                 }
                 else {
-                    if (query_data) {
-                        result = {
-                            "status": true,
-                            "msg": "Success",
-                            "user_exists": true,
-                            "survey_attended": true,
-                            "user_details": user
-                        };
-                        res.json(result);
-                    }
-                    else {
+                    if (query_data === undefined || query_data.length == 0) {
                         result = {
                             "status": true,
                             "msg": "Success",
@@ -170,6 +160,21 @@ router.get("/user_verify/:adhaar/:survey_id", (req, res, next) => {
                             "survey_attended": false,
                             "user_details": user
                         };
+                        res.json(result);
+                    }
+                    else {
+                        /* result = {
+                            "msg":'data'+ query_data,
+                           };
+                 res.json(result); */
+                        result = {
+                            "status": true,
+                            "msg": "Success",
+                            "user_exists": true,
+                            "survey_attended": true,
+                            "user_details": user
+                        };
+
                         res.json(result);
                     }
 

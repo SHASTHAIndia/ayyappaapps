@@ -1,4 +1,61 @@
-.next{
-    text-align: center;
-    margin-right: 20px;
-}
+textarea{
+    height:10em
+  }
+  .lightweight{
+    font-weight: 100
+  }
+  .survey-edit{
+    margin-left:5px
+  }
+  .forstatus{
+    margin-left:5px
+  }
+  .survey-response{
+    margin-left:5px
+  }
+  .flo{
+    float: right
+  }
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+    height: 0.05em;
+  }
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+  }
+  
+  }
+  
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }
+  button.mystyle {
+    width:94px;
+  }
+  thead{
+    background-color: #9aa0a0;
+    color:black;
+    font-weight: bold;
+  }
+  tbody{
+    background-color: #ebf2fa;
+  }
+  .jumbotron{
+    padding:2rem 2rem;
+  }
+  

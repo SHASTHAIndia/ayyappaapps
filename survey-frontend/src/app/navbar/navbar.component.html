@@ -22,7 +22,7 @@
         <a class="dropdown-item" routerLink="#">Activity Log</a> -->
         <a class="dropdown-item" routerLink="/survey/changepassword">Change Password</a>
         <div class="dropdown-divider"></div>
-       <label *ngIf="auth.isLoggedIn()"><a class="dropdown-item" (click)="auth.logout()">Logout</a> </label>
+       <a *ngIf="auth.isLoggedIn()" class="dropdown-item" (click)="auth.logout()">Logout</a> 
         
         
       </div>
