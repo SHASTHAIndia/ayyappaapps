@@ -12,7 +12,7 @@ const resultSchema = new Schema({
         require: [true, 'Name is required']
     },
     userAdhaar: {
-        type: "number",
+        type: "string",
         require: [true, 'Name is required']
     },
     surveyId: {
