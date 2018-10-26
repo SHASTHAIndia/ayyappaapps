@@ -1,18 +1,30 @@
-          <div class="container" >
-              <div class="col-md-9" >
-              <div class="jumbotron">
-                <form class="form-horizontal" >     
-                    <div class="form-group" >
-                       
-                            <input type="checkbox" checked>  here by i declared that the survey done by myself with my perception
-                        <div class="next"><br><br>
-                                <button class="btn btn-primary" (click)="addUser(frm)">SUBMIT</button>
-                
-                          </div>
-                    </div>
-                                
-                  </form>
+<div class="container">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th>sl.no</th>
+                    <th>Survey Name</th>
+                    <th>Details</th>
+                    <th>Expiry Date</th>
+      
+                    <th>Action</th>
+                </tr>
+              </thead>
+      
+              <tbody>
+                 <!-- <div *ngFor="let survey of surveys">-->
+                  <tr *ngFor="let survey of surveys;let i = index ">
+                    <td>{{i+1}}</td>
+                    <td>{{survey['surveyName']}}</td>
+                    <td>{{survey['surveyMessage']}}</td>
+                    <td>{{survey['expiryDate']}}</td>
+                    <td><a routerLink='/question'><button class="btn btn-primary" (click)="sendMessage(survey)"> ATTEND SURVEY</button></a>
+                    </td>
+                   
+                  </tr></tbody>
+      
+                </table>
+               
               </div>
-          </div>
-          </div>
-        
+            </div>

@@ -30,7 +30,12 @@ export class ResponsesComponent implements OnInit {
   }
   public getResponses(id) {
    this.apiService.getresponses(id).subscribe(resp => {
-     this.respons = resp;
+    this.respons = resp;
+     for (let i = 0; i < this.respons.length; i++) {
+       if (this.respons[i]['surveyCompletedTS'] != null) {
+         this.respons[i]['surveyCompletedTS'] = this.respons[i]['surveyCompletedTS'].substring(0, 10);
+       }
+     }
      console.log(this.respons);
    });
   }

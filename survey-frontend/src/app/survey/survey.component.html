@@ -52,7 +52,7 @@
       <div class="modal-body">
         <form class="form-group" role="form" #frm  (ngSubmit)="addsurvey(frm)">
             <label for="surveyName" #surveyName><strong> Title:</strong></label><br>
-            <input type="text"  class="form-control" name="surveyName" id="surveyName" required #surveyName=ngModel ngModel require><br>
+            <input type="text"  class="form-control" name="surveyName" id="surveyName"  ngModel #surveyName="ngModel"  required><br>
             <div *ngIf="surveyName.touched">
               <div  *ngIf="surveyName.errors?.required" class="alert alert-danger">
                   Survey title is required
