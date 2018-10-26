@@ -57,8 +57,8 @@ export class QuestionComponent implements OnInit {
      //alert(this.srv_id);
     
 
-  this.surveyService.currentMessage.subscribe(message => this.srv = message);
-  this.getQuestions(this.srv['_id']);
+  /* this.surveyService.currentMessage.subscribe(message => this.srv = message);
+  this.getQuestions(this.srv['_id']); */
   
  // console.log(this.srv)
 
