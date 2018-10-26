@@ -43,17 +43,16 @@ export class SurveyComponent implements OnInit {
     private http: Http,
     private dataservice: DataService,
     private auth: AuthenticateService,
-    private router:Router
+    private router: Router
     ) { }
 
   ngOnInit() {
-    
-    /* if(!this.auth.isLoggedIn())
-    {
+     /* if(!this.auth.isLoggedIn())
+  {
       alert("Invalid access!!! Please login to continue.");
       this.router.navigateByUrl('/');
     } */
-    
+
 
     this.dataservice.currentMessage.subscribe(message => this.srv = message);
     this.getSurveys();

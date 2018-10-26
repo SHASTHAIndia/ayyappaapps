@@ -53,7 +53,7 @@ export class ApiService {
   }
 
   login(user) {
-    return this.httpClient.post(`${this.API_URL}/admin/login`,user);
+    return this.httpClient.post(`${this.API_URL}/admin/login`, user);
   }
 }
 
