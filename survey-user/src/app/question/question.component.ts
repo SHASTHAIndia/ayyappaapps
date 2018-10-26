@@ -28,7 +28,8 @@ export class QuestionComponent implements OnInit {
   //public sid: any = "5bb7402d6ef3300dbcda9dcb";
   private qns: Array<object> = [];
   //srv: Survey;
-  srv:Array<object>= [];
+  //srv:Array<object>= [];
+  srv=[];
   adhr: Array<object> = [];
   question: Array<object> = [];
   answerOptions: Array<object> = [];
@@ -42,13 +43,11 @@ export class QuestionComponent implements OnInit {
 
 
   ngOnInit() {
-    this.surveyService.getQuestions(this.srv_id).subscribe((data: Array<object>) => {
+    /* this.surveyService.getQuestions(this.srv_id).subscribe((data: Array<object>) => {
      // this.srv = JSON.parse(data);
       this.srv=  data;
-      
-     
-       //console.log(this.srv);
-    });
+      // console.log(this.srv);
+    }); */
   
     
    // this.surveyService.currentMessage.subscribe(message => this.srv = message);
@@ -62,7 +61,7 @@ export class QuestionComponent implements OnInit {
   
  // console.log(this.srv)
 
-    console.log(this.srv)
+   
 
   }
 
@@ -91,9 +90,9 @@ export class QuestionComponent implements OnInit {
 
     }
     // const qst1 =  resultArr[1].value;
-    console.log(this.rsArr);
+   // console.log(this.rsArr);
     // console.log(this.question);
-    console.log(this.anslis);
+   // console.log(this.anslis);
 
     // console.log(frm.value.question1);
     //   console.log(resultArr);
@@ -123,6 +122,7 @@ export class QuestionComponent implements OnInit {
     // console.log(frm.value)
     this.surveyService.addresponse(this.srv_id , rslt['userAdhaar'], rslt).subscribe(res => {
     //this.surveyService.addresponse(this.srv['_id'], rslt['userAdhaar'], rslt).subscribe(res => {
+      //alert(res);
       alert(res.msg);
       this.route.navigate(['/']);
       //console.log(res);
@@ -135,8 +135,11 @@ export class QuestionComponent implements OnInit {
 
 
   public getQuestions(sid) {
+    //alert(sid);
     this.surveyService.getQuestions(sid).subscribe((data: Array<object>) => {
-
+      
+      this.srv = data;
+      //console.log(this.srv)
       this.qns = data['questions'];
       for (var key in this.qns) {
         this.question.push(this.qns[key]);
@@ -164,13 +167,13 @@ export class QuestionComponent implements OnInit {
 
 
   public focusOutFunction(adhaar) {
-     //alert(this.srv_id);
+    // alert(adhaar);
     //console.log(adhaar);
     //this.surveyService.focusOutFunction(adhaar,this.srv['_id']).subscribe((data:Array<object>)=>
     this.surveyService.focusOutFunction(adhaar, this.srv_id).subscribe((data: Array<object>) => {
 
       this.adhr = data;
-alert(this.adhr['msg']);
+//alert(this.adhr['msg']);
       if (this.adhr['survey_attended'] == true) {
         alert('User already attended the survey');
 
