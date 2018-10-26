@@ -157,13 +157,13 @@ export class QuestionComponent implements OnInit {
 
 
   public focusOutFunction(adhaar) {
-    // alert(this.srv['_id']);
+     //alert(this.srv_id);
     //console.log(adhaar);
     //this.surveyService.focusOutFunction(adhaar,this.srv['_id']).subscribe((data:Array<object>)=>
     this.surveyService.focusOutFunction(adhaar, this.srv_id).subscribe((data: Array<object>) => {
 
       this.adhr = data;
-//alert(this.adhr['msg']);
+alert(this.adhr['msg']);
       if (this.adhr['survey_attended'] == true) {
         alert('User already attended the survey');
 
