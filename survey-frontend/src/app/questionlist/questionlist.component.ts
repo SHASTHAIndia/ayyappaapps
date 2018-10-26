@@ -12,9 +12,9 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./questionlist.component.css']
 })
 export class QuestionlistComponent implements OnInit {
-  
-  loadComponent:boolean;
-  editQuestion:any;
+
+  loadComponent: boolean;
+  editQuestion: any;
   readonly readUrl = 'http://localhost:3000';
   @Output() messageEvent = new EventEmitter();
   private questions: Array<object> = [];
@@ -25,7 +25,7 @@ export class QuestionlistComponent implements OnInit {
     private http: Http) { }
   id: number
   ngOnInit() {
-    
+
     this.getQuestions();
   }
   public getQuestions() {
@@ -39,15 +39,17 @@ export class QuestionlistComponent implements OnInit {
     window.location.reload();
   }
   public deleteQues(_id) {
-    var response={
-      "status":"",
-      "msg":""
+    var response = {
+      "status": "",
+      "msg": ""
     }
     if (confirm('Are you sure you want to delete this question?')) {
-      this.apiService.deleteQuestion(_id).subscribe((option: {"status",
-      "msg"}) => {
-        if(option.status=="success")
-        alert(option.msg);
+      this.apiService.deleteQuestion(_id).subscribe((option: {
+        "status",
+        "msg"
+      }) => {
+        if (option.status == "success")
+          alert(option.msg);
         this.getQuestions();
       });
     }
@@ -122,26 +124,26 @@ export class QuestionlistComponent implements OnInit {
     form.options.splice(index, 1);
 
   };
-   ed=function(ques){
-    this.editQuestion=ques;
-    
+  ed = function (ques) {
+    this.editQuestion = ques;
+
     this.loadComponent = true;
-    
+
     //console.log('_id');
     console.log(ques);
     console.log(ques.answerOptions);
-   document.getElementById('quest').style.display='none';
-     document.getElementById('editpopup').style.display='block';
-     
-   
+    document.getElementById('quest').style.display = 'none';
+    document.getElementById('editpopup').style.display = 'block';
+
+
     //  this.apiService.editQuestion(ques['_id']).subscribe((data: Array<object>) => {
     //   this.questions=data;
     //   console.log(this.questions);
-      // let arr=this.questions.toString();
-      // console.log(arr);
-      
-      
-  //});
+    // let arr=this.questions.toString();
+    // console.log(arr);
+
+
+    //});
   }
 
   updateQues = function (form) {

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../survey.service';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { Survey } from '../models/survey.model';
 import { Observable } from '../../../node_modules/rxjs';
 import { Rsset } from '../models/rsset.model';
+
 
 @Component({
   selector: 'app-question',
@@ -13,11 +14,21 @@ import { Rsset } from '../models/rsset.model';
 })
 
 export class QuestionComponent implements OnInit {
-  constructor(private surveyService: SurveyService, private route: Router) { }
+   srv_id =0;
+  constructor(private surveyService: SurveyService, private route: Router,private act_route: ActivatedRoute) {
+    //this.act_route.params.subscribe( params => console.log(params['id']) );
+
+    this.act_route.params.subscribe(params => {
+     // console.log(params);
+      this.srv_id = params['id'];
+    });
+    
+   }
   //public sid: any = "5bbdda0d0648272d5c03a82c";
   //public sid: any = "5bb7402d6ef3300dbcda9dcb";
   private qns: Array<object> = [];
-  srv: Survey;
+  //srv: Survey;
+  srv:Array<object>= [];
   adhr: Array<object> = [];
   question: Array<object> = [];
   answerOptions: Array<object> = [];
@@ -31,9 +42,25 @@ export class QuestionComponent implements OnInit {
 
 
   ngOnInit() {
+    this.surveyService.getQuestions(this.srv_id).subscribe((data: Array<object>) => {
+     // this.srv = JSON.parse(data);
+      this.srv=  data;
+      
+     
+       //console.log(this.srv);
+    });
+  
+    
+   // this.surveyService.currentMessage.subscribe(message => this.srv = message);
+    //this.getQuestions(this.srv['_id']);
+    this.getQuestions(this.srv_id);
+     //alert(this.srv_id);
+    
 
-    this.surveyService.currentMessage.subscribe(message => this.srv = message);
-    this.getQuestions(this.srv['_id']);
+  /* this.surveyService.currentMessage.subscribe(message => this.srv = message);
+  this.getQuestions(this.srv['_id']); */
+  
+ // console.log(this.srv)
 
     console.log(this.srv)
 
@@ -94,7 +121,8 @@ export class QuestionComponent implements OnInit {
     //  console.log(rslt);
     // console.log(this.question)
     // console.log(frm.value)
-    this.surveyService.addresponse(this.srv['_id'], rslt['userAdhaar'], rslt).subscribe(res => {
+    this.surveyService.addresponse(this.srv_id , rslt['userAdhaar'], rslt).subscribe(res => {
+    //this.surveyService.addresponse(this.srv['_id'], rslt['userAdhaar'], rslt).subscribe(res => {
       alert(res.msg);
       this.route.navigate(['/']);
       //console.log(res);
@@ -136,13 +164,13 @@ export class QuestionComponent implements OnInit {
 
 
   public focusOutFunction(adhaar) {
-    // alert(this.srv['_id']);
+     //alert(this.srv_id);
     //console.log(adhaar);
     //this.surveyService.focusOutFunction(adhaar,this.srv['_id']).subscribe((data:Array<object>)=>
-    this.surveyService.focusOutFunction(adhaar, this.srv['_id']).subscribe((data: Array<object>) => {
+    this.surveyService.focusOutFunction(adhaar, this.srv_id).subscribe((data: Array<object>) => {
 
       this.adhr = data;
-//alert(this.adhr['msg']);
+alert(this.adhr['msg']);
       if (this.adhr['survey_attended'] == true) {
         alert('User already attended the survey');
 
