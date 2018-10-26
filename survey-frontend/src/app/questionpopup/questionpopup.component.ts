@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { QuestionlistComponent } from '../questionlist/questionlist.component';
 import { Router } from '@angular/router';
 import {Location} from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-questionpopup',
@@ -85,7 +86,7 @@ removeChoices = function(form, index) {
       form.options.splice(index, 1);
 
   };
-  updateQues = function (form) {
+  updateQues = function (form): Observable<Response> {
     var arr = [];
     var optionLength = document.getElementsByClassName('option').length;
     for (var i = 0; i < optionLength; i++)
@@ -103,13 +104,14 @@ removeChoices = function(form, index) {
 
     }
     console.log(updates);    
-    this.apiService.updateQuestion(updates).subscribe(
-      response => {        
-        (alert('updated.'));
+    this.apiService.updateQuestion(this.question._id,updates).subscribe(response => {  
+        console.log(response);      
+        alert('updated.');
         this._location.back();
       },
       err => console.log(err)
     );
+    return ;
   };
   }
 

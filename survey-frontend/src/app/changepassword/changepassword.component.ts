@@ -48,8 +48,8 @@ export class ChangepasswordComponent implements OnInit {
   }
   
   setPassword=function(){
-     this.p1=document.getElementById("new_Password").nodeValue;
-    this.p2=document.getElementById("confirm_password").nodeValue;
+     this.p1=(document.getElementById("new_Password") as HTMLInputElement).value;
+     this.p2=(document.getElementById("confirm_password") as HTMLInputElement).value;
     console.log(this.p1);
     console.log(this.p2);
   }
