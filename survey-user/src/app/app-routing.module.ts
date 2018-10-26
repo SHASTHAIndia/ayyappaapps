@@ -5,6 +5,7 @@ import { ViewComponent } from './view/view.component';
 import {RouterModule,Routes} from '@angular/router';
 const routes:Routes=[
   {path:'question',component:QuestionComponent},
+  {path:'question/:id',component:QuestionComponent},
   {path:'',component:ViewComponent}
 ]
 

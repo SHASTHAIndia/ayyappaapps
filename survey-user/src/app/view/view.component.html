@@ -19,7 +19,7 @@
                     <td>{{survey['surveyName']}}</td>
                     <td>{{survey['surveyMessage']}}</td>
                     <td>{{survey['expiryDate']}}</td>
-                    <td><a routerLink='/question'><button class="btn btn-primary" (click)="sendMessage(survey)"> ATTEND SURVEY</button></a>
+                    <td><a routerLink="/question/{{survey['_id']}}" ><button class="btn btn-primary" (click)="sendMessage(survey)"> ATTEND SURVEY</button></a>
                     </td>
                    
                   </tr></tbody>

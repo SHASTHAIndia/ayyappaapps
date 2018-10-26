@@ -38,6 +38,7 @@ export class SurveyService {
     return this.httpClient.get(`${this.API_URL}/survey/active_only`);
 
   }
+  
   addresponse(sid, adrno, rsset) {
     return this.httpClient.post(`${this.API_URL}/result/save/` + sid + '/' + adrno, rsset);
   }
