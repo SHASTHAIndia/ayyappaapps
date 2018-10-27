@@ -240,8 +240,8 @@
                                                             <div *ngIf="survey.questionMandatory=='YES'">
                                                                 
                                                     
-                                                            
-                                                        <select class="form-control" name="answer{{i+1}}" ngModel #answerSLT="ngModel" required>
+                                                              
+                                                        <select class="form-control" name="answer{{i+1}}" ngModel #answerSLT="ngModel" [(ngModel)]="anslis[i]" required>
 
 
                                                             <option value="{{ans}}" *ngFor="let ans of survey.answerOptions">{{ans}}</option>
@@ -255,7 +255,7 @@
 
                                                                 <div *ngIf="survey.questionMandatory=='NO'">
                                                                        
-                                                                        <select class="form-control" name="answer{{i+1}}" ngModel #answerSLT="ngModel">
+                                                                        <select class="form-control" name="answer{{i+1}}" ngModel [(ngModel)]="anslis[i]"  #answerSLT="ngModel">
 
 
                                                                                 <option value="{{ans}}" *ngFor="let ans of survey.answerOptions">{{ans}}</option>
