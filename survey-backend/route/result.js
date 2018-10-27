@@ -43,6 +43,13 @@ router.post("/save/:surveyId/:adhaarNo", (req, res, next) => {
         "msg": ""
     };
 
+
+   /*  rsltarr = {
+        "status": false,
+        "msg": req.params.adhaarNo
+    };
+    res.json(resultArr); */
+
     request(baseUrl + '/person/user_verify/' + req.params.adhaarNo + '/' + req.params.surveyId, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             //console.log(body) // Print the google web page.
@@ -51,71 +58,94 @@ router.post("/save/:surveyId/:adhaarNo", (req, res, next) => {
 
             if (resultApi.user_exists) { // User exists
 
-                Person.find({ "userAdhaar": req.params.adhaarNo }, function (err, query_data) {
+               
+                Person.findOne({ "userAdhaar": req.params.adhaarNo }, function (err, query_data) {
                     if (err) {
                         resultArr = {
                             "status": false,
                             "msg": err.message
                         };
                         res.json(resultArr);
-            
+                        return;
+
                     }
                     else {
-            
-                        //res.json(query_data._id); 
 
-                        Person.update({ userAdhaar: req.params.adhaarNo }, {
-                            $set: {
-                                userName: req.body.userName,
-                                userGender: req.body.userGender,
-        
-                            }
-                        },
-                            function (err, responseArr) {
-                                if (err) {
-                                    rsltarr = {
-                                        "status": false,
-                                        "msg": err.message
-                                    };
-                                    res.json(rsltarr);
+                       
+
+                        if (query_data === null || query_data === undefined || query_data.length == 0) {
+                            rsltarr = {
+                                "status": false,
+                                "msg": "No user found"
+                            };
+                            res.json(rsltarr);
+                            return;
+                        }
+                        else {
+                           
+
+                           // res.json(query_data._id);
+
+                            Person.update({ userAdhaar: req.params.adhaarNo }, {
+                                $set: {
+                                    userName: req.body.userName,
+                                    userGender: req.body.userGender,
+
                                 }
-                                else { // user updated 
-                                   
-                                    let newEntry = new Result({
-                                        personId: query_data._id,
-                                        userName: req.body.userName,
-                                        userAdhaar: req.body.userAdhaar,
-                                        surveyId: req.params.surveyId,
-                                        surveyCompletedTS: dateToday,
-                                        resultSet: req.body.resultSet
-            
-                                    });
-                                    newEntry.save((err, user) => {
-                                        if (err) {
-                                            rsltarr = {
-                                                "status": false,
-                                                "msg": err.message
-                                            };
-                                            res.json(rsltarr);
-            
-                                        }
-                                        else {
-                                            rsltarr = {
-                                                "status": true,
-                                                "msg": "Survey saved success fullly!!"
-                                            };
-                                            res.json(rsltarr);
-            
-                                        }
-                                    });
-                                    
+                            },
+                                function (err, responseArr) {
+                                    if (err) {
+                                        rsltarr = {
+                                            "status": false,
+                                            "msg": err.message
+                                        };
+                                        res.json(rsltarr);
+                                        return;
+                                    }
+                                    else { // user updated 
+
+                                        let newEntry = new Result({
+                                            personId: query_data._id,
+                                            userName: req.body.userName,
+                                            userAdhaar: req.body.userAdhaar,
+                                            surveyId: req.params.surveyId,
+                                            surveyCompletedTS: dateToday,
+                                            resultSet: req.body.resultSet
+
+                                        });
+                                        newEntry.save((err, user) => {
+                                            if (err) {
+                                                rsltarr = {
+                                                    "status": false,
+                                                    "msg": err.message
+                                                };
+                                                res.json(rsltarr);
+                                                return;
+
+                                            }
+                                            else {
+                                                rsltarr = {
+                                                    "status": true,
+                                                    "msg": "Survey saved success fullly!!"
+                                                };
+                                                res.json(rsltarr);
+                                                return;
+
+                                            }
+                                        });
+
+                                    }
                                 }
-                            }
-                        );
+                            );
+
+                        }
+
+
+
                     }
                 });
 
-               
+
             }
             else // new user
             {
@@ -132,6 +162,7 @@ router.post("/save/:surveyId/:adhaarNo", (req, res, next) => {
                             "msg": err.message
                         };
                         res.json(rsltarr);
+                        return;
                     }
                     else {
 
@@ -152,6 +183,7 @@ router.post("/save/:surveyId/:adhaarNo", (req, res, next) => {
                                     "msg": err.message
                                 };
                                 res.json(rsltarr);
+                                return;
 
                             }
                             else {
@@ -160,6 +192,7 @@ router.post("/save/:surveyId/:adhaarNo", (req, res, next) => {
                                     "msg": "Survey saved success fullly!!"
                                 };
                                 res.json(rsltarr);
+                                return;
 
                             }
                         });
@@ -176,6 +209,7 @@ router.post("/save/:surveyId/:adhaarNo", (req, res, next) => {
                 "msg": error.message
             };
             res.json(rsltarr);
+            return;
         }
     })
 

@@ -41,7 +41,7 @@
                                             <div class="form-group">
 
                                                 <input type="text" name="Adhar" class="form-control" ngModel required
-                                                    pattern="[0-9]*" maxlength="12" minlength="12" (focusout)="focusOutFunction(frm.value['Adhar'])"
+                                                    pattern="[0-9]*"   maxlength="12" minlength="12" (focusout)="focusOutFunction(frm.value['Adhar'])"
                                                     #adharUser="ngModel" placeholder="Enter your 12-digit Adhar number">
                                             </div>
                                             <div *ngIf="adharUser.touched">
@@ -52,12 +52,12 @@
                                                     class="alert alert-danger">
                                                     Adhar number is invalid!
                                                 </div>
-
-                                                <!--  <div *ngIf="adhr['survey_attended']==true" class="alert alert-danger">
+                                               
+                                                <div *ngIf="adhr['survey_attended']==true" class="alert alert-danger">
                                                          User Already Attended the Survey!
-                                                        </div> -->
+                                                        </div>
 
-                                            </div>
+                                                      </div>
 
 
 
@@ -82,12 +82,12 @@
 
 
                                                 <span class="required">*</span> <label for="Gender"> Gender: </label>
-                                                <br><input type="radio" name="gender" id="gender" value="MALE" (change)="handleChange($event)"
+                                                <br><input type="radio" name="gender" id="gender" value="MALE" 
                                                     ngModel checked>
                                                 Male <input type="radio" name="gender" id="gender" value="FEMALE"
-                                                    (change)="handleChange($event)" ngModel> Female
+                                                    ngModel> Female
 
-                                                <input type="radio" name="gender" id="gender" value="OTHER" (change)="handleChange($event);"
+                                                <input type="radio" name="gender" id="gender" value="OTHER" 
                                                     ngModel> Other
                                             </div>
 
@@ -137,24 +137,94 @@
 
 
 
-                                                    <div *ngIf="survey['questionType']=='TXT'" cl ass="form-group">
+                                                    <div *ngIf="survey['questionType']=='TXT'" class="form-group">
+                                                
+                                                          
+                                                         
+                                                            <div *ngIf="survey.questionMandatory=='YES'">
+                                                                    <input type="text" name="answer{{i+1}}" id="answer{{i+1}}"
+                                                                    class="form-control" placeholder=" Type your answer"
+                                                                    ngModel [(ngModel)]="anslis[i]" #answer="ngModel" required>
+                                                                
+                                                                
+                                                            <div *ngIf="answer.errors?.required" class="alert alert-danger">
+                                                                Answer is mandatory!
+                                                                    </div>
+                                                                </div>
+                                                            
 
-                                                        <input type="text" name="answer{{i+1}}" id="answer{{i+1}}"
-                                                            class="form-control" placeholder=" Type your answer"
-                                                            ngModel [(ngModel)]="anslis[i]">
-                                                    </div>
+
+                                                                
+                                                            <div *ngIf="survey.questionMandatory=='NO'">
+                                                                    <input type="text" name="answer{{i+1}}" id="answer{{i+1}}"
+                                                                    class="form-control" placeholder=" Type your answer"
+                                                                    ngModel [(ngModel)]="anslis[i]" #answer="ngModel">
+                                                                
+                                                            
+                                                                </div>
+                                                            </div>
+                                                              
+
+                                                            
+                  
+
+
+                                                                    
+                                                                    
+                                                                   
+                                                                    
+                                                                    
+                    
+                                                    
 
                                                     <div *ngIf="survey['questionType']=='TXTA'" class="form-group">
+                                                            <div *ngIf="survey.questionMandatory=='YES'">
                                                         <textarea class="form-control" name="answer{{i+1}}" id="answer{{i+1}}"
-                                                            rows="5" ngModel [(ngModel)]="anslis[i]"></textarea>
-                                                    </div>
+                                                            rows="5" ngModel [(ngModel)]="anslis[i]" #answerTXTA="ngModel" required></textarea>
+                                                            <div *ngIf="answerTXTA.errors?.required" class="alert alert-danger">
+                                                                    Answer is mandatory!
+                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngIf="survey.questionMandatory=='NO'">
+                                                                            <textarea class="form-control" name="answer{{i+1}}" id="answer{{i+1}}"
+                                                                            rows="5" ngModel [(ngModel)]="anslis[i]" #answerTXTA="ngModel" ></textarea>
+                                                                           
+                                                                        
+                                                                    
+                                                                        </div>
+                                                                    </div>
+                                                   
+                                                   
+                                                   
+                                                   
                                                     <div *ngIf="survey['questionType']=='OPT'">
+                                                          
+                                                      
+                                                            <label class="radio-inline" *ngFor="let ans of survey.answerOptions">
+                                                                    <div *ngIf="survey.questionMandatory=='NO'">
+                                                                <input type="radio" name="answer{{i+1}}" id="answer{{i+1}}"
+                                                               value="{{ans}}" ngModel [(ngModel)]="anslis[i]">&nbsp;&nbsp;{{ans}}
+                                                                   
+                                                                            </div>
+                                                                </label>
+                                                      
                                                         <label class="radio-inline" *ngFor="let ans of survey.answerOptions">
+                                                                <div *ngIf="survey.questionMandatory=='YES'">
                                                             <input type="radio" name="answer{{i+1}}" id="answer{{i+1}}"
-                                                                value="{{ans}}" ngModel [(ngModel)]="anslis[i]">&nbsp;&nbsp;{{ans}}
-                                                        </label>
+                                                                value="{{ans}}" ngModel [(ngModel)]="anslis[i]"  #answerOPT="ngModel" required  >&nbsp;&nbsp;{{ans}}
+                                                                <div *ngIf="answerOPT.errors?.required" class="alert alert-danger">
+                                                                        Answer is mandatory!
+                                                                            </div>
+                                                                        </div>
+                                                            </label>
+
+
                                                     </div>
 
+                                                   
+                                                   
+                                                   
+                                                   
                                                     <div *ngIf="survey['questionType']=='CHK'">
                                                         <label class="checkbox-inline" *ngFor="let ans of survey.answerOptions;let j=index">
                                                             <input type="checkbox" name="answer{{i+1}}{{j}}" value="{{ans}}"
@@ -163,13 +233,37 @@
 
                                                     </div>
 
+                                                  
+                                                   
+                                                   
                                                     <div *ngIf="survey['questionType']=='SLT'" class="col-md-4">
-                                                        <select class="form-control" name="answer{{i+1}}" ngModel  [(ngModel)]="anslis[i]">
-
+                                                           <div *ngIf="survey.questionMandatory=='YES'">
+                                                                
+                                                    
+                                                            
+<select class="form-control" name="answer{{i+1}}" ngModel  [(ngModel)]="anslis[i]">
+                                                         
 
                                                             <option value="{{ans}}" *ngFor="let ans of survey.answerOptions">{{ans}}</option>
 
                                                         </select>
+                                                 
+                                                        <div *ngIf="answerSLT.errors?.required" class="alert alert-danger">
+                                                                Answer is mandatory!
+                                                                    </div>
+                                                                </div>
+
+                                                                <div *ngIf="survey.questionMandatory=='NO'">
+                                                                       
+                                                                        <select class="form-control" name="answer{{i+1}}" ngModel #answerSLT="ngModel">
+
+
+                                                                                <option value="{{ans}}" *ngFor="let ans of survey.answerOptions">{{ans}}</option>
+                    
+                                                                            </select>
+                                                                    
+                                                                
+                                                                    </div>
 
 
 
@@ -228,7 +322,7 @@
                                                 <div class="form-group">
 
                                                     <input type="checkbox" name="isTCAccepted" [ngModel]="frm.isTCAccepted"
-                                                        required #tc="ngModel"> {{srv['surveyMessage']}}
+                                                        required #tc="ngModel"> {{srv['surveyDeclaration']}}
 
                                                     <div *ngIf="tc.invalid">
 
