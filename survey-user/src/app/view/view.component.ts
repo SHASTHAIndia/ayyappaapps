@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./view.component.css'],
 })
 export class ViewComponent implements OnInit {
-  
- 
-  
+
+
+
   srv={};
   surveys:Array<object> = [];
   constructor(private surveyService: SurveyService, private route: Router) { }
@@ -22,20 +22,24 @@ export class ViewComponent implements OnInit {
   }
 
 
-public getSurvey(){
+public getSurvey() {
   this.surveyService.getSurvey().subscribe((data: Array<object>) => {
-    this.surveys= data;
-    
-   
+    this.surveys = data;
+    for (let i = 0; i < this.surveys.length; i++) {
+      this.surveys[i]['expiryDate'] = this.surveys[i]['expiryDate'].substring(0, 10);
+    }
+   console.log(this.surveys);
+
+
     // console.log(data);
   });
 
- 
+
 
 }
 
 sendMessage(srvy: Survey) {
- 
+
   this.surveyService.changeMessage(srvy);
   this.surveyService.currentMessage.subscribe(message => this.srv = message);
  // console.log(this.srv);
