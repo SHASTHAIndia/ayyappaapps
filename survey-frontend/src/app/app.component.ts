@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   title = 'admprof';
   constructor(private dataservice: DataService) {}
   ngOnInit() {
-   this.dataservice.currentMessage.subscribe(message => this.message = message); 
+   this.dataservice.currentMessage.subscribe(message => this.message = message);
 }
   receiveMessage($event) {
     this.survName = $event;
