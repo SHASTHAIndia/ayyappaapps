@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ViewComponent implements OnInit {
   
-  @Output() messageEvent = new EventEmitter();
+ 
   
   srv={};
   surveys:Array<object> = [];
