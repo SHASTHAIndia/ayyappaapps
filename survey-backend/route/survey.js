@@ -154,7 +154,7 @@ router.get("/survey", (req, res, next) => {
 });
 
 router.get("/active_only", (req, res, next) => {
-    Survey.find({ surveyStatus: "A" }, function (err, query_data) {
+    Survey.find({ surveyStatus: "A",$and:[{startDate:{$lte:new Date()}},{expiryDate:{$gte:new Date()}}] }, function (err, query_data) {
         if (err) {
             res.json(err.message);
         }
