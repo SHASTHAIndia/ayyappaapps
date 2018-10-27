@@ -158,13 +158,13 @@
                                                     <div *ngIf="survey['questionType']=='CHK'">
                                                         <label class="checkbox-inline" *ngFor="let ans of survey.answerOptions;let j=index">
                                                             <input type="checkbox" name="answer{{i+1}}{{j}}" value="{{ans}}"
-                                                                ngModel [(ngModel)]="anslis[i]">&nbsp;&nbsp;{{ans}}
+                                                                ngModel (click)="chechboxoptions(i,ans)">&nbsp;&nbsp;{{ans}}
                                                         </label>
 
                                                     </div>
 
                                                     <div *ngIf="survey['questionType']=='SLT'" class="col-md-4">
-                                                        <select class="form-control" name="answer{{i+1}}" ngModel>
+                                                        <select class="form-control" name="answer{{i+1}}" ngModel  [(ngModel)]="anslis[i]">
 
 
                                                             <option value="{{ans}}" *ngFor="let ans of survey.answerOptions">{{ans}}</option>
@@ -189,7 +189,7 @@
                                                 <!--<div class="next">
                                                             <button class="btn btn-info btn-lg" (click)="onClick()">Next
                                                                 <span class="glyphicon glyphicon-chevron-right"></span>
-        
+
                                                             </button>
                                                         </div>
                                                         -->
@@ -229,7 +229,7 @@
 
                                                     <input type="checkbox" name="isTCAccepted" [ngModel]="frm.isTCAccepted"
                                                         required #tc="ngModel"> {{srv['surveyMessage']}}
-                                                   
+
                                                     <div *ngIf="tc.invalid">
 
                                                     </div>
