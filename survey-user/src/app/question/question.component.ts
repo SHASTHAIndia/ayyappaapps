@@ -24,8 +24,8 @@ export class QuestionComponent implements OnInit {
     });
     
    }
-  //public sid: any = "5bbdda0d0648272d5c03a82c";
-  //public sid: any = "5bb7402d6ef3300dbcda9dcb";
+  // public sid: any = "5bbdda0d0648272d5c03a82c";
+  // public sid: any = "5bb7402d6ef3300dbcda9dcb";
   private qns: Array<object> = [];
   //srv: Survey;
   //srv:Array<object>= [];
@@ -35,10 +35,10 @@ export class QuestionComponent implements OnInit {
   answerOptions: Array<object> = [];
   adh: Array<object> = [];
   qslis = [];
-  anslis: Array<object> = [];
+  anslis: Array<Array<object>> = [];
   rsArr: Rsset[] = [];
-
-  //qscnt:any=0;
+optofcheck = [];
+  // qscnt:any=0;
 
 
 
@@ -125,7 +125,7 @@ export class QuestionComponent implements OnInit {
       //alert(res);
       alert(res.msg);
       this.route.navigate(['/']);
-      //console.log(res);
+      // console.log(res);
     });
     return;
 
@@ -168,12 +168,12 @@ export class QuestionComponent implements OnInit {
 
   public focusOutFunction(adhaar) {
     // alert(adhaar);
-    //console.log(adhaar);
-    //this.surveyService.focusOutFunction(adhaar,this.srv['_id']).subscribe((data:Array<object>)=>
+    // console.log(adhaar);
+    // this.surveyService.focusOutFunction(adhaar,this.srv['_id']).subscribe((data:Array<object>)=>
     this.surveyService.focusOutFunction(adhaar, this.srv_id).subscribe((data: Array<object>) => {
 
       this.adhr = data;
-//alert(this.adhr['msg']);
+// alert(this.adhr['msg']);
       if (this.adhr['survey_attended'] == true) {
         alert('User already attended the survey');
 
@@ -193,11 +193,24 @@ export class QuestionComponent implements OnInit {
   handleChange(evt) {
     var target = evt.target;
     if (target.checked) {
-      this.route.navigate(['/question'])
+      this.route.navigate(['/question']);
 
     }
   }
-
+chechboxoptions(i, value) {
+  for (let j = 0; j < this.optofcheck.length; j++) {
+    console.log(this.optofcheck);
+    if (value === this.optofcheck[j]) {
+         this.optofcheck.splice(j, 1);
+         console.log(this.optofcheck);
+         console.log(this.anslis[i]);
+         return;
+     }
+  }
+  this.optofcheck.push(value);
+ console.log(this.optofcheck);
+ this.anslis[i] = this.optofcheck;
+}
 
   title = 'sur';
 

@@ -28,15 +28,15 @@ const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'survey', component: NavbarComponent,
   children: [
-  {path: 'question', component: QuestionComponent,canActivate:[AuthGuardService]},
-  {path: 'newquestion', component: NewquestionComponent,canActivate:[AuthGuardService]},
-  {path: 'userlist', component: UserListComponent,canActivate:[AuthGuardService]},
-  {path: 'questionlist', component: QuestionlistComponent,canActivate:[AuthGuardService] },
-  {path: 'questionpopup', component: QuestionpopupComponent,canActivate:[AuthGuardService]},
-  {path: 'responses', component: ResponsesComponent,canActivate:[AuthGuardService]},
-  {path: 'surveyList', component: SurveyComponent,canActivate:[AuthGuardService]},
+  {path: 'question', component: QuestionComponent, canActivate: [AuthGuardService]},
+  {path: 'newquestion', component: NewquestionComponent, canActivate: [AuthGuardService]},
+  {path: 'userlist', component: UserListComponent, canActivate: [AuthGuardService]},
+  {path: 'questionlist', component: QuestionlistComponent, canActivate: [AuthGuardService] },
+  {path: 'questionpopup', component: QuestionpopupComponent, canActivate: [AuthGuardService]},
+  {path: 'responses', component: ResponsesComponent, canActivate: [AuthGuardService]},
+  {path: 'surveyList', component: SurveyComponent, canActivate: [AuthGuardService]},
   /* {path: 'surveyList', component: SurveyComponent}, */
-  {path: 'changepassword', component: ChangepasswordComponent,canActivate:[AuthGuardService]}
+  {path: 'changepassword', component: ChangepasswordComponent, canActivate: [AuthGuardService]}
   ]}
 ];
 
@@ -65,7 +65,7 @@ const routes: Routes = [
     HttpClientModule,
     // HttpClient
   ],
-  providers: [SurveyService, QuestionService, DataService,AuthenticateService,AuthGuardService],
+  providers: [SurveyService, QuestionService, DataService, AuthenticateService, AuthGuardService],
   bootstrap: [AppComponent],
   schemas: []
 })
