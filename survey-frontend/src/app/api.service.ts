@@ -24,8 +24,8 @@ export class ApiService {
   postQuestion(questions) {
     return this.httpClient.post(`${this.API_URL}/question/question`, questions);
   }
-  updateQuestion(updates) {
-    return this.httpClient.put(`${this.API_URL}/question/question`, updates);
+  updateQuestion(_id,updates) {
+    return this.httpClient.put(`${this.API_URL}/question/question/` + _id, updates);
   }
   // SREERAG
 
