@@ -230,7 +230,7 @@
 
 
 
-                              <select class="form-control" name="answer{{i+1}}" ngModel [(ngModel)]="anslis[i]">
+                              <select class="form-control" name="answer{{i+1}}" ngModel #answerSLT="ngModel" [(ngModel)]="anslis[i]">
 
 
                                 <option value="{{ans}}" *ngFor="let ans of survey.answerOptions">{{ans}}</option>
