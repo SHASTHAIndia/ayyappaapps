@@ -129,21 +129,10 @@ export class QuestionlistComponent implements OnInit {
 
     this.loadComponent = true;
 
-    //console.log('_id');
     console.log(ques);
     console.log(ques.answerOptions);
     document.getElementById('quest').style.display = 'none';
     document.getElementById('editpopup').style.display = 'block';
-
-
-    //  this.apiService.editQuestion(ques['_id']).subscribe((data: Array<object>) => {
-    //   this.questions=data;
-    //   console.log(this.questions);
-    // let arr=this.questions.toString();
-    // console.log(arr);
-
-
-    //});
   }
 
   updateQues = function (form) {

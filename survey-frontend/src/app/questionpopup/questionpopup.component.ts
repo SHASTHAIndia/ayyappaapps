@@ -12,15 +12,10 @@ import { Observable } from 'rxjs';
 })
 export class QuestionpopupComponent implements OnInit {
   
-// @Input() quescomp:Object;
-
-
 @Input() question:any;
   constructor(private apiService: ApiService,private _location: Location  ) { }
     
-    ngOnInit() {
-      
-      
+    ngOnInit() {    
       console.log(this.question)
     }
 questions_type: any = ['TXT', 'TXTA', 'OPT', 'SLT', 'CHK'];
